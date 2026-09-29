@@ -20,5 +20,137 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/calendar",
-  "hostApi": "^1.11"
+  "hostApi": "^1.11",
+  "integrity": "sha512-WjyDFP3GDnTEjaKOYOA9VaO1lrZH8vEraBwN9kPQm3120QHGHX6igqTL+BTCnUdmlpocToWtTuT1tte0pgBMsA==",
+  "publisher": "withbuddi <buddi@withbuddi.com>",
+  "provenance": {
+    "repository": "https://github.com/withbuddi/buddi-plugins",
+    "workflow": ".github/workflows/publish.yml",
+    "ref": "refs/tags/calendar@0.1.1",
+    "commit": "4083306c20295575dc1aa6b38461c8c39dd9a700",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36521496122/attempts/1"
+  },
+  "claims": {
+    "package": {
+      "name": "@withbuddi/plugin-calendar",
+      "version": "0.1.1",
+      "license": "Apache-2.0",
+      "author": {
+        "name": "withbuddi",
+        "url": "https://withbuddi.com"
+      },
+      "buddiName": "calendar",
+      "hostApi": "^1.11",
+      "uses": [
+        "http",
+        "secrets"
+      ],
+      "dependencies": {
+        "count": 21,
+        "withScripts": []
+      },
+      "scripts": []
+    },
+    "claims": {
+      "schema": "calendar",
+      "hosts": [
+        "calendar.google.com",
+        "*.icloud.com",
+        "outlook.office365.com",
+        "outlook.live.com"
+      ],
+      "missing": false
+    },
+    "manifest": {
+      "name": "calendar",
+      "version": "0.1.1",
+      "schema": "calendar",
+      "description": "Reads your Google, iCloud or Outlook calendars from their private links, kept like passwords, so your agents know today, the coming days and your free time. Read-only.",
+      "author": {
+        "name": "withbuddi",
+        "url": "https://withbuddi.com"
+      },
+      "uses": [
+        "http",
+        "secrets"
+      ],
+      "network": [
+        {
+          "host": "calendar.google.com",
+          "why": "Google calendars: buddi reads the secret iCal address you linked. Nothing is sent."
+        },
+        {
+          "host": "*.icloud.com",
+          "why": "iCloud calendars: buddi reads the public calendar link you linked. Nothing is sent."
+        },
+        {
+          "host": "outlook.office365.com",
+          "why": "Outlook calendars (work or school): buddi reads the published ICS link. Nothing is sent."
+        },
+        {
+          "host": "outlook.live.com",
+          "why": "Outlook calendars (personal): buddi reads the published ICS link. Nothing is sent."
+        }
+      ],
+      "tools": [
+        {
+          "name": "calendar.today",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "Today's events from the owner's linked calendars, in their time: all-day events first, then each meeting with its start and end. Use it for the morning brief and whenever the owner asks what today holds."
+        },
+        {
+          "name": "calendar.upcoming",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "The owner's events for the coming days, today included, grouped by day in their time. Use it to plan the week or answer \"what do I have on Thursday\"."
+        },
+        {
+          "name": "calendar.find",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "Search the owner's calendars for events whose title, place or notes contain the words, from 30 days ago to 180 days ahead unless given dates. Use it for \"when is the dentist\" or \"when did I last see Sam\"."
+        },
+        {
+          "name": "calendar.free",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "The owner's free time on one day, between 09:00 and 18:00 unless told otherwise, from the meetings in their calendars (all-day events and ones marked free do not count). Use it before proposing a time."
+        },
+        {
+          "name": "calendar.add",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Link a calendar by its private ICS address. The owner's own."
+        },
+        {
+          "name": "calendar.remove",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Unlink a calendar and forget its link. The owner's own."
+        }
+      ],
+      "sentinels": [],
+      "sources": [],
+      "missions": [],
+      "agents": [],
+      "skills": [],
+      "pages": [
+        {
+          "id": "settings",
+          "title": "Calendar",
+          "place": "settings"
+        },
+        {
+          "id": "agenda",
+          "title": "Calendar",
+          "place": "rail"
+        }
+      ],
+      "views": 2,
+      "home": 1
+    },
+    "drift": []
+  },
+  "checkedAt": "2026-09-29"
 }

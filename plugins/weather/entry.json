@@ -20,5 +20,138 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/weather",
-  "hostApi": "^1.13"
+  "hostApi": "^1.13",
+  "integrity": "sha512-86fGuWKrK0eQEMyFyk/yvm0iomuPzGPZkY+QdrWIkaIZ7DCSGYhmpvciM8C4kWsUQai0jUvW8v0SPsI+UqNtkQ==",
+  "publisher": "withbuddi <buddi@withbuddi.com>",
+  "provenance": {
+    "repository": "https://github.com/withbuddi/buddi-plugins",
+    "workflow": ".github/workflows/publish.yml",
+    "ref": "refs/tags/weather@0.1.1",
+    "commit": "4083306c20295575dc1aa6b38461c8c39dd9a700",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36521495909/attempts/1"
+  },
+  "claims": {
+    "package": {
+      "name": "@withbuddi/plugin-weather",
+      "version": "0.1.1",
+      "license": "Apache-2.0",
+      "author": {
+        "name": "withbuddi",
+        "url": "https://withbuddi.com"
+      },
+      "buddiName": "weather",
+      "hostApi": "^1.13",
+      "uses": [
+        "http",
+        "owner:notify"
+      ],
+      "dependencies": {
+        "count": 16,
+        "withScripts": []
+      },
+      "scripts": []
+    },
+    "claims": {
+      "schema": "weather",
+      "hosts": [
+        "geocoding-api.open-meteo.com",
+        "api.open-meteo.com"
+      ],
+      "missing": false
+    },
+    "manifest": {
+      "name": "weather",
+      "version": "0.1.1",
+      "schema": "weather",
+      "description": "The weather now and the forecast for the places you save, from Open-Meteo with no key, and a message once when severe weather is coming at one of them.",
+      "author": {
+        "name": "withbuddi",
+        "url": "https://withbuddi.com"
+      },
+      "uses": [
+        "http",
+        "owner:notify"
+      ],
+      "network": [
+        {
+          "host": "geocoding-api.open-meteo.com",
+          "why": "Finding a place you name: the name goes, its coordinates come back."
+        },
+        {
+          "host": "api.open-meteo.com",
+          "why": "The forecast: a latitude and longitude go, no key and nothing else."
+        }
+      ],
+      "tools": [
+        {
+          "name": "weather.now",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "The weather right now at one of the owner's places (home when none is named) or any city: temperature, sky, wind, and today's high and low. Use it when the owner asks about the weather now or today."
+        },
+        {
+          "name": "weather.forecast",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "The forecast day by day for one of the owner's places (home when none is named) or any city, up to 7 days: high, low, sky, rain and strong wind. Use it before suggesting anything outdoors or when the owner asks about the coming days."
+        },
+        {
+          "name": "weather.places",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "The places the owner saved for the weather, which one is home, and the units they read."
+        },
+        {
+          "name": "weather.add_place",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Save a place for the weather. The owner's own."
+        },
+        {
+          "name": "weather.remove_place",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Forget a saved place. The owner's own."
+        },
+        {
+          "name": "weather.set_home",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Make a saved place home. The owner's own."
+        },
+        {
+          "name": "weather.set_units",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Metric or imperial. The owner's own."
+        }
+      ],
+      "sentinels": [
+        {
+          "name": "weather.severe",
+          "every": 10800
+        }
+      ],
+      "sources": [],
+      "missions": [],
+      "agents": [],
+      "skills": [],
+      "pages": [
+        {
+          "id": "weather",
+          "title": "Weather",
+          "place": "rail"
+        },
+        {
+          "id": "settings",
+          "title": "Weather",
+          "place": "settings"
+        }
+      ],
+      "views": 2,
+      "home": 1
+    },
+    "drift": []
+  },
+  "checkedAt": "2026-09-29"
 }
