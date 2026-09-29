@@ -3,7 +3,7 @@
   "npm": "@withbuddi/plugin-calendar",
   "version": "0.1.1",
   "title": "Calendar",
-  "summary": "Your calendars from their private links, kept like passwords, so your agents know what today holds and when you are free. It reads; it never writes.",
+  "summary": "Your calendars from their private links, kept like passwords, so your team know what today holds and when you are free. It reads; it never writes.",
   "category": "days",
   "trust": "by-buddi",
   "pricing": {
