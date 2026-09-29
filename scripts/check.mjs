@@ -87,9 +87,7 @@ async function checkOne(name) {
   }
 
   const next = withClaims(entry, described, view, provenance);
-  const { checkedAt: _a, ...nextCmp } = next;
-  const { checkedAt: _b, ...prevCmp } = entry;
-  const same = JSON.stringify(nextCmp) === JSON.stringify(prevCmp);
+  const same = JSON.stringify(comparable(next)) === JSON.stringify(comparable(entry));
   if (write) {
     if (!same) writeFileSync(entryPath(name), stableJson(next));
     return;
@@ -97,9 +95,22 @@ async function checkOne(name) {
   if (!same) {
     throw new Error(
       `its claims block is not what the code says. Run: node scripts/check.mjs --write ${name}\n` +
-        diff(prevCmp, nextCmp),
+        diff(comparable(entry), comparable(next)),
     );
   }
+}
+
+/**
+ * What two runs of the check must agree on. The date is left out, and so is
+ * the dependency count: a package with native builds installs one more or
+ * one fewer platform package on Linux than on a Mac, and that is npm's
+ * doing, not the plugin's. Which dependencies run install scripts stays.
+ */
+function comparable(entry) {
+  const { checkedAt: _date, ...rest } = entry;
+  const copy = JSON.parse(JSON.stringify(rest));
+  if (copy.claims?.package?.dependencies) delete copy.claims.package.dependencies.count;
+  return copy;
 }
 
 /** The top-level keys that differ, one line each. Enough to see what moved. */
