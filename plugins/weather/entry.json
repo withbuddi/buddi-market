@@ -1,15 +1,20 @@
 {
   "name": "weather",
   "npm": "@withbuddi/plugin-weather",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "Weather",
   "summary": "The weather now and for the week at the places you save, from Open-Meteo with no key, and one message when something severe is coming.",
   "category": "days",
   "trust": "by-buddi",
-  "pricing": { "kind": "free" },
+  "pricing": {
+    "kind": "free"
+  },
   "icon": "icon.svg",
   "screenshots": [],
-  "author": { "name": "withbuddi", "url": "https://withbuddi.com" },
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
   "license": "Apache-2.0",
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/weather",
