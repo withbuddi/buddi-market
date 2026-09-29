@@ -6,12 +6,166 @@
   "summary": "Your agents hear you and answer with a voice: on the dashboard and on Telegram. Whisper and Kokoro run on your computer, or a cloud service you choose.",
   "category": "voice",
   "trust": "by-buddi",
-  "pricing": { "kind": "free" },
+  "pricing": {
+    "kind": "free"
+  },
   "icon": "icon.svg",
   "screenshots": [],
-  "author": { "name": "withbuddi", "url": "https://withbuddi.com" },
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
   "license": "GPL-3.0-only",
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/speech",
-  "hostApi": "^1.0"
+  "hostApi": "^1.0",
+  "integrity": "sha512-O1muvxYlwFn/XrPbhfk1JOneHqCM86d7jSPqfEdiA+z/S9azqvWPCGgYDmH9ClE1qLRMDDNkE2bsCf/T/jYhzw==",
+  "publisher": "withbuddi <buddi@withbuddi.com>",
+  "provenance": {
+    "repository": "https://github.com/withbuddi/buddi-plugins",
+    "workflow": ".github/workflows/publish.yml",
+    "ref": "refs/tags/speech@0.1.2",
+    "commit": "37c31c5633603512838bacf6ae62452c450026c0",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36517798539/attempts/1"
+  },
+  "claims": {
+    "package": {
+      "name": "@withbuddi/plugin-speech",
+      "version": "0.1.2",
+      "license": "GPL-3.0-only",
+      "author": {
+        "name": "withbuddi",
+        "url": "https://withbuddi.com"
+      },
+      "buddiName": "speech",
+      "hostApi": "^1.0",
+      "uses": [
+        "http",
+        "accounts",
+        "files:library"
+      ],
+      "dependencies": {
+        "count": 64,
+        "withScripts": [
+          "onnxruntime-node (postinstall)",
+          "sharp (install)"
+        ]
+      },
+      "scripts": []
+    },
+    "claims": {
+      "schema": "speech",
+      "hosts": [
+        "api.openai.com",
+        "huggingface.co",
+        "*.hf.co",
+        "registry.npmjs.org"
+      ],
+      "missing": false
+    },
+    "manifest": {
+      "name": "speech",
+      "version": "0.1.2",
+      "schema": "speech",
+      "description": "Lets agents listen to an audio file and answer with a voice, through the OpenAI or OpenAI-compatible account you choose on Settings → Speech, or Whisper and Kokoro on this computer, with daily limits.",
+      "author": {
+        "name": "withbuddi",
+        "url": "https://withbuddi.com"
+      },
+      "uses": [
+        "http",
+        "accounts",
+        "files:library"
+      ],
+      "network": [
+        {
+          "host": "api.openai.com",
+          "why": "OpenAI accounts: a recording goes to be transcribed, or a text to be spoken; the text or the audio comes back."
+        },
+        {
+          "host": "huggingface.co",
+          "why": "Install on Settings → Speech: the Whisper and Kokoro model files, pinned and checked; nothing is sent."
+        },
+        {
+          "host": "*.hf.co",
+          "why": "Hugging Face's download servers (us.aws.cdn.hf.co and its like), where huggingface.co sends those files."
+        },
+        {
+          "host": "registry.npmjs.org",
+          "why": "Install of Kokoro: the eSpeak NG package (12.5 MB, GPL-3.0), pinned and checked, which pronounces the languages other than English; nothing is sent."
+        }
+      ],
+      "tools": [
+        {
+          "name": "speech.transcribe",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "Turn a recording from the Files library (a voice note, an audio file up to 25 MB) into text. With a cloud service the recording leaves this machine for the listening service the owner chose in Settings → Speech (OpenAI or their OpenAI-compatible server), which sends back the text; with Whisper on this computer nothing leaves. Returns { text, language? }."
+        },
+        {
+          "name": "speech.say",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "Say a text aloud and keep the audio in the owner's Files library (a voice note, OGG/Opus when the service gives it). With a cloud service the text leaves this machine for the speaking service the owner chose in Settings → Speech (OpenAI or their OpenAI-compatible server), which sends back the audio; with Kokoro on this computer nothing leaves, and it speaks English, French, Spanish, Italian, Portuguese and Hindi (the voice follows the text's language). Write for the ear."
+        },
+        {
+          "name": "speech.set_settings",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "The Speech settings. The owner's own."
+        },
+        {
+          "name": "speech.test",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Try the chosen listening service on a short clip. The owner's own."
+        },
+        {
+          "name": "speech.preview",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Play a short sample of a speaking service and voice on the Speech page; nothing is kept. The owner's own."
+        },
+        {
+          "name": "speech.install",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Download a speech model to run on this computer, in the background. The owner's own."
+        },
+        {
+          "name": "speech.remove",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Delete a speech model downloaded to this computer. The owner's own."
+        },
+        {
+          "name": "speech.telegram_voice",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Voice replies on Telegram: when, and what is sent. The owner's own."
+        }
+      ],
+      "sentinels": [],
+      "sources": [],
+      "missions": [],
+      "agents": [],
+      "skills": [
+        {
+          "name": "speaking-for-the-ear",
+          "description": "How to write a reply that will be spoken: short sentences, no tables or markdown, numbers as people say them. Read it before calling speech.say."
+        }
+      ],
+      "pages": [
+        {
+          "id": "settings",
+          "title": "Speech",
+          "place": "settings"
+        }
+      ],
+      "views": 0,
+      "home": 0
+    },
+    "drift": []
+  },
+  "checkedAt": "2026-09-29"
 }

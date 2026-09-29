@@ -6,12 +6,134 @@
   "summary": "One picture from a prompt, made by an image service you already have, kept in your Files library. Proposes Illustrator, an agent the others can ask for pictures.",
   "category": "work",
   "trust": "by-buddi",
-  "pricing": { "kind": "free" },
+  "pricing": {
+    "kind": "free"
+  },
   "icon": "icon.svg",
   "screenshots": [],
-  "author": { "name": "withbuddi", "url": "https://withbuddi.com" },
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
   "license": "Apache-2.0",
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/image",
-  "hostApi": "^1.8"
+  "hostApi": "^1.8",
+  "integrity": "sha512-/GLctD82J8mmMht5m5AT/3PP87zsiSTBxIJu+g6hDywP2yFc3trNl5LJ4EdasN1MKeoemDB6ZmH4GPPcjI84Qg==",
+  "publisher": "withbuddi <buddi@withbuddi.com>",
+  "provenance": {
+    "repository": "https://github.com/withbuddi/buddi-plugins",
+    "workflow": ".github/workflows/publish.yml",
+    "ref": "refs/tags/image@0.1.2",
+    "commit": "37c31c5633603512838bacf6ae62452c450026c0",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36517796916/attempts/1"
+  },
+  "claims": {
+    "package": {
+      "name": "@withbuddi/plugin-image",
+      "version": "0.1.2",
+      "license": "Apache-2.0",
+      "author": {
+        "name": "withbuddi",
+        "url": "https://withbuddi.com"
+      },
+      "buddiName": "image",
+      "hostApi": "^1.8",
+      "uses": [
+        "accounts",
+        "files:library"
+      ],
+      "dependencies": {
+        "count": 16,
+        "withScripts": []
+      },
+      "scripts": []
+    },
+    "claims": {
+      "schema": "image",
+      "hosts": [
+        "chatgpt.com",
+        "api.openai.com",
+        "generativelanguage.googleapis.com"
+      ],
+      "missing": false
+    },
+    "manifest": {
+      "name": "image",
+      "version": "0.1.2",
+      "schema": "image",
+      "description": "Makes one image from a prompt with the provider account you choose (ChatGPT subscription, OpenAI, Gemini, or an OpenAI-compatible server) and keeps it in the Files library. Proposes an Illustrator agent.",
+      "author": {
+        "name": "withbuddi",
+        "url": "https://withbuddi.com"
+      },
+      "uses": [
+        "accounts",
+        "files:library"
+      ],
+      "network": [
+        {
+          "host": "chatgpt.com",
+          "why": "ChatGPT subscription accounts: buddi sends the prompt and references to ChatGPT's image tool and gets the picture back."
+        },
+        {
+          "host": "api.openai.com",
+          "why": "OpenAI accounts: the prompt and references go to the Images API; the picture comes back."
+        },
+        {
+          "host": "generativelanguage.googleapis.com",
+          "why": "Gemini accounts: the prompt goes to Imagen through Google's OpenAI-compatible endpoint; the picture comes back."
+        }
+      ],
+      "tools": [
+        {
+          "name": "image.generate",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "Make one image from a prompt and keep it in the owner's Files library; it shows on the canvas. Write the prompt as one clear description: subject, style, composition, palette, and what to avoid. No text in the picture unless asked. `references` are Files library ids of images to work from. You cannot see the result: report what you asked for and the library id you get back."
+        },
+        {
+          "name": "image.set_settings",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "The Image settings. The owner's own."
+        }
+      ],
+      "sentinels": [],
+      "sources": [],
+      "missions": [],
+      "agents": [
+        {
+          "id": "illustrator",
+          "handle": "art",
+          "name": "Illustrator",
+          "tools": [
+            "image.generate",
+            "memory.note",
+            "memory.recall",
+            "memory.forget",
+            "memory.remember_preference",
+            "memory.get_preferences"
+          ]
+        }
+      ],
+      "skills": [
+        {
+          "name": "writing-an-image-prompt",
+          "description": "How one request becomes one image prompt: subject, style, composition, palette, what to avoid; references; no text unless asked; no brands or real people. Read it before calling image.generate."
+        }
+      ],
+      "pages": [
+        {
+          "id": "settings",
+          "title": "Image",
+          "place": "settings"
+        }
+      ],
+      "views": 1,
+      "home": 0
+    },
+    "drift": []
+  },
+  "checkedAt": "2026-09-29"
 }
