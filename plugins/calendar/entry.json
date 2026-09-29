@@ -10,7 +10,9 @@
     "kind": "free"
   },
   "icon": "icon.svg",
-  "screenshots": [],
+  "screenshots": [
+    "shots/week.webp"
+  ],
   "author": {
     "name": "withbuddi",
     "url": "https://withbuddi.com"
