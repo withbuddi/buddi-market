@@ -1,0 +1,17 @@
+{
+  "name": "finance",
+  "npm": "@withbuddi/plugin-finance",
+  "version": "0.1.1",
+  "title": "Finance",
+  "summary": "Your accounts, cards, loans, recurring charges and receipts in one place, a cash-flow projection, and a word before a balance dips or a payment comes due. Nothing leaves this computer.",
+  "category": "money",
+  "trust": "by-buddi",
+  "pricing": { "kind": "free" },
+  "icon": "icon.svg",
+  "screenshots": [],
+  "author": { "name": "withbuddi", "url": "https://withbuddi.com" },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/withbuddi/buddi-plugins",
+  "homepage": "https://withbuddi.com/plugins/finance",
+  "hostApi": "^1.0"
+}

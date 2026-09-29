@@ -1,0 +1,17 @@
+{
+  "name": "speech",
+  "npm": "@withbuddi/plugin-speech",
+  "version": "0.1.2",
+  "title": "Speech",
+  "summary": "Your agents hear you and answer with a voice: on the dashboard and on Telegram. Whisper and Kokoro run on your computer, or a cloud service you choose.",
+  "category": "voice",
+  "trust": "by-buddi",
+  "pricing": { "kind": "free" },
+  "icon": "icon.svg",
+  "screenshots": [],
+  "author": { "name": "withbuddi", "url": "https://withbuddi.com" },
+  "license": "GPL-3.0-only",
+  "repository": "https://github.com/withbuddi/buddi-plugins",
+  "homepage": "https://withbuddi.com/plugins/speech",
+  "hostApi": "^1.0"
+}

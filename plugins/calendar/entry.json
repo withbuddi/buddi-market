@@ -1,0 +1,17 @@
+{
+  "name": "calendar",
+  "npm": "@withbuddi/plugin-calendar",
+  "version": "0.1.0",
+  "title": "Calendar",
+  "summary": "Your calendars from their private links, kept like passwords, so your agents know what today holds and when you are free. It reads; it never writes.",
+  "category": "days",
+  "trust": "by-buddi",
+  "pricing": { "kind": "free" },
+  "icon": "icon.svg",
+  "screenshots": [],
+  "author": { "name": "withbuddi", "url": "https://withbuddi.com" },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/withbuddi/buddi-plugins",
+  "homepage": "https://withbuddi.com/plugins/calendar",
+  "hostApi": "^1.11"
+}

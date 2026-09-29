@@ -1,0 +1,17 @@
+{
+  "name": "image",
+  "npm": "@withbuddi/plugin-image",
+  "version": "0.1.2",
+  "title": "Image",
+  "summary": "One picture from a prompt, made by an image service you already have, kept in your Files library. Proposes Illustrator, an agent the others can ask for pictures.",
+  "category": "work",
+  "trust": "by-buddi",
+  "pricing": { "kind": "free" },
+  "icon": "icon.svg",
+  "screenshots": [],
+  "author": { "name": "withbuddi", "url": "https://withbuddi.com" },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/withbuddi/buddi-plugins",
+  "homepage": "https://withbuddi.com/plugins/image",
+  "hostApi": "^1.8"
+}

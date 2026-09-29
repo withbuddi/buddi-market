@@ -1,0 +1,47 @@
+# On every pull request that touches an entry: the entry's claims block must
+# be what the code says. `scripts/check.mjs` asks npm for the version, reads
+# its provenance, and runs `buddi plugins describe`, which stages the package
+# the way an install would and reads its manifest; the committed block has to
+# match. buddi itself comes from npm (`@withbuddi/buddi`, its `latest`), into a
+# scratch data directory: nothing is installed, migrated or registered.
+name: check
+on:
+  pull_request:
+    paths: ['plugins/**', 'scripts/**']
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Which entries changed
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            names=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" -- plugins | sed -n 's#^plugins/\([^/]*\)/.*#\1#p' | sort -u | tr '\n' ' ')
+            if git diff --name-only "origin/${{ github.base_ref }}...HEAD" -- scripts | grep -q .; then names=""; fi
+          else
+            names=""
+          fi
+          echo "names=$names" >> "$GITHUB_OUTPUT"
+          echo "checking: ${names:-every entry}"
+      - name: buddi from npm, in a scratch installation
+        run: |
+          npm install -g @withbuddi/buddi
+          scratch="$RUNNER_TEMP/buddi"
+          mkdir -p "$scratch/data" && : > "$scratch/empty.env"
+          {
+            echo "BUDDI_DATA_DIR=$scratch/data"
+            echo "BUDDI_PLUGINS_FILE=$scratch/plugins.json"
+            echo "BUDDI_ENV_FILE=$scratch/empty.env"
+            echo "BUDDI_VAULT=memory"
+          } >> "$GITHUB_ENV"
+          buddi --version
+      - name: The claims are what the code says
+        run: node scripts/check.mjs ${{ steps.changed.outputs.names }}
+      - name: The index builds
+        run: node scripts/index.mjs "$RUNNER_TEMP/index.json" && node -e 'const i=require(process.argv[1]);console.log(i.plugins.map(p=>p.name+"@"+p.version).join(", "))' "$RUNNER_TEMP/index.json"
