@@ -130,11 +130,13 @@ export function authorName(author) {
 /** The entry with what the check computed: the block the page and buddi read from. */
 export function withClaims(entry, described, view, provenance) {
   const { package: pkg, ...rest } = described;
-  const { integrity, publisher, ...pkgRest } = pkg;
+  // The publisher npm names depends on which npm asks (a maintainer or "GitHub
+  // Actions"), so it is not kept: integrity and provenance are the facts.
+  const { integrity, publisher: _publisher, ...pkgRest } = pkg;
+  const { publisher: _old, ...rest } = entry;
   return {
-    ...entry,
+    ...rest,
     integrity,
-    publisher: publisher ?? null,
     provenance,
     claims: { package: pkgRest, ...rest },
     checkedAt: new Date().toISOString().slice(0, 10),

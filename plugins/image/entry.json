@@ -20,7 +20,6 @@
   "homepage": "https://withbuddi.com/plugins/image",
   "hostApi": "^1.8",
   "integrity": "sha512-/GLctD82J8mmMht5m5AT/3PP87zsiSTBxIJu+g6hDywP2yFc3trNl5LJ4EdasN1MKeoemDB6ZmH4GPPcjI84Qg==",
-  "publisher": "withbuddi <buddi@withbuddi.com>",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",

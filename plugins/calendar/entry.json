@@ -22,7 +22,6 @@
   "homepage": "https://withbuddi.com/plugins/calendar",
   "hostApi": "^1.11",
   "integrity": "sha512-WjyDFP3GDnTEjaKOYOA9VaO1lrZH8vEraBwN9kPQm3120QHGHX6igqTL+BTCnUdmlpocToWtTuT1tte0pgBMsA==",
-  "publisher": "withbuddi <buddi@withbuddi.com>",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",

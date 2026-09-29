@@ -20,7 +20,6 @@
   "homepage": "https://withbuddi.com/plugins/speech",
   "hostApi": "^1.0",
   "integrity": "sha512-O1muvxYlwFn/XrPbhfk1JOneHqCM86d7jSPqfEdiA+z/S9azqvWPCGgYDmH9ClE1qLRMDDNkE2bsCf/T/jYhzw==",
-  "publisher": "withbuddi <buddi@withbuddi.com>",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
@@ -67,7 +66,7 @@
       "name": "speech",
       "version": "0.1.2",
       "schema": "speech",
-      "description": "Lets agents listen to an audio file and answer with a voice, through the OpenAI or OpenAI-compatible account you choose on Settings → Speech, or Whisper and Kokoro on this computer, with daily limits.",
+      "description": "Lets agents listen to an audio file and answer with a voice, through the OpenAI or OpenAI-compatible account you choose on Settings \u2192 Speech, or Whisper and Kokoro on this computer, with daily limits.",
       "author": {
         "name": "withbuddi",
         "url": "https://withbuddi.com"
@@ -84,7 +83,7 @@
         },
         {
           "host": "huggingface.co",
-          "why": "Install on Settings → Speech: the Whisper and Kokoro model files, pinned and checked; nothing is sent."
+          "why": "Install on Settings \u2192 Speech: the Whisper and Kokoro model files, pinned and checked; nothing is sent."
         },
         {
           "host": "*.hf.co",
@@ -100,13 +99,13 @@
           "name": "speech.transcribe",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Turn a recording from the Files library (a voice note, an audio file up to 25 MB) into text. With a cloud service the recording leaves this machine for the listening service the owner chose in Settings → Speech (OpenAI or their OpenAI-compatible server), which sends back the text; with Whisper on this computer nothing leaves. Returns { text, language? }."
+          "description": "Turn a recording from the Files library (a voice note, an audio file up to 25 MB) into text. With a cloud service the recording leaves this machine for the listening service the owner chose in Settings \u2192 Speech (OpenAI or their OpenAI-compatible server), which sends back the text; with Whisper on this computer nothing leaves. Returns { text, language? }."
         },
         {
           "name": "speech.say",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Say a text aloud and keep the audio in the owner's Files library (a voice note, OGG/Opus when the service gives it). With a cloud service the text leaves this machine for the speaking service the owner chose in Settings → Speech (OpenAI or their OpenAI-compatible server), which sends back the audio; with Kokoro on this computer nothing leaves, and it speaks English, French, Spanish, Italian, Portuguese and Hindi (the voice follows the text's language). Write for the ear."
+          "description": "Say a text aloud and keep the audio in the owner's Files library (a voice note, OGG/Opus when the service gives it). With a cloud service the text leaves this machine for the speaking service the owner chose in Settings \u2192 Speech (OpenAI or their OpenAI-compatible server), which sends back the audio; with Kokoro on this computer nothing leaves, and it speaks English, French, Spanish, Italian, Portuguese and Hindi (the voice follows the text's language). Write for the ear."
         },
         {
           "name": "speech.set_settings",

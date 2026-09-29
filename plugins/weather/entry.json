@@ -22,7 +22,6 @@
   "homepage": "https://withbuddi.com/plugins/weather",
   "hostApi": "^1.13",
   "integrity": "sha512-86fGuWKrK0eQEMyFyk/yvm0iomuPzGPZkY+QdrWIkaIZ7DCSGYhmpvciM8C4kWsUQai0jUvW8v0SPsI+UqNtkQ==",
-  "publisher": "withbuddi <buddi@withbuddi.com>",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",

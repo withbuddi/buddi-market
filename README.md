@@ -54,8 +54,7 @@ node scripts/check.mjs --write tides
 
 It asks npm for the version, reads its provenance, and runs
 `buddi plugins describe`, which stages the package the way an install would
-and reads its manifest. What it writes (`claims`, `integrity`, `publisher`,
-`provenance`) is what the page shows: the tools and their tiers, the schema,
+and reads its manifest. What it writes (`claims`, `integrity`, `provenance`) is what the page shows: the tools and their tiers, the schema,
 the hosts, what runs on a timer, the agents it proposes. The page can never
 claim less than the code does, because the page is written from the code. The
 same check runs on the pull request and fails when the committed block is not

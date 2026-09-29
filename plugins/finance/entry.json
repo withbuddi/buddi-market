@@ -20,7 +20,6 @@
   "homepage": "https://withbuddi.com/plugins/finance",
   "hostApi": "^1.0",
   "integrity": "sha512-cnwUDCQRqrQbxy1sSlhjGf0mD65SAzBq+k4CKnhDU0l7/DyrpfuD1vwSPykBwn1DR+MgRHytweHG5HVePZ7z6A==",
-  "publisher": "withbuddi <buddi@withbuddi.com>",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
@@ -83,37 +82,37 @@
           "name": "finance.set_balance",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Record the current balance of an account as of a date. Creates the account if it does not exist. This is the starting point every cashflow projection builds on, so keep it fresh. RECORD WHAT YOU OBSERVE: whenever you read a balance from a live source — a bank page in the browser, a statement or screenshot, or the owner telling you what an account holds — call this FIRST, with that amount, that account and `asOf` set to the date the source itself is from, and then say in your answer that you recorded it. A balance you merely worked out — a projection, a sum, what will be left after Friday's rent — is NEVER recorded here; set_balance holds observations only, so that a later projection can trust every number it starts from. Pass `kind` when the account is not a plain current account — a 401k, IRA or pension is 'retirement', a brokerage is 'investment', an HSA is 'hsa': those are counted in net worth but excluded from the cash flow, so their balance can never make a purchase look affordable. `institution` and `notes` are optional and, like `kind`, are preserved when a later call omits them."
+          "description": "Record the current balance of an account as of a date. Creates the account if it does not exist. This is the starting point every cashflow projection builds on, so keep it fresh. RECORD WHAT YOU OBSERVE: whenever you read a balance from a live source \u2014 a bank page in the browser, a statement or screenshot, or the owner telling you what an account holds \u2014 call this FIRST, with that amount, that account and `asOf` set to the date the source itself is from, and then say in your answer that you recorded it. A balance you merely worked out \u2014 a projection, a sum, what will be left after Friday's rent \u2014 is NEVER recorded here; set_balance holds observations only, so that a later projection can trust every number it starts from. Pass `kind` when the account is not a plain current account \u2014 a 401k, IRA or pension is 'retirement', a brokerage is 'investment', an HSA is 'hsa': those are counted in net worth but excluded from the cash flow, so their balance can never make a purchase look affordable. `institution` and `notes` are optional and, like `kind`, are preserved when a later call omits them."
         },
         {
           "name": "finance.update_account",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Change what an account IS without touching its balance: its kind, whether it counts as spendable cash, the institution holding it, a note, or its name. Use this to reclassify an account the owner already has — 'that Growth Account one is actually my brokerage' — or to record an employer match as a note. Everything omitted is left as it was; use finance.set_balance to change the balance."
+          "description": "Change what an account IS without touching its balance: its kind, whether it counts as spendable cash, the institution holding it, a note, or its name. Use this to reclassify an account the owner already has \u2014 'that Growth Account one is actually my brokerage' \u2014 or to record an employer match as a note. Everything omitted is left as it was; use finance.set_balance to change the balance."
         },
         {
           "name": "finance.list_accounts",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "List every known account with its last recorded balance, the date that balance was recorded, its `kind` and whether it is spendable (`includeInCashflow`). Totals are split on purpose: `cashTotal` is the money that can actually be spent (every account with includeInCashflow), `excludedTotal` is retirement/investment/HSA money — real, counted, but never available for a purchase — broken down per kind in `excludedByKind`, and `netWorth` is cashTotal + excludedTotal minus the recorded debts (finance.list_liabilities). `total` is kept as an alias of `cashTotal` for older callers and is NOT the whole balance sheet. An account whose balance was recorded more than 7 days ago carries `stale: true`, with its age in `balanceAgeDays`: say so when you quote it, and prefer reading the live balance and recording it with finance.set_balance over answering from a cold number. Never quote excluded money as though it were cash, and never answer an affordability question from it."
+          "description": "List every known account with its last recorded balance, the date that balance was recorded, its `kind` and whether it is spendable (`includeInCashflow`). Totals are split on purpose: `cashTotal` is the money that can actually be spent (every account with includeInCashflow), `excludedTotal` is retirement/investment/HSA money \u2014 real, counted, but never available for a purchase \u2014 broken down per kind in `excludedByKind`, and `netWorth` is cashTotal + excludedTotal minus the recorded debts (finance.list_liabilities). `total` is kept as an alias of `cashTotal` for older callers and is NOT the whole balance sheet. An account whose balance was recorded more than 7 days ago carries `stale: true`, with its age in `balanceAgeDays`: say so when you quote it, and prefer reading the live balance and recording it with finance.set_balance over answering from a cold number. Never quote excluded money as though it were cash, and never answer an affordability question from it."
         },
         {
           "name": "finance.merge_accounts",
           "tier": "gated",
           "ownerOnly": false,
-          "description": "Fold one account into another and delete it: every transaction, recurring item, liability and staged import that pointed at `from` is repointed at `into`, and `from` is then removed. This is what you do with a DUPLICATE — the same real account recorded twice under two names ('Checking' and 'Main Checking') — never with two genuinely different accounts, and never as a way of hiding an account from the cash flow (that is finance.update_account with includeInCashflow). `into` keeps its own balance unless `from`'s reading is NEWER, in which case the newer balance and its as-of date are carried over and the result says so. Refused when the two are the same account, when either is unknown, or when `from` is spendable cash and `into` is excluded from the cash flow."
+          "description": "Fold one account into another and delete it: every transaction, recurring item, liability and staged import that pointed at `from` is repointed at `into`, and `from` is then removed. This is what you do with a DUPLICATE \u2014 the same real account recorded twice under two names ('Checking' and 'Main Checking') \u2014 never with two genuinely different accounts, and never as a way of hiding an account from the cash flow (that is finance.update_account with includeInCashflow). `into` keeps its own balance unless `from`'s reading is NEWER, in which case the newer balance and its as-of date are carried over and the result says so. Refused when the two are the same account, when either is unknown, or when `from` is spendable cash and `into` is excluded from the cash flow."
         },
         {
           "name": "finance.remove_account",
           "tier": "gated",
           "ownerOnly": false,
-          "description": "Delete an account that was recorded by mistake and holds nothing: no transactions, no recurring items, no liability paid from it, no staged import. Refused as soon as anything points at it, naming what does — an account with history is never deleted, because deleting it would take its ledger with it. When the account is a duplicate of one that is being kept, use finance.merge_accounts instead: that moves the history across and then removes the duplicate."
+          "description": "Delete an account that was recorded by mistake and holds nothing: no transactions, no recurring items, no liability paid from it, no staged import. Refused as soon as anything points at it, naming what does \u2014 an account with history is never deleted, because deleting it would take its ledger with it. When the account is a duplicate of one that is being kept, use finance.merge_accounts instead: that moves the history across and then removes the duplicate."
         },
         {
           "name": "finance.add_recurring",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Add a recurring income or charge (salary, rent, subscription, loan payment). These items drive the cashflow projection, so add every known one. Pass `liability` instead of `account` when the charge is billed to a credit card — a subscription or an insurance premium on autopay to the card: it then shows as `billedTo` on that card, counts toward the card's statement forecast, and is deliberately kept OUT of the cash projection, because the cash only moves when the card is paid and that payment is its own recurring item. Returns the created item."
+          "description": "Add a recurring income or charge (salary, rent, subscription, loan payment). These items drive the cashflow projection, so add every known one. Pass `liability` instead of `account` when the charge is billed to a credit card \u2014 a subscription or an insurance premium on autopay to the card: it then shows as `billedTo` on that card, counts toward the card's statement forecast, and is deliberately kept OUT of the cash projection, because the cash only moves when the card is paid and that payment is its own recurring item. Returns the created item."
         },
         {
           "name": "finance.list_recurring",
@@ -131,13 +130,13 @@
           "name": "finance.record_transaction",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Record one transaction the owner mentions (source: manual), on a cash account OR on a card. Pass `account` for money moving through a checking or savings account; pass `liability` for a purchase made ON a credit card (the GEICO premium billed to the Mastercard, a dinner on the Amex) — that moves no cash on the day, so it belongs on the card and never on an account. On a card the sign is: negative = charge (raises what is owed), positive = payment or credit (lowers it). Re-recording the same ledger/date/amount/description is a no-op, so repeating a recap is safe; pass occurrence: 1 (then 2, …) only when the owner really paid the same amount to the same place twice on the same day. Pass status: 'pending' when the charge is an authorisation the bank has not settled: it counts as committed money in a projection, is left out of the monthly summary, and is superseded automatically once the posted row arrives."
+          "description": "Record one transaction the owner mentions (source: manual), on a cash account OR on a card. Pass `account` for money moving through a checking or savings account; pass `liability` for a purchase made ON a credit card (the GEICO premium billed to the Mastercard, a dinner on the Amex) \u2014 that moves no cash on the day, so it belongs on the card and never on an account. On a card the sign is: negative = charge (raises what is owed), positive = payment or credit (lowers it). Re-recording the same ledger/date/amount/description is a no-op, so repeating a recap is safe; pass occurrence: 1 (then 2, \u2026) only when the owner really paid the same amount to the same place twice on the same day. Pass status: 'pending' when the charge is an authorisation the bank has not settled: it counts as committed money in a projection, is left out of the monthly summary, and is superseded automatically once the posted row arrives."
         },
         {
           "name": "finance.record_contribution",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Record a contribution to a retirement, investment or HSA account — a 401k payroll deduction, an employer match, an IRA transfer, a brokerage deposit. It books the movement against that account ONLY: because the account is outside the cash flow, the projection, the spending baseline and the cash total are untouched, so a contribution never reads as spending and never reads as spendable money. The account balance itself is a stated figure, not a running sum — use finance.set_balance when the owner tells you the new balance. For anything hitting a current or savings account, use finance.record_transaction instead."
+          "description": "Record a contribution to a retirement, investment or HSA account \u2014 a 401k payroll deduction, an employer match, an IRA transfer, a brokerage deposit. It books the movement against that account ONLY: because the account is outside the cash flow, the projection, the spending baseline and the cash total are untouched, so a contribution never reads as spending and never reads as spendable money. The account balance itself is a stated figure, not a running sum \u2014 use finance.set_balance when the owner tells you the new balance. For anything hitting a current or savings account, use finance.record_transaction instead."
         },
         {
           "name": "finance.import_csv",
@@ -149,19 +148,19 @@
           "name": "finance.stage_import",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Stage rows read off a statement WITHOUT writing them to the ledger. It validates them, works out which are already recorded, and returns a summary — row count, how many are new, how many are duplicates, the date range, money in, money out, and the five biggest categories. Show that summary to the owner in plain words and ask whether to commit; write it with finance.commit_import only after an explicit yes, or drop it with finance.discard_import. Pass `liability` instead of `account` for a credit-card statement: the rows then live on the card, where a negative amount is a charge and a positive one a payment. The staging expires in two hours. Extract the rows from the document yourself — never invent a row, and if part of the document is unreadable, stage what is legible and say which part you could not read. For more than a couple of hundred rows, do not type them: pass `file` with the artifact id of the CSV, or write the rows to an artifact and pass its id."
+          "description": "Stage rows read off a statement WITHOUT writing them to the ledger. It validates them, works out which are already recorded, and returns a summary \u2014 row count, how many are new, how many are duplicates, the date range, money in, money out, and the five biggest categories. Show that summary to the owner in plain words and ask whether to commit; write it with finance.commit_import only after an explicit yes, or drop it with finance.discard_import. Pass `liability` instead of `account` for a credit-card statement: the rows then live on the card, where a negative amount is a charge and a positive one a payment. The staging expires in two hours. Extract the rows from the document yourself \u2014 never invent a row, and if part of the document is unreadable, stage what is legible and say which part you could not read. For more than a couple of hundred rows, do not type them: pass `file` with the artifact id of the CSV, or write the rows to an artifact and pass its id."
         },
         {
           "name": "finance.commit_import",
           "tier": "gated",
           "ownerOnly": false,
-          "description": "Write a staged import into the ledger. Only call this after the owner has seen the summary and said yes — never on your own initiative and never \"to save a step\". Rows already in the ledger are skipped — except a posted row whose pending twin is recorded, which settles it (a deleted row never counts) — a row staged as pending is written as pending, and the import ends by reconciling, so a pending line whose posted twin is in the same statement settles at once. Refuses a staging that was already committed or that has expired; stage it again in that case. Every row written carries the document's artifactId, so a wrong import can be undone with finance.delete_transactions and that artifactId. The owner approves the batch on a card naming the count and the ledger."
+          "description": "Write a staged import into the ledger. Only call this after the owner has seen the summary and said yes \u2014 never on your own initiative and never \"to save a step\". Rows already in the ledger are skipped \u2014 except a posted row whose pending twin is recorded, which settles it (a deleted row never counts) \u2014 a row staged as pending is written as pending, and the import ends by reconciling, so a pending line whose posted twin is in the same statement settles at once. Refuses a staging that was already committed or that has expired; stage it again in that case. Every row written carries the document's artifactId, so a wrong import can be undone with finance.delete_transactions and that artifactId. The owner approves the batch on a card naming the count and the ledger."
         },
         {
           "name": "finance.discard_import",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Drop a staged import the owner declined, or one you staged from a document you then read better. Nothing had been written to the ledger, so nothing is lost. A staging that was already committed cannot be discarded — the rows are in the ledger by then."
+          "description": "Drop a staged import the owner declined, or one you staged from a document you then read better. Nothing had been written to the ledger, so nothing is lost. A staging that was already committed cannot be discarded \u2014 the rows are in the ledger by then."
         },
         {
           "name": "finance.find_transactions",
@@ -185,19 +184,19 @@
           "name": "finance.reconcile",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Settle the ledger: every pending transaction that has since appeared as a posted one is marked as superseded by it (same ledger — the same cash account, or the same card — same amount to the cent, same merchant, posted from two days before to five days after), and every receipt with no charge yet is linked to the transaction it belongs to. A superseded pending row is never deleted — it simply stops counting anywhere, so the money is not double-counted. Runs automatically at the end of every import; call it directly after recording pending rows by hand, or to report what is still outstanding. Returns what was matched and what is still pending or unlinked."
+          "description": "Settle the ledger: every pending transaction that has since appeared as a posted one is marked as superseded by it (same ledger \u2014 the same cash account, or the same card \u2014 same amount to the cent, same merchant, posted from two days before to five days after), and every receipt with no charge yet is linked to the transaction it belongs to. A superseded pending row is never deleted \u2014 it simply stops counting anywhere, so the money is not double-counted. Runs automatically at the end of every import; call it directly after recording pending rows by hand, or to report what is still outstanding. Returns what was matched and what is still pending or unlinked."
         },
         {
           "name": "finance.record_receipt",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Record a receipt the owner sent — merchant, date, total, and the line items when they are legible. It does NOT create a transaction: the bank charge is the money, the receipt is the detail. After storing it, it looks for the charge it belongs to (same amount, same merchant, within three days either way, posted or still pending, on a cash account or on a card) and links them — a receipt for something paid by card matches the charge recorded on that card; if nothing matches it stays unlinked and finance.reconcile will try again later. Never invent a total or a line item — if part of the document is unreadable, say so and record only what is legible."
+          "description": "Record a receipt the owner sent \u2014 merchant, date, total, and the line items when they are legible. It does NOT create a transaction: the bank charge is the money, the receipt is the detail. After storing it, it looks for the charge it belongs to (same amount, same merchant, within three days either way, posted or still pending, on a cash account or on a card) and links them \u2014 a receipt for something paid by card matches the charge recorded on that card; if nothing matches it stays unlinked and finance.reconcile will try again later. Never invent a total or a line item \u2014 if part of the document is unreadable, say so and record only what is legible."
         },
         {
           "name": "finance.list_receipts",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "List recorded receipts, newest first, with the transaction each one is linked to. Use unmatchedOnly to see the receipts that have no charge against them yet — a receipt with no charge is either a charge that has not posted or one that was never billed."
+          "description": "List recorded receipts, newest first, with the transaction each one is linked to. Use unmatchedOnly to see the receipts that have no charge against them yet \u2014 a receipt with no charge is either a charge that has not posted or one that was never billed."
         },
         {
           "name": "finance.link_receipt",
@@ -209,109 +208,109 @@
           "name": "finance.summary",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Summarise recorded transactions for a month: total money in, total money out, net, a per-category breakdown, and the transaction count. Use it to explain where the money went; it never guesses — only recorded transactions count. Settled money only: pending authorisations are counted separately under `pending` and left out of the totals (pass includePending: true to fold them in), and a pending row that has since posted is never counted twice. Card purchases live on the card, not on the cash: they are reported under `cardSpend` and left out of the totals unless includeCardSpend is true, because the money reaches the cash as the card payment, which is its own row. Pass `liability` to summarise one card instead — its charges, payments and credits for the month."
+          "description": "Summarise recorded transactions for a month: total money in, total money out, net, a per-category breakdown, and the transaction count. Use it to explain where the money went; it never guesses \u2014 only recorded transactions count. Settled money only: pending authorisations are counted separately under `pending` and left out of the totals (pass includePending: true to fold them in), and a pending row that has since posted is never counted twice. Card purchases live on the card, not on the cash: they are reported under `cardSpend` and left out of the totals unless includeCardSpend is true, because the money reaches the cash as the card payment, which is its own row. Pass `liability` to summarise one card instead \u2014 its charges, payments and credits for the month."
         },
         {
           "name": "finance.spending_baseline",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Measure typical variable spending — everything that is not already a recurring item, not an internal transfer between the owner's own accounts, and not a person-to-person transfer — over the last whole calendar months, and express it as a typical month, a daily burn and a per-category breakdown. The headline `avgMonthlyVariableOut` is by default the MEDIAN of the monthly totals (summed per category), not the mean, so a single freak month cannot set the burn; `meanMonthlyVariableOut` is reported alongside and a large gap between the two is itself the finding. Credit-card and loan payments are excluded as debt servicing (see `excluded.byCategory`) because they settle spending already counted and are modelled by the liabilities and recurring items. Person-to-person rails (Zelle, PayPal, Ria, Lemfi, Moneygram) are reported separately under `p2p` because they can be either spending or money being moved around; never fold them into spending without asking. finance.project_cashflow already applies this daily burn, so use this tool to explain *what* the burn is made of, not to add it on top. Accounts that are not spendable (retirement, investment, HSA) are invisible to this measurement: neither their transactions nor their presence in the coverage roll call count. Purchases made ON a credit card are invisible too, unless includeCardSpend is true: that money reaches the cash as the card payment, which is already counted."
+          "description": "Measure typical variable spending \u2014 everything that is not already a recurring item, not an internal transfer between the owner's own accounts, and not a person-to-person transfer \u2014 over the last whole calendar months, and express it as a typical month, a daily burn and a per-category breakdown. The headline `avgMonthlyVariableOut` is by default the MEDIAN of the monthly totals (summed per category), not the mean, so a single freak month cannot set the burn; `meanMonthlyVariableOut` is reported alongside and a large gap between the two is itself the finding. Credit-card and loan payments are excluded as debt servicing (see `excluded.byCategory`) because they settle spending already counted and are modelled by the liabilities and recurring items. Person-to-person rails (Zelle, PayPal, Ria, Lemfi, Moneygram) are reported separately under `p2p` because they can be either spending or money being moved around; never fold them into spending without asking. finance.project_cashflow already applies this daily burn, so use this tool to explain *what* the burn is made of, not to add it on top. Accounts that are not spendable (retirement, investment, HSA) are invisible to this measurement: neither their transactions nor their presence in the coverage roll call count. Purchases made ON a credit card are invisible too, unless includeCardSpend is true: that money reaches the cash as the card payment, which is already counted."
         },
         {
           "name": "finance.project_cashflow",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Simulate the balance day by day over the coming weeks from the recorded balances, the active recurring items AND the owner's typical variable spending, and report the end balance, the minimum balance and the date it happens, and whether it drops below the safety floor. By default the projection includes a daily burn measured from the last 3 complete months of transactions — the MEDIAN monthly total, so one freak month cannot set it, and with credit-card/loan payments left out as debt servicing (see the `baseline` field of the response for what it is and how it was measured, and `baselineOptions` to change it); pass includeBaseline: false to project the recurring items alone. Person-to-person transfers are excluded unless includeP2P is 'net'. Pending transactions dated inside the horizon are applied too — a pending charge is money already committed — and listed under `pendingEvents`; pass includePending: false to leave them out. Add `hypotheticals` to test a purchase before making it. Accounts that are not spendable (retirement, investment, HSA) are left out of the start balance entirely and listed under `startBalanceExcludes`, along with any recurring item attached to one. Charges billed to a credit card are left out too — they move no cash on their date; the cash moves when the card is paid, and that payment is already a recurring item here. Use finance.statement_forecast for what a card will report, and finance.card_activity for what it has been doing. The response names `oldestBalanceAsOf` — the as-of date of the oldest recorded balance it started from, with `startBalanceAgeDays` and `startBalanceStale` — and every answer built on this should say that date when the balance is not from today: a projection is only as current as the balance under it. This is the only source of truth for \"will I be short?\" — never compute a projection yourself."
+          "description": "Simulate the balance day by day over the coming weeks from the recorded balances, the active recurring items AND the owner's typical variable spending, and report the end balance, the minimum balance and the date it happens, and whether it drops below the safety floor. By default the projection includes a daily burn measured from the last 3 complete months of transactions \u2014 the MEDIAN monthly total, so one freak month cannot set it, and with credit-card/loan payments left out as debt servicing (see the `baseline` field of the response for what it is and how it was measured, and `baselineOptions` to change it); pass includeBaseline: false to project the recurring items alone. Person-to-person transfers are excluded unless includeP2P is 'net'. Pending transactions dated inside the horizon are applied too \u2014 a pending charge is money already committed \u2014 and listed under `pendingEvents`; pass includePending: false to leave them out. Add `hypotheticals` to test a purchase before making it. Accounts that are not spendable (retirement, investment, HSA) are left out of the start balance entirely and listed under `startBalanceExcludes`, along with any recurring item attached to one. Charges billed to a credit card are left out too \u2014 they move no cash on their date; the cash moves when the card is paid, and that payment is already a recurring item here. Use finance.statement_forecast for what a card will report, and finance.card_activity for what it has been doing. The response names `oldestBalanceAsOf` \u2014 the as-of date of the oldest recorded balance it started from, with `startBalanceAgeDays` and `startBalanceStale` \u2014 and every answer built on this should say that date when the balance is not from today: a projection is only as current as the balance under it. This is the only source of truth for \"will I be short?\" \u2014 never compute a projection yourself."
         },
         {
           "name": "finance.set_liability",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Record or update a debt — a credit card, a loan — with what is owed, the minimum payment and the due day. Debts are tracked separately from cash: they are never added to account balances and never change a projection. The monthly payment itself belongs in finance.add_recurring; if it is already a recurring item, do not add it again. For a card, statementDay (the closing day, not the due day) is what makes utilization advice possible."
+          "description": "Record or update a debt \u2014 a credit card, a loan \u2014 with what is owed, the minimum payment and the due day. Debts are tracked separately from cash: they are never added to account balances and never change a projection. The monthly payment itself belongs in finance.add_recurring; if it is already a recurring item, do not add it again. For a card, statementDay (the closing day, not the due day) is what makes utilization advice possible."
         },
         {
           "name": "finance.list_liabilities",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "List the recorded debts with what is owed, the minimum payment, the due day, the APR and — for credit cards with a limit — utilization, plus the total debt. Cash and debt are kept apart: this total is never subtracted from an account balance or a projection."
+          "description": "List the recorded debts with what is owed, the minimum payment, the due day, the APR and \u2014 for credit cards with a limit \u2014 utilization, plus the total debt. Cash and debt are kept apart: this total is never subtracted from an account balance or a projection."
         },
         {
           "name": "finance.remove_liability",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Stop tracking a debt — it is deactivated, not deleted, so the record stays. Use it when a card or loan is paid off or no longer the owner's."
+          "description": "Stop tracking a debt \u2014 it is deactivated, not deleted, so the record stays. Use it when a card or loan is paid off or no longer the owner's."
         },
         {
           "name": "finance.payoff_estimate",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Work out how many months a debt takes to clear at a given monthly payment, and how much interest that costs, using the stored APR. Says so plainly when the payment does not even cover the monthly interest. This is the only source of truth for payoff arithmetic — never estimate it yourself."
+          "description": "Work out how many months a debt takes to clear at a given monthly payment, and how much interest that costs, using the stored APR. Says so plainly when the payment does not even cover the monthly interest. This is the only source of truth for payoff arithmetic \u2014 never estimate it yourself."
         },
         {
           "name": "finance.record_credit_score",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Store a credit score the owner reports: the bureau it is about, the score, the date it was observed, and optionally where they read it and which scoring model. Scores are kept as a history and never overwritten, so the trend stays readable. Record the score the moment the owner says it — a number mentioned in passing and not written down is gone with the conversation. If the bureau was not named, ask once and record it with the answer."
+          "description": "Store a credit score the owner reports: the bureau it is about, the score, the date it was observed, and optionally where they read it and which scoring model. Scores are kept as a history and never overwritten, so the trend stays readable. Record the score the moment the owner says it \u2014 a number mentioned in passing and not written down is gone with the conversation. If the bureau was not named, ask once and record it with the answer."
         },
         {
           "name": "finance.credit_score_history",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "The recorded credit scores, newest first, each with the change against the previous score from the same bureau. Says plainly when nothing has been recorded yet. This is the only source of truth for the score trend — never estimate a score."
+          "description": "The recorded credit scores, newest first, each with the change against the previous score from the same bureau. Says plainly when nothing has been recorded yet. This is the only source of truth for the score trend \u2014 never estimate a score."
         },
         {
           "name": "finance.record_payment",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Record one payment against a debt — due date, when it was paid, how much, and whether it was on time, late or missed. Payment history is the single heaviest factor in a credit score, so every minimum matters; a duplicate (same debt, same due date) is updated rather than added twice."
+          "description": "Record one payment against a debt \u2014 due date, when it was paid, how much, and whether it was on time, late or missed. Payment history is the single heaviest factor in a credit score, so every minimum matters; a duplicate (same debt, same due date) is updated rather than added twice."
         },
         {
           "name": "finance.payment_history",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "The recorded payments over the last months, with the on-time rate, the count of late and missed payments, and anything still scheduled. This is the only source of truth for the on-time rate — never compute it yourself."
+          "description": "The recorded payments over the last months, with the on-time rate, the count of late and missed payments, and anything still scheduled. This is the only source of truth for the on-time rate \u2014 never compute it yourself."
         },
         {
           "name": "finance.credit_utilization",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Per credit card: the balance, the limit, the utilization percentage, the statement closing day, and exactly what to pay to land at 30% and at 10% of the limit — plus the overall utilization across all cards. paymentFor30 = the amount to PAY now; targetBalanceFor30 = the balance that remains AFTER that payment (same for paymentFor10 / targetBalanceFor10). Quote both: pay paymentFor30 so the balance becomes targetBalanceFor30 — never quote a payment as if it were the resulting balance. totalToReach30 / totalToReach10 are the summed payments across cards. Sorted by APR, dearest first. This is the only source of truth for utilization arithmetic."
+          "description": "Per credit card: the balance, the limit, the utilization percentage, the statement closing day, and exactly what to pay to land at 30% and at 10% of the limit \u2014 plus the overall utilization across all cards. paymentFor30 = the amount to PAY now; targetBalanceFor30 = the balance that remains AFTER that payment (same for paymentFor10 / targetBalanceFor10). Quote both: pay paymentFor30 so the balance becomes targetBalanceFor30 \u2014 never quote a payment as if it were the resulting balance. totalToReach30 / totalToReach10 are the summed payments across cards. Sorted by APR, dearest first. This is the only source of truth for utilization arithmetic."
         },
         {
           "name": "finance.credit_overview",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Everything the credit score rests on, in one read. Per card: the balance, the credit limit, utilization today, the utilization target in force for that card, the date the statement closes NEXT and how many days away it is, the date it reaches the bureaus, and reportedUtilizationEstimate — what the card is on course to REPORT once the charges billed to it land, which is the figure a score is actually scored on. Then the overall utilization across every card, and the score history with its trend, compared within each bureau and never across bureaus. `sentence` on a card over its target is the whole recommendation, already computed: say it as it is written. `missing` names what has never been recorded for a card (its limit, its closing day) — ask the owner ONCE for everything missing, in one message, then record it with finance.set_card_terms; never ask twice and never guess. This is the only source of truth for utilization and the score trend."
+          "description": "Everything the credit score rests on, in one read. Per card: the balance, the credit limit, utilization today, the utilization target in force for that card, the date the statement closes NEXT and how many days away it is, the date it reaches the bureaus, and reportedUtilizationEstimate \u2014 what the card is on course to REPORT once the charges billed to it land, which is the figure a score is actually scored on. Then the overall utilization across every card, and the score history with its trend, compared within each bureau and never across bureaus. `sentence` on a card over its target is the whole recommendation, already computed: say it as it is written. `missing` names what has never been recorded for a card (its limit, its closing day) \u2014 ask the owner ONCE for everything missing, in one message, then record it with finance.set_card_terms; never ask twice and never guess. This is the only source of truth for utilization and the score trend."
         },
         {
           "name": "finance.set_card_terms",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Record a card's credit terms: the day its statement closes, the day that reaches the bureaus, its credit limit, and its own utilization target. These are facts only the owner has, and they change almost never — so ask once for everything finance.credit_overview lists as missing, in a single message, record it here, and never ask again. Only the terms passed are changed; anything left out keeps its current value. Use finance.set_liability for the balance, the minimum and the due day."
+          "description": "Record a card's credit terms: the day its statement closes, the day that reaches the bureaus, its credit limit, and its own utilization target. These are facts only the owner has, and they change almost never \u2014 so ask once for everything finance.credit_overview lists as missing, in a single message, record it here, and never ask again. Only the terms passed are changed; anything left out keeps its current value. Use finance.set_liability for the balance, the minimum and the due day."
         },
         {
           "name": "finance.credit_plan",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Allocate a monthly extra-payment budget across the cards: first bring every card under 30% utilization, dearest APR first, then put whatever is left on the highest-APR card. Returns, per card, payment (the amount to PAY on top of the minimum) and balanceAfter (the balance that remains AFTER that payment) — quote both: pay `payment` so the balance becomes `balanceAfter` — plus the utilization each card and the portfolio would land at, and how many months the highest-APR card takes to clear at that pace. Each allocation also carries `forecastBalance`: what that card is on course to report at its next close once the charges billed to it have landed — if it is above the balance the plan worked from, say so, because paying to `balanceAfter` will not hold if more is still to post. Deterministic — this is the only source of truth for the allocation."
+          "description": "Allocate a monthly extra-payment budget across the cards: first bring every card under 30% utilization, dearest APR first, then put whatever is left on the highest-APR card. Returns, per card, payment (the amount to PAY on top of the minimum) and balanceAfter (the balance that remains AFTER that payment) \u2014 quote both: pay `payment` so the balance becomes `balanceAfter` \u2014 plus the utilization each card and the portfolio would land at, and how many months the highest-APR card takes to clear at that pace. Each allocation also carries `forecastBalance`: what that card is on course to report at its next close once the charges billed to it have landed \u2014 if it is above the balance the plan worked from, say so, because paying to `balanceAfter` will not hold if more is still to post. Deterministic \u2014 this is the only source of truth for the allocation."
         },
         {
           "name": "finance.upcoming_statements",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Cards whose statement closes within the window, soonest first — the closing date, the date to pay by for the payment to post first, and what to pay for the card to report at 30% and at 10%. paymentFor30 = the amount to PAY before the statement closes; targetBalanceFor30 = the balance that would then be reported (same for paymentFor10 / targetBalanceFor10). Quote both: pay paymentFor30 so the reported balance becomes targetBalanceFor30. Utilization is scored off the balance reported at statement close, not off the due date, so this is the calendar that matters. When recurring charges are billed to the card or a payment is already scheduled, `forecastBalance` is what the card is on course to REPORT on the closing day (with `forecastEvents` naming each movement and its date) — quote it alongside the balance today whenever the two differ, because the forecast is the figure the bureaus will see."
+          "description": "Cards whose statement closes within the window, soonest first \u2014 the closing date, the date to pay by for the payment to post first, and what to pay for the card to report at 30% and at 10%. paymentFor30 = the amount to PAY before the statement closes; targetBalanceFor30 = the balance that would then be reported (same for paymentFor10 / targetBalanceFor10). Quote both: pay paymentFor30 so the reported balance becomes targetBalanceFor30. Utilization is scored off the balance reported at statement close, not off the due date, so this is the calendar that matters. When recurring charges are billed to the card or a payment is already scheduled, `forecastBalance` is what the card is on course to REPORT on the closing day (with `forecastEvents` naming each movement and its date) \u2014 quote it alongside the balance today whenever the two differ, because the forecast is the figure the bureaus will see."
         },
         {
           "name": "finance.card_activity",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "What has actually been recorded on one card, month by month: charges (purchases), payments and credits, and interest, each as a positive figure, plus netBalanceChange = charges + interest − payments, which is how much what is owed grew that month. Months with no activity are listed as zeros. Use it to answer \"what am I putting on this card\", \"how much interest is it costing me\" and \"when did that charge hit\" — the recent rows come back under `transactions`. It reads recorded rows only and never guesses: a card with no transactions recorded yet says so, and the balance on the liability is the owner's stated figure, not a sum of these rows."
+          "description": "What has actually been recorded on one card, month by month: charges (purchases), payments and credits, and interest, each as a positive figure, plus netBalanceChange = charges + interest \u2212 payments, which is how much what is owed grew that month. Months with no activity are listed as zeros. Use it to answer \"what am I putting on this card\", \"how much interest is it costing me\" and \"when did that charge hit\" \u2014 the recent rows come back under `transactions`. It reads recorded rows only and never guesses: a card with no transactions recorded yet says so, and the balance on the liability is the owner's stated figure, not a sum of these rows."
         },
         {
           "name": "finance.statement_forecast",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "What a card is expected to report at its next statement close: forecastBalance = the balance today + the recurring charges billed to the card that fall due on or before the closing day − the payments scheduled to land before it. Every movement is listed in `events` with its date, so the answer can say WHEN a charge hits ('the GEICO premium posts on the 3rd, four days before the statement closes'). Utilization is given for the balance today and for the forecast one. This is the only source of truth for a forecast balance — never add the charges up yourself. Returns hasForecast: false when no statement closing day is recorded for the card; ask the owner for it and store it with finance.set_liability."
+          "description": "What a card is expected to report at its next statement close: forecastBalance = the balance today + the recurring charges billed to the card that fall due on or before the closing day \u2212 the payments scheduled to land before it. Every movement is listed in `events` with its date, so the answer can say WHEN a charge hits ('the GEICO premium posts on the 3rd, four days before the statement closes'). Utilization is given for the balance today and for the forecast one. This is the only source of truth for a forecast balance \u2014 never add the charges up yourself. Returns hasForecast: false when no statement closing day is recorded for the card; ask the owner for it and store it with finance.set_liability."
         }
       ],
       "sentinels": [
@@ -390,7 +389,7 @@
       "skills": [
         {
           "name": "an-observed-balance-is-recorded",
-          "description": "What to do the moment you read a real account balance — from the browser, a statement, or the owner. Read this before answering any question about how much money there is."
+          "description": "What to do the moment you read a real account balance \u2014 from the browser, a statement, or the owner. Read this before answering any question about how much money there is."
         },
         {
           "name": "coaching-a-credit-score",
