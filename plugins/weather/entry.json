@@ -1,7 +1,7 @@
 {
   "name": "weather",
   "npm": "@withbuddi/plugin-weather",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "title": "Weather",
   "summary": "The weather now and for the week at the places you save, from Open-Meteo with no key, and one message when something severe is coming.",
   "category": "days",
@@ -21,18 +21,18 @@
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/weather",
   "hostApi": "^1.13",
-  "integrity": "sha512-86fGuWKrK0eQEMyFyk/yvm0iomuPzGPZkY+QdrWIkaIZ7DCSGYhmpvciM8C4kWsUQai0jUvW8v0SPsI+UqNtkQ==",
+  "integrity": "sha512-RDI1+uIEYtO4jvP8cgtSurrt4Jr1aIh9THb3PkrytcnRS2xFnzyGNY3KNVcIjywbXd0Qz5PaCjsG71IIUd89cA==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/weather@0.1.1",
-    "commit": "4083306c20295575dc1aa6b38461c8c39dd9a700",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36521495909/attempts/1"
+    "ref": "refs/tags/weather@0.1.2",
+    "commit": "56a6a6671392d2d6112875c4703a72d021c46d2a",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36795460962/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-weather",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
@@ -60,7 +60,7 @@
     },
     "manifest": {
       "name": "weather",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "schema": "weather",
       "description": "The weather now and the forecast for the places you save, from Open-Meteo with no key, and a message once when severe weather is coming at one of them.",
       "author": {
@@ -152,5 +152,5 @@
     },
     "drift": []
   },
-  "checkedAt": "2026-09-29"
+  "checkedAt": "2026-10-01"
 }
