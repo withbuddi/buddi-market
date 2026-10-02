@@ -48,7 +48,7 @@
     "buddi/scout"
   ],
   "changes": "First version: Scout's research and second opinion, with page watching and reading your files.",
-  "integrity": "sha256-FkDH4gq+gvN2Zokex3v9pMn9fOqsQyoUHdQo2tBat7w=",
+  "integrity": "sha256-mOXbfojJwLWkvVBFBN2AKhZvF+hByoeVncYYMU3G0nw=",
   "claims": {
     "tools": [
       {
@@ -201,7 +201,7 @@
     },
     "sizes": {
       "persona": 3576,
-      "skills": 5816
+      "skills": 6133
     }
   }
 }
