@@ -2,6 +2,8 @@
 // The check: what a listing may claim is what the code does.
 //
 //   node scripts/check.mjs [--write] <name>...      (no names: every entry)
+//   node scripts/check.mjs [--write] agent:<name>   a catalogue agent
+//   node scripts/check.mjs [--write] --agents       every catalogue agent
 //
 // For each entry it validates the hand-written fields, asks npm for the
 // version (its integrity and publisher), reads the provenance npm holds for
@@ -11,7 +13,25 @@
 // With --write the entry is rewritten; without it the committed block must
 // already match, or the check fails and prints the difference. That is what
 // runs on every pull request.
+//
+// An agent (agents/<name>/) is checked without npm: its schema, files and
+// limits, every tool in its grant against the tools buddi and the listed
+// plugins have, the v1 denylist, the persona lint, and that its version moved
+// when its contents did (against BASE_REF, default origin/main). What it
+// writes is `integrity` and `claims` in agent.json. See scripts/agents.mjs.
 import { writeFileSync } from 'node:fs';
+import {
+  agentClaims,
+  agentIntegrity,
+  agentPath,
+  coreTools,
+  listAgents,
+  packageAt,
+  pluginTools,
+  readAgentPackage,
+  validateAgent,
+  versionProblem,
+} from './agents.mjs';
 import {
   FIRST_PARTY,
   authorName,
@@ -28,13 +48,18 @@ import {
 
 const args = process.argv.slice(2);
 const write = args.includes('--write');
-const names = args.filter((a) => a !== '--write');
-const targets = names.length > 0 ? names : listEntries();
+const onlyAgents = args.includes('--agents');
+const names = args.filter((a) => a !== '--write' && a !== '--agents');
+const targets = names.length > 0
+  ? names
+  : [...(onlyAgents ? [] : listEntries()), ...listAgents().map((n) => `agent:${n}`)];
 
 let failed = 0;
+let agentCtx = null;
 for (const name of targets) {
   try {
-    await checkOne(name);
+    if (name.startsWith('agent:')) await checkAgent(name.slice('agent:'.length));
+    else await checkOne(name);
     console.log(`ok    ${name}`);
   } catch (err) {
     failed += 1;
@@ -42,6 +67,41 @@ for (const name of targets) {
   }
 }
 process.exit(failed === 0 ? 0 : 1);
+
+/** The tools that exist and the plugins listed, read once per run. */
+function context() {
+  if (agentCtx) return agentCtx;
+  const core = coreTools();
+  const plugins = pluginTools();
+  agentCtx = { core: core.tools, coreSource: core.source, plugins, takenNames: new Set(Object.keys(plugins)) };
+  console.log(`core tools: ${core.source}`);
+  return agentCtx;
+}
+
+async function checkAgent(name) {
+  if (!listAgents().includes(name)) throw new Error(`there is no agents/${name}/agent.json`);
+  const ctx = context();
+  const pkg = readAgentPackage(name);
+  const { problems, tools } = validateAgent(name, pkg, ctx);
+  const base = packageAt(process.env.BASE_REF ?? 'origin/main', name);
+  const moved = versionProblem(pkg, base);
+  if (moved) problems.push(moved);
+  if (problems.length > 0) throw new Error(`\n  - ${problems.join('\n  - ')}`);
+
+  const { integrity: _i, claims: _c, ...hand } = pkg.manifest;
+  const next = { ...hand, integrity: agentIntegrity(pkg), claims: agentClaims(pkg, tools, ctx) };
+  const same = JSON.stringify(next) === JSON.stringify(pkg.manifest);
+  if (write) {
+    if (!same) writeFileSync(agentPath(name), stableJson(next));
+    return;
+  }
+  if (!same) {
+    throw new Error(
+      `its integrity or claims are not what the package says. Run: node scripts/check.mjs --write agent:${name}\n` +
+        diff(pkg.manifest, next),
+    );
+  }
+}
 
 async function checkOne(name) {
   const entry = readEntry(name);

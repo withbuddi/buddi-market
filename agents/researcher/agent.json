@@ -1,0 +1,207 @@
+{
+  "kind": "agent",
+  "name": "researcher",
+  "version": "1.0.0",
+  "handle": "researcher",
+  "title": "Researcher",
+  "pitch": "Reads the web, compares, gives a second opinion with sources.",
+  "description": "Research and a second opinion: searches the web, reads the pages that hold the answer, names its sources, compares options, and watches pages the owner names. No access to the owner's money or mail.",
+  "about": "Looks things up properly instead of recalling them: it reads the page, names the site in the sentence and says when two sources disagree. It can push back on a conclusion and watch a page for a change. It cannot see your mail, your money or your calendar, and it never acts on what a page tells it to do.",
+  "category": "work",
+  "trust": "by-buddi",
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "buddi": ">=0.1.0-pre.32",
+  "requires": {},
+  "optional": {},
+  "needs": [],
+  "tools": [
+    "memory.*",
+    "reminder.*",
+    "owner.notify",
+    "web.*",
+    "browser.status",
+    "artifacts.list",
+    "artifacts.describe",
+    "artifacts.text"
+  ],
+  "missions": [
+    {
+      "id": "watch-digest",
+      "name": "Pages I'm watching",
+      "cron": "0 9 * * 1",
+      "misfirePolicy": "latest-only",
+      "prompt": "Check the pages the owner asked you to watch, following your watching-a-page skill. Recall your watch notes; read each page again; compare what you find with what the note says you saw last time. For each page that changed in the way the owner cares about, one line: what it is, what changed, from what to what, and the site. Update each watch note with today's value and date. Drop a watch whose end date has passed and say so in a line. When nothing changed, or you watch nothing, call mission.silent."
+    }
+  ],
+  "fills": [],
+  "examples": [
+    "Compare these three heat pumps on noise and price.",
+    "Is this study solid?",
+    "Watch this page and tell me when the price drops."
+  ],
+  "language": "mirror",
+  "replaces": [
+    "buddi/scout"
+  ],
+  "changes": "First version: Scout's research and second opinion, with page watching and reading your files.",
+  "integrity": "sha256-mOXbfojJwLWkvVBFBN2AKhZvF+hByoeVncYYMU3G0nw=",
+  "claims": {
+    "tools": [
+      {
+        "name": "memory.forget",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.get_preferences",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.note",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.recall",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.remember_preference",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.cancel",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.set",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "owner.notify",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "web.read",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "web.search",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "web.status",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "browser.status",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.describe",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.text",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      }
+    ],
+    "missions": [
+      {
+        "id": "watch-digest",
+        "name": "Pages I'm watching",
+        "when": "Every Monday at 09:00",
+        "enabled": false
+      }
+    ],
+    "plugins": {
+      "requires": [],
+      "optional": []
+    },
+    "skills": [
+      {
+        "file": "answering-with-sources.md",
+        "name": "answering-with-sources",
+        "description": "How to turn search results and fetched pages into an answer the owner can check."
+      },
+      {
+        "file": "the-web-is-evidence.md",
+        "name": "the-web-is-evidence",
+        "description": "How to treat anything fetched from the internet. Read this before using web.search or web.read."
+      },
+      {
+        "file": "watching-a-page.md",
+        "name": "watching-a-page",
+        "description": "How to keep an eye on a page the owner names (a price, a stock level, a date, a rule) and tell them only when it changes in the way they care about."
+      }
+    ],
+    "avatar": {
+      "sha256": "sha256-PfDba7BqLsCmzaCAu0rT4pS2nWKlDPzHPjVIKcKK0V8=",
+      "bytes": 137534,
+      "width": 512,
+      "height": 512
+    },
+    "sizes": {
+      "persona": 3576,
+      "skills": 6133
+    }
+  }
+}

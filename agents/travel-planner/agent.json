@@ -1,0 +1,231 @@
+{
+  "kind": "agent",
+  "name": "travel-planner",
+  "version": "1.0.0",
+  "handle": "travel",
+  "title": "Travel Planner",
+  "pitch": "Turns a trip into a plan: days, bookings found in mail, packing for the forecast.",
+  "description": "Plans trips: day-by-day itineraries, finds booking confirmations in the owner's mail, packing lists for the forecast, and reminders for check-in and documents.",
+  "about": "Turns \"three days in Lisbon\" into a plan you can follow, finds your flight and hotel confirmations in your mail, and packs for the forecast at your destination. It reminds you to check in and to renew what expires. It never books, pays or changes a reservation.",
+  "category": "life",
+  "trust": "by-buddi",
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "buddi": ">=0.1.0-pre.32",
+  "requires": {},
+  "optional": {
+    "weather": ">=0.1.4",
+    "calendar": ">=0.1.3"
+  },
+  "needs": [
+    "mailbox?"
+  ],
+  "tools": [
+    "memory.*",
+    "reminder.*",
+    "owner.notify",
+    "web.search",
+    "web.read",
+    "email.search?",
+    "email.read?",
+    "email.read_thread?",
+    "weather.forecast?",
+    "calendar.upcoming?",
+    "calendar.find?"
+  ],
+  "missions": [
+    {
+      "id": "trip-check",
+      "name": "Trip check",
+      "cron": "0 9 * * 1",
+      "misfirePolicy": "latest-only",
+      "prompt": "Check for trips in the next 14 days: recall the trips you hold, look at the calendar when you can, and search the owner's mail for new booking confirmations (flights, trains, hotels, rentals) when you can read mail. For each trip in the window, a few lines: where and when, what is booked and what is not yet (a night without a hotel, a missing return), what the forecast says when you have it, and anything to do this week (check-in opening, a document to bring). Note any new booking you found. Set a check-in reminder when the opening time is known and none is set. When no trip falls in the next 14 days and nothing is new, call mission.silent."
+    }
+  ],
+  "fills": [
+    {
+      "id": "mailbox",
+      "kind": "mailbox",
+      "label": "Which mailbox holds your bookings?",
+      "optional": true
+    }
+  ],
+  "examples": [
+    "Plan three days in Lisbon in May.",
+    "What do I pack for Oslo next week?",
+    "Find my flight confirmation and remind me to check in."
+  ],
+  "language": "mirror",
+  "idleRollover": "1w",
+  "replaces": [],
+  "changes": "First version.",
+  "integrity": "sha256-X2aNBBAgZNo/Ho1I/wtqmkqTE0o/hLWmNR4i7hFAbn0=",
+  "claims": {
+    "tools": [
+      {
+        "name": "memory.forget",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.get_preferences",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.note",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.recall",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.remember_preference",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.cancel",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.set",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "owner.notify",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "web.search",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "web.read",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "email.search",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "email.read",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "email.read_thread",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "weather.forecast",
+        "plugin": "weather",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "calendar.upcoming",
+        "plugin": "calendar",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "calendar.find",
+        "plugin": "calendar",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      }
+    ],
+    "missions": [
+      {
+        "id": "trip-check",
+        "name": "Trip check",
+        "when": "Every Monday at 09:00",
+        "enabled": false
+      }
+    ],
+    "plugins": {
+      "requires": [],
+      "optional": [
+        {
+          "name": "weather",
+          "range": ">=0.1.4",
+          "listed": "0.1.4",
+          "hostApi": "^1.18"
+        },
+        {
+          "name": "calendar",
+          "range": ">=0.1.3",
+          "listed": "0.1.3",
+          "hostApi": "^1.11"
+        }
+      ]
+    },
+    "skills": [
+      {
+        "file": "planning-a-trip.md",
+        "name": "planning-a-trip",
+        "description": "How to turn a destination and some dates into a day-by-day plan, a list of what is booked and missing, and a packing list."
+      }
+    ],
+    "avatar": {
+      "sha256": "sha256-q1z7i7zw0Fk66Cxod3U2EdhSY1GAq4K6HvGp/8Hb0Ac=",
+      "bytes": 134328,
+      "width": 512,
+      "height": 512
+    },
+    "sizes": {
+      "persona": 3501,
+      "skills": 1988
+    }
+  }
+}

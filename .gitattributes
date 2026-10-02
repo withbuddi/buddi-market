@@ -1,0 +1,3 @@
+agents/**/*.md text eol=lf
+agents/**/*.json text eol=lf
+agents/**/*.png binary

@@ -3,7 +3,13 @@
 // The site calls this at build to publish withbuddi.com/plugins/index.json,
 // which buddi's Browse tab reads. An entry the check has not written yet has
 // no claims and is left out: the page never lists what nobody verified.
+//
+// Catalogue agents ride along as `agents`, with the persona and the skills
+// inline (the whole lineup is well under 100 KB) and the avatar as a URL plus
+// its hash, so buddi can recompute the package integrity from the entry and
+// the fetched avatar alone (scripts/agents.mjs, agentIntegrity).
 import { writeFileSync } from 'node:fs';
+import { agentIntegrity, listAgents, readAgentPackage } from './agents.mjs';
 import { listEntries, readEntry, stableJson, validateEntry } from './lib.mjs';
 
 const [out = 'index.json', origin = 'https://withbuddi.com'] = process.argv.slice(2);
@@ -29,5 +35,29 @@ for (const name of listEntries()) {
 }
 const order = { 'by-buddi': 0, reviewed: 1 };
 plugins.sort((a, b) => order[a.trust] - order[b.trust] || a.title.localeCompare(b.title));
-writeFileSync(out, stableJson({ generatedAt: new Date().toISOString(), plugins }));
-console.log(`${plugins.length} plugins → ${out}`);
+
+const agents = [];
+for (const name of listAgents()) {
+  const pkg = readAgentPackage(name);
+  const m = pkg.manifest;
+  if (m.claims === undefined || typeof m.integrity !== 'string') {
+    console.error(`skip  agent ${name}: the check has not written its claims yet`);
+    continue;
+  }
+  if (agentIntegrity(pkg) !== m.integrity) {
+    console.error(`skip  agent ${name}: its integrity does not match its files; run the check`);
+    continue;
+  }
+  const base = `${origin}/plugins/agents/${name}`;
+  agents.push({
+    ...m,
+    persona: pkg.persona,
+    skills: Object.entries(pkg.skills).map(([file, text]) => ({ file, text })),
+    avatar: { url: `${base}/avatar.png`, sha256: m.claims.avatar.sha256 },
+    page: `${base}/`,
+  });
+}
+agents.sort((a, b) => a.title.localeCompare(b.title));
+
+writeFileSync(out, stableJson({ generatedAt: new Date().toISOString(), plugins, agents }));
+console.log(`${plugins.length} plugins, ${agents.length} agents → ${out}`);

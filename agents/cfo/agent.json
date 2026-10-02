@@ -1,0 +1,560 @@
+{
+  "kind": "agent",
+  "name": "cfo",
+  "version": "1.0.0",
+  "handle": "cfo",
+  "title": "CFO",
+  "pitch": "Reads your statements, tracks spending and cards, a weekly money recap.",
+  "description": "Cash-flow advisor: balances, recurring items, debts and cards, statement imports, a projection before any purchase, credit-score coaching and a weekly recap.",
+  "about": "Keeps your money picture straight from what you record and the statements you give it, and answers money questions from what the Finance plugin computes, never from its own arithmetic. It projects your cash before any \"can I afford it\" and coaches a credit score with the levers that move it. It cannot move money, pay a bill or log in to your bank.",
+  "category": "money",
+  "trust": "by-buddi",
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "buddi": ">=0.1.0-pre.32",
+  "requires": {
+    "finance": ">=0.1.3"
+  },
+  "optional": {},
+  "needs": [],
+  "tools": [
+    "finance.*",
+    "memory.*",
+    "artifacts.list",
+    "artifacts.describe",
+    "artifacts.text",
+    "reminder.*",
+    "schedule.*",
+    "goal.*"
+  ],
+  "missions": [
+    {
+      "id": "daily-check",
+      "name": "Daily check",
+      "cron": "0 8 * * *",
+      "misfirePolicy": "coalesce",
+      "alwaysDeliver": false,
+      "prompt": "Run the daily check. Use the finance tools for every number; never do the arithmetic yourself.\n\n1. Project the cashflow over the next 30 days and note the minimum balance and its date.\n2. List everything due in the next 3 days — charges and income, with dates and amounts.\n3. List receipts or imported transactions that are still unmatched, if the tools can tell you.\n\nThen decide, and stay silent unless something is genuinely urgent. Urgent means one of:\n- the projection breaches the safety floor within 7 days;\n- a minimum payment or a charge falls due within 3 days with no payment recorded;\n- an account balance is already below the floor.\n\nIf none of that is true, call mission.silent with the one-line reason. If something is urgent, call mission.report with urgency 'urgent', at most 600 characters, plain text, and exactly one recommended action."
+    },
+    {
+      "id": "friday-recap",
+      "name": "Friday recap",
+      "cron": "0 8 * * 5",
+      "misfirePolicy": "coalesce",
+      "alwaysDeliver": true,
+      "prompt": "Produce the weekly recap. Use the finance tools for every number; never do the arithmetic yourself.\n\n1. Cash: total across accounts, per account if there are several. If any liability is recorded, add total debt and net worth (cash minus debt).\n2. Due in the next 14 days: each charge and income with its date and amount.\n3. 60-day projection: the minimum projected balance and the exact date it happens, the first floor breach if there is one, and whether the safety floor holds. If no safety floor is set, say so in one line.\n4. What changed since last week, if the tools can tell: this month's spending summary against the previous month's.\n5. One concrete recommendation, in a single line.\n\nKeep the whole message under 1500 characters, plain text, no markdown."
+    }
+  ],
+  "fills": [
+    {
+      "id": "recap-time",
+      "kind": "time",
+      "label": "When should the Friday recap arrive?",
+      "mission": "friday-recap"
+    }
+  ],
+  "examples": [
+    "How much did we spend on food this month?",
+    "When is the Amex statement due and what's on it?",
+    "Can I pay off the car loan early?"
+  ],
+  "language": "mirror",
+  "roles": [
+    "overview",
+    "recap",
+    "credit"
+  ],
+  "replaces": [
+    "finance/ledger"
+  ],
+  "changes": "First version: Ledger from the Finance plugin, as a catalogue agent, with goals for paying debt down.",
+  "integrity": "sha256-VV2LYUp1z0NkqGPPTY4Pr1Ovk0q7BqJuHjzobijGHZE=",
+  "claims": {
+    "tools": [
+      {
+        "name": "finance.set_preferences",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.get_preferences",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.set_balance",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.update_account",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.list_accounts",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.merge_accounts",
+        "plugin": "finance",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.remove_account",
+        "plugin": "finance",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.add_recurring",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.list_recurring",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.remove_recurring",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.record_transaction",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.record_contribution",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.import_csv",
+        "plugin": "finance",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.stage_import",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.commit_import",
+        "plugin": "finance",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.discard_import",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.find_transactions",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.update_transactions",
+        "plugin": "finance",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.delete_transactions",
+        "plugin": "finance",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.reconcile",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.record_receipt",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.list_receipts",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.link_receipt",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.summary",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.spending_baseline",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.project_cashflow",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.set_liability",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.list_liabilities",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.remove_liability",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.payoff_estimate",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.record_credit_score",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.credit_score_history",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.record_payment",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.payment_history",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.credit_utilization",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.credit_overview",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.set_card_terms",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.credit_plan",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.upcoming_statements",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.card_activity",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "finance.statement_forecast",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.forget",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.get_preferences",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.note",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.recall",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.remember_preference",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.describe",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.text",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.cancel",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.set",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.cancel_mine",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.list_mine",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.propose",
+        "plugin": "core",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.close",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.metrics",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.record",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.set",
+        "plugin": "core",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.status",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.update",
+        "plugin": "core",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      }
+    ],
+    "missions": [
+      {
+        "id": "daily-check",
+        "name": "Daily check",
+        "when": "Every day at 08:00",
+        "enabled": false
+      },
+      {
+        "id": "friday-recap",
+        "name": "Friday recap",
+        "when": "Every Friday at 08:00",
+        "enabled": false
+      }
+    ],
+    "plugins": {
+      "requires": [
+        {
+          "name": "finance",
+          "range": ">=0.1.3",
+          "listed": "0.1.3",
+          "hostApi": "^1.0"
+        }
+      ],
+      "optional": []
+    },
+    "skills": [
+      {
+        "file": "an-observed-balance-is-recorded.md",
+        "name": "an-observed-balance-is-recorded",
+        "description": "What to do the moment you read a real account balance — from the browser, a statement, or the owner. Read this before answering any question about how much money there is."
+      },
+      {
+        "file": "coaching-a-credit-score.md",
+        "name": "coaching-a-credit-score",
+        "description": "How to coach a credit score with the numbers this plugin holds: the levers in the order they actually move, what to ask the owner for once, and the one sentence to answer with. Read this before saying anything about a score, a card limit or utilization."
+      }
+    ],
+    "avatar": {
+      "sha256": "sha256-Vf9Z7i8+BK77BMYH1M5N8XsrjvAeu4ZOZwwYpuOCV64=",
+      "bytes": 127046,
+      "width": 512,
+      "height": 512
+    },
+    "sizes": {
+      "persona": 4881,
+      "skills": 10030
+    }
+  }
+}

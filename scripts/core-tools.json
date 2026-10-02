@@ -1,0 +1,551 @@
+{
+  "//": "The tools a buddi release registers itself (no plugin needed), with their tiers. A snapshot read from the buddi source at the release named here, used by scripts/check.mjs until `buddi tools list --json` exists; when it does, the check asks the buddi on PATH instead. Regenerate on each buddi release that adds or changes a tool.",
+  "buddi": "0.1.0-pre.31",
+  "tools": [
+    {
+      "name": "artifacts.describe",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "artifacts.list",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "artifacts.text",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "browser.act",
+      "tier": "session",
+      "ownerOnly": false
+    },
+    {
+      "name": "browser.status",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "canvas.clear",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "canvas.show",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "conversation.ask",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "conversation.offer",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.add_account",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "email.add_rule",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "email.archive",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.discard_draft",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "email.draft_new",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.draft_reply",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.fetch_attachment",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.get_settings",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.list_policies",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.list_recent",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.list_threads",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.mark",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.move",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.mute_thread",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.read",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.read_draft",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.read_thread",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.remove_account",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "email.revoke_policy",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.save_draft",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "email.search",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.select_messages",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.send",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.sender_profile",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.set_password",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "email.set_policy",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.set_settings",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.trash",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.triage_record",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.undo",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "email.undo_change",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "email.undo_learned",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "goal.close",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "goal.list",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "goal.metrics",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "goal.owner_close",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "goal.record",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "goal.set",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "goal.status",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "goal.update",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "host.exec",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "host.status",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "host.stop",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "learning.propose_change",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "learning.propose_policy",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "learning.propose_skill",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "mcp.agent_engine",
+      "tier": "gated",
+      "ownerOnly": true
+    },
+    {
+      "name": "mcp.agent_update",
+      "tier": "gated",
+      "ownerOnly": true
+    },
+    {
+      "name": "mcp.default_agent",
+      "tier": "gated",
+      "ownerOnly": true
+    },
+    {
+      "name": "mcp.memory_edit",
+      "tier": "gated",
+      "ownerOnly": true
+    },
+    {
+      "name": "mcp.page_act",
+      "tier": "gated",
+      "ownerOnly": true
+    },
+    {
+      "name": "mcp.proposal_decide",
+      "tier": "gated",
+      "ownerOnly": true
+    },
+    {
+      "name": "memory.forget",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "memory.get_preferences",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "memory.note",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "memory.recall",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "memory.remember_preference",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "mission.report",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "mission.silent",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "owner.finish_onboarding",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "owner.get_profile",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "owner.notify",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "owner.rename_me",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "owner.set_profile",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.accept_plugin_agent",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.accept_plugin_skill",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.archive_group",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.create_agent",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.create_group",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.delete_agent",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.installed_tools",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.list_accounts",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.list_agents",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.list_groups",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.list_skills",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.plugin_agents",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.read_agent",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.update_agent",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.update_group",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "platform.write_skill",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "reminder.cancel",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "reminder.list",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "reminder.set",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "schedule.cancel_mine",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "schedule.list_mine",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "schedule.propose",
+      "tier": "gated",
+      "ownerOnly": false
+    },
+    {
+      "name": "secret.fill",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "secret.list",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "secret.type",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "secrets.delete",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "secrets.put",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "secrets.rebind",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "secrets.rename",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "secrets.scrub_history",
+      "tier": "auto",
+      "ownerOnly": true
+    },
+    {
+      "name": "secrets.use",
+      "tier": "gated",
+      "ownerOnly": true
+    },
+    {
+      "name": "system.info",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "system.time",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "web.read",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "web.search",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "web.status",
+      "tier": "auto",
+      "ownerOnly": false
+    }
+  ]
+}
