@@ -1,7 +1,7 @@
 {
   "name": "calendar",
   "npm": "@withbuddi/plugin-calendar",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "title": "Calendar",
   "summary": "Your calendars from their private links, kept like passwords, so your team know what today holds and when you are free. It reads; it never writes.",
   "category": "days",
@@ -21,18 +21,18 @@
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/calendar",
   "hostApi": "^1.11",
-  "integrity": "sha512-bHgoxPa5s1PCCC1EncV5ifiREa+g0MYkDXawrLAPYJ5dC7gPYspC0hi3IXBotoxZg/26/HHRYt55ejLQskH7iw==",
+  "integrity": "sha512-w7fruj3NA6E+1zhAZh9c3LjNePSshfbE4TkxAl4MrZ3JOCykAvdsSFX+CrCm4bVWtyFzCK9wGILUFGnUMN4XSw==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/calendar@0.1.2",
-    "commit": "652b2c8c277bf143309924544868398224fceb02",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36924186784/attempts/1"
+    "ref": "refs/tags/calendar@0.1.3",
+    "commit": "edf8b35a17418f3f6d44bc7ffa249cd8904aa643",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36956761856/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-calendar",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
@@ -62,7 +62,7 @@
     },
     "manifest": {
       "name": "calendar",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "schema": "calendar",
       "description": "Reads your Google, iCloud or Outlook calendars from their private links, kept like passwords, so your agents know today, the coming days and your free time. Read-only.",
       "author": {
@@ -151,5 +151,5 @@
     },
     "drift": []
   },
-  "checkedAt": "2026-10-01"
+  "checkedAt": "2026-10-02"
 }
