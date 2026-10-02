@@ -1,7 +1,7 @@
 {
   "name": "finance",
   "npm": "@withbuddi/plugin-finance",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "title": "Finance",
   "summary": "Your accounts, cards, loans, recurring charges and receipts in one place, a cash-flow projection, and a word before a balance dips or a payment comes due. Nothing leaves this computer.",
   "category": "money",
@@ -19,18 +19,18 @@
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/finance",
   "hostApi": "^1.0",
-  "integrity": "sha512-X93m9Ig8VfhQ4nuLTMOz+8m2xfKcsYG1Ef8Fl+aGHIoIvb+u7qSftoroJyU+OY5QEgA8/jd2zAMDylCJ3tDTcQ==",
+  "integrity": "sha512-8Z9DQ5s8YEowAZTfApT+JBLSx3A5gbLYXr50bw0lXhLrf76hUmQ+BANg+StNFAkvVf1AzsBJTb8K90sI7bTt1w==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/finance@0.1.2",
-    "commit": "652b2c8c277bf143309924544868398224fceb02",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36924189425/attempts/1"
+    "ref": "refs/tags/finance@0.1.3",
+    "commit": "edf8b35a17418f3f6d44bc7ffa249cd8904aa643",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36956762952/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-finance",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
@@ -54,7 +54,7 @@
     },
     "manifest": {
       "name": "finance",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "schema": "finance",
       "description": "Keeps your accounts, cards, loans, recurring charges and receipts in one place, projects your cash flow, and watches for a breached floor, a payment coming due and a statement closing high. Nothing leaves this computer.",
       "author": {
@@ -402,5 +402,5 @@
     },
     "drift": []
   },
-  "checkedAt": "2026-10-01"
+  "checkedAt": "2026-10-02"
 }
