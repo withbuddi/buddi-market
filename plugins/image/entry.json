@@ -1,7 +1,7 @@
 {
   "name": "image",
   "npm": "@withbuddi/plugin-image",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "title": "Image",
   "summary": "One picture from a prompt, made by an image service you already have, kept in your Files library. Proposes Illustrator, an agent the others can ask for pictures.",
   "category": "work",
@@ -19,18 +19,18 @@
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/image",
   "hostApi": "^1.8",
-  "integrity": "sha512-uSLwHQbz5Roi8NurTQPS0ALpgUydIz2R9bIV1sByS8FlAPi9UO75dyp2LSWc5NBRx93+iMTVPV+v1oKM3Vo2qw==",
+  "integrity": "sha512-+CecSvqdpsvdh3oNMo4x+vCzHwjVHhm3oH3bH39PdPmV/DCwW5KY6cbLMJ0lQ/xCX4fqQ7T9e60mVv7iNPZzSw==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/image@0.1.3",
-    "commit": "652b2c8c277bf143309924544868398224fceb02",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36924192130/attempts/1"
+    "ref": "refs/tags/image@0.1.4",
+    "commit": "f17b0e37afb4eb1fa820144b0006ebcebb3bb985",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37061296815/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-image",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
@@ -59,9 +59,9 @@
     },
     "manifest": {
       "name": "image",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "schema": "image",
-      "description": "Makes one image from a prompt with the provider account you choose (ChatGPT subscription, OpenAI, Gemini, or an OpenAI-compatible server) and keeps it in the Files library. Proposes an Illustrator agent.",
+      "description": "Makes one image from a prompt with the provider account you choose (ChatGPT subscription, OpenAI, Gemini, or an OpenAI-compatible server) and keeps it in the Files library.",
       "author": {
         "name": "withbuddi",
         "url": "https://withbuddi.com"
@@ -101,21 +101,7 @@
       "sentinels": [],
       "sources": [],
       "missions": [],
-      "agents": [
-        {
-          "id": "illustrator",
-          "handle": "art",
-          "name": "Illustrator",
-          "tools": [
-            "image.generate",
-            "memory.note",
-            "memory.recall",
-            "memory.forget",
-            "memory.remember_preference",
-            "memory.get_preferences"
-          ]
-        }
-      ],
+      "agents": [],
       "skills": [
         {
           "name": "writing-an-image-prompt",
@@ -134,5 +120,5 @@
     },
     "drift": []
   },
-  "checkedAt": "2026-10-01"
+  "checkedAt": "2026-10-02"
 }
