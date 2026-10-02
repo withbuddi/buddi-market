@@ -20,21 +20,23 @@
     "calendar": ">=0.1.3",
     "weather": ">=0.1.4"
   },
-  "needs": [],
+  "needs": [
+    "mailbox?"
+  ],
   "tools": [
     "memory.*",
     "reminder.*",
     "schedule.*",
     "owner.notify",
-    "email.list_recent",
-    "email.list_threads",
-    "email.read",
-    "email.read_thread",
-    "email.search",
-    "email.sender_profile",
-    "email.draft_reply",
-    "email.draft_new",
-    "email.read_draft",
+    "email.list_recent?",
+    "email.list_threads?",
+    "email.read?",
+    "email.read_thread?",
+    "email.search?",
+    "email.sender_profile?",
+    "email.draft_reply?",
+    "email.draft_new?",
+    "email.read_draft?",
     "calendar.*?",
     "weather.now?",
     "weather.forecast?"
@@ -80,7 +82,7 @@
     "buddi/planner"
   ],
   "changes": "First version: Planner's day-keeping, plus reading mail and drafting replies.",
-  "integrity": "sha256-DHQ0ucYiFsrv3wNxy766M1e4SGOQxXATnoNss+uyle4=",
+  "integrity": "sha256-uJ8Gz0urWA2kbXZ3QRdg5rdjOFssO0YksDd7KxWIu9c=",
   "claims": {
     "tools": [
       {
@@ -172,63 +174,63 @@
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.list_threads",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.read",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.read_thread",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.search",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.sender_profile",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.draft_reply",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.draft_new",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.read_draft",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "calendar.today",

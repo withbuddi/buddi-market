@@ -73,8 +73,18 @@ test('model, delegates and bundles are refused by name', () => {
   has(problems, /bundles is not allowed in v1/);
 });
 
-test('roles beyond [] are refused', () => {
-  has(problemsOf((p) => { p.manifest.roles = ['overview']; }), /roles holds at most 0/);
+test('roles are by-buddi only', () => {
+  assert.deepEqual(problemsOf((p) => { p.manifest.roles = ['overview', 'recap']; }), []);
+  has(problemsOf((p) => { p.manifest.trust = 'reviewed'; p.manifest.roles = ['overview']; }), /roles are for by-buddi packages only/);
+  has(problemsOf((p) => { p.manifest.roles = ['Bad Role']; }), /roles\[0\] does not match/);
+});
+
+test('an optional mailbox makes mail tools optional, and only then', () => {
+  assert.deepEqual(problemsOf((p) => { p.manifest.needs = ['mailbox?']; p.manifest.tools.push('email.read?'); }), []);
+  has(problemsOf((p) => { p.manifest.needs = ['mailbox?']; p.manifest.tools.push('email.read'); }), /mail tools end in \?/);
+  has(problemsOf((p) => { p.manifest.tools.push('email.read?'); }), /takes \? only when the mailbox is optional/);
+  assert.deepEqual(problemsOf((p) => { p.manifest.needs = ['mailbox']; p.manifest.tools.push('email.read'); }), []);
+  has(problemsOf((p) => { p.manifest.needs = ['mailbox?']; p.manifest.tools.push('email.send?'); }), /v1 denylist/);
 });
 
 test('an unknown tool is refused', () => {

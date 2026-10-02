@@ -19,7 +19,9 @@
   "optional": {
     "weather": ">=0.1.4"
   },
-  "needs": [],
+  "needs": [
+    "mailbox?"
+  ],
   "tools": [
     "memory.*",
     "reminder.*",
@@ -28,8 +30,8 @@
     "artifacts.list",
     "artifacts.describe",
     "artifacts.text",
-    "email.search",
-    "email.read",
+    "email.search?",
+    "email.read?",
     "weather.now?",
     "weather.forecast?"
   ],
@@ -61,7 +63,7 @@
     "buddi/keeper"
   ],
   "changes": "First version: Keeper's history-keeping, for the whole home and its vehicles.",
-  "integrity": "sha256-7wH7NyVqRvfRH4NbTog5IWb7rCTgYeQWKySdm5keaR0=",
+  "integrity": "sha256-ICWVHth4k8wdTK9iVwwEpuGIPQ9O1KD0DGmKPwjT6Xg=",
   "claims": {
     "tools": [
       {
@@ -174,14 +176,14 @@
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.read",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "weather.now",

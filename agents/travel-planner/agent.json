@@ -20,16 +20,18 @@
     "weather": ">=0.1.4",
     "calendar": ">=0.1.3"
   },
-  "needs": [],
+  "needs": [
+    "mailbox?"
+  ],
   "tools": [
     "memory.*",
     "reminder.*",
     "owner.notify",
     "web.search",
     "web.read",
-    "email.search",
-    "email.read",
-    "email.read_thread",
+    "email.search?",
+    "email.read?",
+    "email.read_thread?",
     "weather.forecast?",
     "calendar.upcoming?",
     "calendar.find?"
@@ -60,7 +62,7 @@
   "idleRollover": "1w",
   "replaces": [],
   "changes": "First version.",
-  "integrity": "sha256-LdpmdVQ9nf+9nHnYQAs1mz5C2JqVd18pw4yedDpHv9g=",
+  "integrity": "sha256-X2aNBBAgZNo/Ho1I/wtqmkqTE0o/hLWmNR4i7hFAbn0=",
   "claims": {
     "tools": [
       {
@@ -145,21 +147,21 @@
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.read",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "email.read_thread",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,
-        "optional": false
+        "optional": true
       },
       {
         "name": "weather.forecast",

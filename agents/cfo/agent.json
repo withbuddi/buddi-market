@@ -62,11 +62,16 @@
     "Can I pay off the car loan early?"
   ],
   "language": "mirror",
+  "roles": [
+    "overview",
+    "recap",
+    "credit"
+  ],
   "replaces": [
     "finance/ledger"
   ],
   "changes": "First version: Ledger from the Finance plugin, as a catalogue agent, with goals for paying debt down.",
-  "integrity": "sha256-UwRmxX0EmhAXXjQg/gBf45eZZUPU/LbGQsFOkEr9PTQ=",
+  "integrity": "sha256-VV2LYUp1z0NkqGPPTY4Pr1Ovk0q7BqJuHjzobijGHZE=",
   "claims": {
     "tools": [
       {

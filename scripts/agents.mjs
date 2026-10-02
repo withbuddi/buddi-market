@@ -351,6 +351,9 @@ export function validateAgent(name, pkg, ctx) {
   if (m.name !== name) problems.push(`name must be "${name}", the folder it is in`);
   if (ctx.takenNames?.has(m.name)) problems.push(`"${m.name}" is already a plugin's name; names are unique across plugins and agents`);
   if (typeof m.version === 'string' && !parseVersion(m.version)) problems.push('version is not semver');
+  if (Array.isArray(m.roles) && m.roles.length > 0 && m.trust !== 'by-buddi') problems.push('roles are for by-buddi packages only; anything else carries roles: []');
+  if (Array.isArray(m.roles) && new Set(m.roles).size !== m.roles.length) problems.push('a role is named twice');
+  if (Array.isArray(m.needs) && m.needs.includes('mailbox') && m.needs.includes('mailbox?')) problems.push('needs names mailbox and mailbox? both; pick one');
   if (typeof m.buddi === 'string' && !validRange(m.buddi)) problems.push(`buddi "${m.buddi}" is not a range this check reads (>=, ^, ~ or exact)`);
   for (const stray of pkg.strays) problems.push(`${stray} is not part of an agent package (agent.json, persona.md, skills/*.md, avatar.png)`);
 
@@ -407,7 +410,9 @@ export function validateAgent(name, pkg, ctx) {
     fillIds.add(fill.id);
     if (fill.kind === 'time' && !missionIds.has(fill.mission)) problems.push(`fill ${fill.id}: a time fill names one of the missions (mission)`);
     if (fill.kind !== 'time' && fill.mission !== undefined) problems.push(`fill ${fill.id}: only a time fill names a mission`);
-    if (fill.kind === 'mailbox' && !(m.needs ?? []).includes('mailbox') && fill.optional !== true) {
+    if (fill.kind === 'mailbox' && !Array.isArray(m.needs)) continue;
+    if (fill.kind === 'mailbox' && !m.needs.includes('mailbox') && !m.needs.includes('mailbox?')) problems.push(`fill ${fill.id}: a mailbox pick needs mailbox or mailbox? in needs`);
+    if (fill.kind === 'mailbox' && !m.needs.includes('mailbox') && fill.optional !== true) {
       problems.push(`fill ${fill.id}: a mailbox pick is optional unless the agent needs a mailbox`);
     }
   }
@@ -436,8 +441,16 @@ export function validateAgent(name, pkg, ctx) {
     const coreHits = matchTool(pattern, ctx.core);
     const owners = Object.entries(ctx.plugins).filter(([, p]) => matchTool(pattern, p.tools).length > 0).map(([n]) => n);
     if (coreHits.length > 0) {
-      if (optional) problems.push(`${raw}: a core tool is always there; the ? is for an optional plugin's tool`);
-      for (const t of coreHits) resolved.push({ ...t, plugin: 'core', grant: raw, optional: false });
+      const mailTool = pattern.startsWith('email.');
+      const mailboxOptional = Array.isArray(m.needs) && m.needs.includes('mailbox?');
+      if (mailTool && mailboxOptional) {
+        if (!optional) problems.push(`${raw}: the mailbox is optional (needs mailbox?), so mail tools end in ? (${raw}?)`);
+      } else if (optional) {
+        problems.push(mailTool
+          ? `${raw}: a mail tool takes ? only when the mailbox is optional (needs mailbox?)`
+          : `${raw}: a core tool is always there; the ? is for an optional plugin's tool or an optional mailbox`);
+      }
+      for (const t of coreHits) resolved.push({ ...t, plugin: 'core', grant: raw, optional: optional && mailTool && mailboxOptional });
     } else if (owners.length === 0) {
       const exact = ctx.core.find((t) => t.name === pattern) ?? Object.values(ctx.plugins).flatMap((p) => p.tools).find((t) => t.name === pattern);
       problems.push(exact?.ownerOnly ? `${raw} is owner-only; no agent can hold it` : `${raw} is not a tool buddi or a listed plugin has`);

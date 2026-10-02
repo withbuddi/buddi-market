@@ -97,8 +97,13 @@ are created off. `fills` are the picks the install sheet asks (`mailbox`,
 names the owner, their timezone or their places: buddi tells every agent those
 on every turn.
 
-Not allowed: `model`, `provider`, `account`, `delegates`, `bundles`, roles
-other than `[]`, and any unknown field. Never grantable by a package: `host.*`,
+`needs` names what is not a plugin: `mailbox`, `image-account`, or `mailbox?`
+for a mailbox that makes it better, whose `email.*` tools then end in `?`.
+`roles` (the capabilities plugin missions and watchers address) are for by-buddi
+packages only.
+
+Not allowed: `model`, `provider`, `account`, `delegates`, `bundles`, and any
+unknown field. Never grantable by a package: `host.*`,
 `secret.*`, `developer.*`, `mcp.*`, `platform.*` writes, `owner.set_profile`,
 `email.send` and the mail account tools, and any owner-only tool. The owner can
 add these by hand after install.
