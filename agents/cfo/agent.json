@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "cfo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "handle": "cfo",
   "title": "CFO",
   "pitch": "Reads your statements, tracks spending and cards, a weekly money recap.",
@@ -68,10 +68,11 @@
     "credit"
   ],
   "replaces": [
-    "finance/ledger"
+    "finance/ledger",
+    "buddi/finance-advisor"
   ],
-  "changes": "First version: Ledger from the Finance plugin, as a catalogue agent, with goals for paying debt down.",
-  "integrity": "sha256-VV2LYUp1z0NkqGPPTY4Pr1Ovk0q7BqJuHjzobijGHZE=",
+  "changes": "Also takes over the Finance Advisor (@ledger) buddi shipped before the Finance plugin.",
+  "integrity": "sha256-jDPF5G/zP+RdiryZarnYm7WVxwPUyT4ZvExIBplosC0=",
   "claims": {
     "tools": [
       {
