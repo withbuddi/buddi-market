@@ -1,0 +1,335 @@
+{
+  "kind": "agent",
+  "name": "chief-of-staff",
+  "version": "1.0.0",
+  "handle": "chief",
+  "title": "Chief of Staff",
+  "pitch": "Keeps your day: mail that needs you, meetings, follow-ups, a brief every morning.",
+  "description": "Keeps the owner's day: what needs them in their mail, today's meetings, reminders and follow-ups, drafted replies (never sent), and a short brief every morning.",
+  "about": "Reads your mail for what needs you, holds every follow-up you mention, and drafts replies for you to send yourself. Each morning it can send a short brief of the day. It never sends mail, never sorts your inbox (that is Mail Triage's job) and never books or moves a meeting.",
+  "category": "work",
+  "trust": "by-buddi",
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "buddi": ">=0.1.0-pre.32",
+  "requires": {},
+  "optional": {
+    "calendar": ">=0.1.3",
+    "weather": ">=0.1.4"
+  },
+  "needs": [],
+  "tools": [
+    "memory.*",
+    "reminder.*",
+    "schedule.*",
+    "owner.notify",
+    "email.list_recent",
+    "email.list_threads",
+    "email.read",
+    "email.read_thread",
+    "email.search",
+    "email.sender_profile",
+    "email.draft_reply",
+    "email.draft_new",
+    "email.read_draft",
+    "calendar.*?",
+    "weather.now?",
+    "weather.forecast?"
+  ],
+  "missions": [
+    {
+      "id": "morning-brief",
+      "name": "Morning brief",
+      "cron": "0 8 * * *",
+      "misfirePolicy": "latest-only",
+      "prompt": "Write the owner's morning brief, following your writing-the-morning-brief skill. In this order: anything severe in today's weather at home; today's meetings with their times and the gaps between them; mail from the last day that needs the owner (at most three, each in one line with who and what they want); reminders due today and anything overdue; the follow-up that has waited longest, when it is worth raising; then one line of what to do first. Skip any part whose tools you do not have, and never mention a missing plugin, mailbox or tool. At most eight short lines, plain text. When nothing is due, nothing needs the owner and the day is unremarkable, call mission.silent."
+    },
+    {
+      "id": "still-waiting",
+      "name": "Still waiting on",
+      "cron": "0 16 * * 5",
+      "misfirePolicy": "latest-only",
+      "prompt": "List what the owner is still waiting on from other people, following your holding-a-follow-up skill: recall the follow-ups you hold, and when you can read mail, check whether each one has been answered since (search the thread or the sender). Close the ones that were answered and say so in a line. For each one still open, one line: who, what, and how long it has waited, oldest first, with a one-word next step (chase, wait, drop). At most six lines. When nothing is open, call mission.silent."
+    }
+  ],
+  "fills": [
+    {
+      "id": "mailbox",
+      "kind": "mailbox",
+      "label": "Which mailbox should it read?",
+      "optional": true
+    },
+    {
+      "id": "brief-time",
+      "kind": "time",
+      "label": "When should the morning brief arrive?",
+      "mission": "morning-brief"
+    }
+  ],
+  "examples": [
+    "What's tomorrow and what should I prep?",
+    "Draft a reply to Sarah: Thursday works.",
+    "Remind me to chase the plumber Monday if he hasn't answered."
+  ],
+  "language": "mirror",
+  "idleRollover": "1d",
+  "replaces": [
+    "buddi/planner"
+  ],
+  "changes": "First version: Planner's day-keeping, plus reading mail and drafting replies.",
+  "integrity": "sha256-DHQ0ucYiFsrv3wNxy766M1e4SGOQxXATnoNss+uyle4=",
+  "claims": {
+    "tools": [
+      {
+        "name": "memory.forget",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.get_preferences",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.note",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.recall",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.remember_preference",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.cancel",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.set",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.cancel_mine",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.list_mine",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.propose",
+        "plugin": "core",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "owner.notify",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "email.list_recent",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "email.list_threads",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "email.read",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "email.read_thread",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "email.search",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "email.sender_profile",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "email.draft_reply",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "email.draft_new",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "email.read_draft",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "calendar.today",
+        "plugin": "calendar",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "calendar.upcoming",
+        "plugin": "calendar",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "calendar.find",
+        "plugin": "calendar",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "calendar.free",
+        "plugin": "calendar",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "weather.now",
+        "plugin": "weather",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "weather.forecast",
+        "plugin": "weather",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      }
+    ],
+    "missions": [
+      {
+        "id": "morning-brief",
+        "name": "Morning brief",
+        "when": "Every day at 08:00",
+        "enabled": false
+      },
+      {
+        "id": "still-waiting",
+        "name": "Still waiting on",
+        "when": "Every Friday at 16:00",
+        "enabled": false
+      }
+    ],
+    "plugins": {
+      "requires": [],
+      "optional": [
+        {
+          "name": "calendar",
+          "range": ">=0.1.3",
+          "listed": "0.1.3",
+          "hostApi": "^1.11"
+        },
+        {
+          "name": "weather",
+          "range": ">=0.1.4",
+          "listed": "0.1.4",
+          "hostApi": "^1.18"
+        }
+      ]
+    },
+    "skills": [
+      {
+        "file": "drafting-a-reply.md",
+        "name": "drafting-a-reply",
+        "description": "How to turn the owner's few words into a reply draft they can send as it is. Read it before drafting any mail."
+      },
+      {
+        "file": "holding-a-follow-up.md",
+        "name": "holding-a-follow-up",
+        "description": "How to note, raise and close something the owner is waiting on, so it neither slips nor nags."
+      },
+      {
+        "file": "writing-the-morning-brief.md",
+        "name": "writing-the-morning-brief",
+        "description": "How to write the morning brief the Morning brief mission asks for: what goes in, in what order, and when to send nothing."
+      }
+    ],
+    "avatar": {
+      "sha256": "sha256-E5I/P7Sk08FoxNcEqKoJ5VzzGrBQQFUhDTjB6E1Ax+o=",
+      "bytes": 132867,
+      "width": 512,
+      "height": 512
+    },
+    "sizes": {
+      "persona": 4147,
+      "skills": 6036
+    }
+  }
+}

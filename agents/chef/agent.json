@@ -1,0 +1,210 @@
+{
+  "kind": "agent",
+  "name": "chef",
+  "version": "1.0.0",
+  "handle": "chef",
+  "title": "Chef",
+  "pitch": "Plans the week's dinners around what you like and what you have.",
+  "description": "Meal plans, recipes and shopping lists: plans the week's dinners, suggests what to cook with what is in the kitchen, scales recipes, and remembers tastes, allergies and what was cooked.",
+  "about": "Plans dinners around the tastes and allergies it remembers, what you already have and how much time you've got, and turns a plan into one shopping list. It looks recipes up on the web and reads them properly. It does not order groceries or give medical diet advice.",
+  "category": "home",
+  "trust": "by-buddi",
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "buddi": ">=0.1.0-pre.32",
+  "requires": {},
+  "optional": {
+    "weather": ">=0.1.4"
+  },
+  "needs": [],
+  "tools": [
+    "memory.*",
+    "reminder.*",
+    "schedule.*",
+    "owner.notify",
+    "web.search",
+    "web.read",
+    "weather.forecast?"
+  ],
+  "missions": [
+    {
+      "id": "sunday-plan",
+      "name": "Sunday meal plan",
+      "cron": "0 17 * * 0",
+      "misfirePolicy": "latest-only",
+      "prompt": "Plan the coming week's dinners, following your planning-the-week skill. Recall the owner's tastes, allergies, household size, busy evenings and what was cooked in the last two weeks; glance at the week's forecast when you have it. Propose five dinners, one line each with the evening and the time it takes, no repeats from the last two weeks, at least one that uses leftovers. Then one shopping list grouped by aisle. Note the plan so you can answer \"what's for dinner\" during the week. End with one line asking for swaps. Plain text."
+    }
+  ],
+  "fills": [
+    {
+      "id": "diet",
+      "kind": "text",
+      "label": "Anything you don't eat?",
+      "optional": true
+    },
+    {
+      "id": "plan-time",
+      "kind": "time",
+      "label": "When should the weekly plan arrive?",
+      "mission": "sunday-plan"
+    }
+  ],
+  "examples": [
+    "What can I make with chicken, leeks and rice?",
+    "Plan five dinners this week, vegetarian on Tuesday.",
+    "Scale this recipe for six and give me the shopping list."
+  ],
+  "language": "mirror",
+  "idleRollover": "1d",
+  "replaces": [],
+  "changes": "First version.",
+  "integrity": "sha256-IywGk1nj72Q6NYgcGMg+a2L1qQcQLOM+4b6d1111HWU=",
+  "claims": {
+    "tools": [
+      {
+        "name": "memory.forget",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.get_preferences",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.note",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.recall",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.remember_preference",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.cancel",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.set",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.cancel_mine",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.list_mine",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.propose",
+        "plugin": "core",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "owner.notify",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "web.search",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "web.read",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "weather.forecast",
+        "plugin": "weather",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      }
+    ],
+    "missions": [
+      {
+        "id": "sunday-plan",
+        "name": "Sunday meal plan",
+        "when": "Every Sunday at 17:00",
+        "enabled": false
+      }
+    ],
+    "plugins": {
+      "requires": [],
+      "optional": [
+        {
+          "name": "weather",
+          "range": ">=0.1.4",
+          "listed": "0.1.4",
+          "hostApi": "^1.18"
+        }
+      ]
+    },
+    "skills": [
+      {
+        "file": "planning-the-week.md",
+        "name": "planning-the-week",
+        "description": "How to plan a week of dinners the household will actually cook, and the shopping list that goes with it."
+      }
+    ],
+    "avatar": {
+      "sha256": "sha256-TNEa3Jpaoe4kamxsbkzHeY4dSEpaHq69glaizhfbM2Q=",
+      "bytes": 125721,
+      "width": 512,
+      "height": 512
+    },
+    "sizes": {
+      "persona": 3390,
+      "skills": 1844
+    }
+  }
+}

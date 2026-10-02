@@ -1,0 +1,274 @@
+{
+  "kind": "agent",
+  "name": "coach",
+  "version": "1.0.0",
+  "handle": "coach",
+  "title": "Coach",
+  "pitch": "A training plan you can keep, check-ins, and progress you can see.",
+  "description": "Fitness coach: builds a training plan the owner can keep, logs sessions, checks in, adjusts the plan to how it is going, and tracks progress toward a goal.",
+  "about": "Builds a plan that fits your week and your level, logs what you did, and adjusts when life gets in the way, so the plan survives a missed session. It tracks progress toward a goal you set and checks the weather before a long run. It is not a doctor: pain, injury and medical conditions go to a professional.",
+  "category": "health",
+  "trust": "by-buddi",
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "buddi": ">=0.1.0-pre.32",
+  "requires": {},
+  "optional": {
+    "weather": ">=0.1.4",
+    "calendar": ">=0.1.3"
+  },
+  "needs": [],
+  "tools": [
+    "memory.*",
+    "reminder.*",
+    "schedule.*",
+    "owner.notify",
+    "goal.*",
+    "weather.forecast?",
+    "calendar.free?",
+    "calendar.today?"
+  ],
+  "missions": [
+    {
+      "id": "weekly-plan",
+      "name": "Plan for the week",
+      "cron": "0 7 * * 1",
+      "misfirePolicy": "latest-only",
+      "prompt": "Write the owner's training plan for this week, following your building-a-plan skill. Recall the goal, the current phase, last week's logged sessions and anything the owner said about how they felt. Look at the week's forecast and their free time when you have them. Give one line per session: the day, what it is, how long or how far, and how hard in plain words. Adjust from last week: missed sessions are not made up, a hard week is followed by an easier one. Note the week's plan. When no plan or goal is set yet, call mission.silent."
+    },
+    {
+      "id": "evening-check-in",
+      "name": "Evening check-in",
+      "cron": "0 20 * * *",
+      "misfirePolicy": "latest-only",
+      "prompt": "Recall this week's plan. If today was not a training day in it, or the owner already logged today's session, call mission.silent. Otherwise ask, in one short line, how today's session went, naming it (\"How did the 5 km easy run go?\"). Nothing else."
+    }
+  ],
+  "fills": [
+    {
+      "id": "check-in-time",
+      "kind": "time",
+      "label": "When should it check in on training days?",
+      "mission": "evening-check-in"
+    }
+  ],
+  "examples": [
+    "Build me a 5K plan, three runs a week.",
+    "I ran 6 km in 34 minutes.",
+    "Is tomorrow good for a long run?"
+  ],
+  "language": "mirror",
+  "idleRollover": "1d",
+  "replaces": [],
+  "changes": "First version.",
+  "integrity": "sha256-uPe4ohPi8Fjwjz53FnOh+fLeo1BSpXbmarkeGZDqNdc=",
+  "claims": {
+    "tools": [
+      {
+        "name": "memory.forget",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.get_preferences",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.note",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.recall",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.remember_preference",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.cancel",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.set",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.cancel_mine",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.list_mine",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.propose",
+        "plugin": "core",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "owner.notify",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.close",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.metrics",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.record",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.set",
+        "plugin": "core",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.status",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "goal.update",
+        "plugin": "core",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "weather.forecast",
+        "plugin": "weather",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "calendar.free",
+        "plugin": "calendar",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "calendar.today",
+        "plugin": "calendar",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      }
+    ],
+    "missions": [
+      {
+        "id": "weekly-plan",
+        "name": "Plan for the week",
+        "when": "Every Monday at 07:00",
+        "enabled": false
+      },
+      {
+        "id": "evening-check-in",
+        "name": "Evening check-in",
+        "when": "Every day at 20:00",
+        "enabled": false
+      }
+    ],
+    "plugins": {
+      "requires": [],
+      "optional": [
+        {
+          "name": "weather",
+          "range": ">=0.1.4",
+          "listed": "0.1.4",
+          "hostApi": "^1.18"
+        },
+        {
+          "name": "calendar",
+          "range": ">=0.1.3",
+          "listed": "0.1.3",
+          "hostApi": "^1.11"
+        }
+      ]
+    },
+    "skills": [
+      {
+        "file": "building-a-plan.md",
+        "name": "building-a-plan",
+        "description": "How to build and adjust a training plan the owner will keep: phases, the week's shape, progression and when to back off."
+      }
+    ],
+    "avatar": {
+      "sha256": "sha256-9Dkh1ZyGZdgO+kkFvI77fAzE3k5UpDvtLiesbamAACA=",
+      "bytes": 121553,
+      "width": 512,
+      "height": 512
+    },
+    "sizes": {
+      "persona": 3138,
+      "skills": 2048
+    }
+  }
+}

@@ -6,7 +6,7 @@ name: site
 on:
   push:
     branches: [main]
-    paths: ['plugins/**', 'scripts/index.mjs', 'scripts/lib.mjs']
+    paths: ['plugins/**', 'agents/**', 'scripts/index.mjs', 'scripts/lib.mjs', 'scripts/agents.mjs']
   workflow_dispatch:
 permissions: {}
 jobs:

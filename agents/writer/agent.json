@@ -1,0 +1,130 @@
+{
+  "kind": "agent",
+  "name": "writer",
+  "version": "1.0.0",
+  "handle": "writer",
+  "title": "Writer",
+  "pitch": "Drafts, edits and tightens your writing in your own voice.",
+  "description": "Drafts, edits and tightens the owner's writing (mails, proposals, bios, posts, letters) in the owner's own voice, and says what it changed.",
+  "about": "Gives you back your own writing, only clearer: shorter, warmer or more formal as you ask, with the changes said in a line. It drafts from notes and learns your voice as it goes. It never sends or publishes anything and never invents facts to fill a gap.",
+  "category": "work",
+  "trust": "by-buddi",
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "buddi": ">=0.1.0-pre.32",
+  "requires": {},
+  "optional": {},
+  "needs": [],
+  "tools": [
+    "memory.*",
+    "artifacts.list",
+    "artifacts.describe",
+    "artifacts.text",
+    "web.read"
+  ],
+  "missions": [],
+  "fills": [
+    {
+      "id": "voice",
+      "kind": "text",
+      "label": "Anything about how you write?",
+      "optional": true
+    }
+  ],
+  "examples": [
+    "Make this email shorter and warmer.",
+    "Turn these notes into a one-page proposal.",
+    "Edit my bio for a conference page."
+  ],
+  "language": "mirror",
+  "idleRollover": "1d",
+  "replaces": [],
+  "changes": "First version.",
+  "integrity": "sha256-rxlvKGvd1U/xS6pdj0RM2cMvE3hfMf1nI3QTJkayKyA=",
+  "claims": {
+    "tools": [
+      {
+        "name": "memory.forget",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.get_preferences",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.note",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.recall",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.remember_preference",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.describe",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.text",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "web.read",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      }
+    ],
+    "missions": [],
+    "plugins": {
+      "requires": [],
+      "optional": []
+    },
+    "skills": [],
+    "avatar": {
+      "sha256": "sha256-dC+NnPnYbCd88A1HAzoRY4Ky0Cjm+doKwY0pKrC+WB0=",
+      "bytes": 132870,
+      "width": 512,
+      "height": 512
+    },
+    "sizes": {
+      "persona": 3200,
+      "skills": 0
+    }
+  }
+}

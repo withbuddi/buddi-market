@@ -1,0 +1,202 @@
+{
+  "kind": "agent",
+  "name": "tutor",
+  "version": "1.0.0",
+  "handle": "tutor",
+  "title": "Tutor",
+  "pitch": "Teaches you a subject or a language a little every day, and remembers where you are.",
+  "description": "Patient tutor for a language or any subject: short daily lessons, quizzes with spaced review, explanations pitched at the owner's level, and a record of what they know.",
+  "about": "Teaches in short daily steps, quizzes you on what you are about to forget, and explains things at your level until they click. It remembers what you know and what trips you up. With the Speech plugin it can say words aloud for pronunciation. It does not do homework or exams for anyone.",
+  "category": "learning",
+  "trust": "by-buddi",
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "buddi": ">=0.1.0-pre.32",
+  "requires": {},
+  "optional": {
+    "speech": ">=0.1.3"
+  },
+  "needs": [],
+  "tools": [
+    "memory.*",
+    "reminder.*",
+    "schedule.*",
+    "owner.notify",
+    "web.read",
+    "speech.say?"
+  ],
+  "missions": [
+    {
+      "id": "daily-practice",
+      "name": "Daily practice",
+      "cron": "0 19 * * *",
+      "misfirePolicy": "latest-only",
+      "prompt": "Start today's ten-minute practice, following your running-a-lesson skill. Recall what the owner is learning, where they are, and the items due for review. Open with up to three quick review questions on items due today, numbered and short, in one message; the owner answers when they reply. Then one line on today's new step. Keep it under eight lines. When the owner is not learning anything with you yet, or asked for a pause, call mission.silent."
+    }
+  ],
+  "fills": [
+    {
+      "id": "practice-time",
+      "kind": "time",
+      "label": "When should daily practice start?",
+      "mission": "daily-practice"
+    },
+    {
+      "id": "subject",
+      "kind": "text",
+      "label": "What do you want to learn?",
+      "optional": true
+    }
+  ],
+  "examples": [
+    "Teach me Spanish from zero.",
+    "Quiz me on yesterday's words.",
+    "Explain compound interest like I'm 15."
+  ],
+  "language": "mirror",
+  "idleRollover": "1d",
+  "replaces": [],
+  "changes": "First version.",
+  "integrity": "sha256-cr8V6Cthc0f5Fx+r7/uBXdPEhbznwwtm9hSh+qoMPbE=",
+  "claims": {
+    "tools": [
+      {
+        "name": "memory.forget",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.get_preferences",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.note",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.recall",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.remember_preference",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.cancel",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "reminder.set",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.cancel_mine",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.list_mine",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "schedule.propose",
+        "plugin": "core",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "owner.notify",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "web.read",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "speech.say",
+        "plugin": "speech",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      }
+    ],
+    "missions": [
+      {
+        "id": "daily-practice",
+        "name": "Daily practice",
+        "when": "Every day at 19:00",
+        "enabled": false
+      }
+    ],
+    "plugins": {
+      "requires": [],
+      "optional": [
+        {
+          "name": "speech",
+          "range": ">=0.1.3",
+          "listed": "0.1.3",
+          "hostApi": "^1.0"
+        }
+      ]
+    },
+    "skills": [
+      {
+        "file": "running-a-lesson.md",
+        "name": "running-a-lesson",
+        "description": "How to run a ten-minute lesson with spaced review, and how to keep the record of what the owner knows so the next lesson starts in the right place."
+      }
+    ],
+    "avatar": {
+      "sha256": "sha256-7XoNGQLlSiSKXRgBG12RfE+BWGjBqb4Ms9GfV8agTo8=",
+      "bytes": 131959,
+      "width": 512,
+      "height": 512
+    },
+    "sizes": {
+      "persona": 2906,
+      "skills": 2015
+    }
+  }
+}

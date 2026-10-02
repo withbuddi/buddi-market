@@ -4,10 +4,15 @@
 # the way an install would and reads its manifest; the committed block has to
 # match. buddi itself comes from npm (`@withbuddi/buddi`, its `latest`), into a
 # scratch data directory: nothing is installed, migrated or registered.
+#
+# Catalogue agents (agents/**) are checked on every run: schema, files and
+# limits, the grant against the tools buddi and the listed plugins have, the
+# v1 denylist, the persona lint, integrity and claims, and that a changed
+# package moved its version against the base branch. No npm needed.
 name: check
 on:
   pull_request:
-    paths: ['plugins/**', 'scripts/**']
+    paths: ['plugins/**', 'agents/**', 'schemas/**', 'scripts/**']
   workflow_dispatch:
 jobs:
   check:
@@ -21,14 +26,17 @@ jobs:
       - name: Which entries changed
         id: changed
         run: |
+          plugins="all"
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             names=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" -- plugins | sed -n 's#^plugins/\([^/]*\)/.*#\1#p' | sort -u | tr '\n' ' ')
-            if git diff --name-only "origin/${{ github.base_ref }}...HEAD" -- scripts | grep -q .; then names=""; fi
+            if [ -z "$names" ]; then plugins="none"; else plugins="some"; fi
+            if git diff --name-only "origin/${{ github.base_ref }}...HEAD" -- scripts | grep -q .; then names=""; plugins="all"; fi
           else
             names=""
           fi
           echo "names=$names" >> "$GITHUB_OUTPUT"
-          echo "checking: ${names:-every entry}"
+          echo "plugins=$plugins" >> "$GITHUB_OUTPUT"
+          echo "plugins: $plugins ${names}"
       - name: buddi from npm, in a scratch installation
         run: |
           npm install -g @withbuddi/buddi
@@ -41,7 +49,14 @@ jobs:
             echo "BUDDI_VAULT=memory"
           } >> "$GITHUB_ENV"
           buddi --version
-      - name: The claims are what the code says
+      - name: The claims are what the code says (plugins)
+        if: steps.changed.outputs.plugins != 'none'
         run: node scripts/check.mjs ${{ steps.changed.outputs.names }}
+      - name: The agents are what their packages say
+        env:
+          BASE_REF: origin/${{ github.base_ref || 'main' }}
+        run: node scripts/check.mjs --agents
+      - name: The check's own tests
+        run: node --test scripts/agents.test.mjs
       - name: The index builds
-        run: node scripts/index.mjs "$RUNNER_TEMP/index.json" && node -e 'const i=require(process.argv[1]);console.log(i.plugins.map(p=>p.name+"@"+p.version).join(", "))' "$RUNNER_TEMP/index.json"
+        run: node scripts/index.mjs "$RUNNER_TEMP/index.json" && node -e 'const i=require(process.argv[1]);console.log(i.plugins.map(p=>p.name+"@"+p.version).concat(i.agents.map(a=>"agent:"+a.name+"@"+a.version)).join(", "))' "$RUNNER_TEMP/index.json"
