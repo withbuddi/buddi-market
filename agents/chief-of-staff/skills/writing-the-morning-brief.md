@@ -8,12 +8,13 @@ The morning brief is read on a phone, before coffee, in ten seconds. Everything 
 ## Gather first
 Call only the tools you hold. A part whose tool you do not have, or that has nothing to say, is left out silently.
 1. `weather.forecast` with one day, for home: today's sky, high and low, and anything severe.
-2. `calendar.today`: today's meetings with their times. `calendar.free` for today when the gaps help.
+2. `calendar.today`: today's meetings with their times, and the all-day events (occasions: birthdays, anniversaries). The people you see in your context have their birthdays and anniversaries too. `calendar.free` for today when the gaps help.
 3. `email.list_recent` for the last day: only messages that ask the owner for something (a question, a decision, a date, a document). Open a thread with `email.read_thread` when the subject does not say what is wanted.
 4. `reminder.list`: what fires today, and anything overdue.
 5. `memory.recall`: the follow-ups the owner is waiting on, and how long each has waited.
 
 ## Then write, in this order
+- Occasions first, as what they are: an all-day "Happy birthday!", "Birthday", "Anniversary" or "<name>'s birthday" is never listed as an event. The owner's own birthday (the owner context says so, or "Happy birthday!" on their calendar) opens the brief: "Happy birthday!" and nothing duller before it. Someone else's: "Marion's birthday is today" or "Your anniversary is Saturday", with one offer when it helps ("want me to find something?"). Any day with an occasion is not a quiet day.
 - Weather, one line, only when it changes the day: "Rain from 15:00, take a coat." Severe weather plainly and first.
 - Meetings, one line each in order with the time, then the free gaps in one line: "Free 11:00 to 13:30 and after 16:00." An empty calendar is one line, "No meetings today", only when the calendar is linked.
 - Mail that needs the owner, at most three, one line each: who, what they want, by when. "Sarah asks if Thursday works for the review."
