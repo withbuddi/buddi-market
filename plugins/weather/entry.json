@@ -1,7 +1,7 @@
 {
   "name": "weather",
   "npm": "@withbuddi/plugin-weather",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "title": "Weather",
   "summary": "The weather now and for the week at the places you save, from Open-Meteo with no key, and one message when something severe is coming.",
   "category": "days",
@@ -21,18 +21,18 @@
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/weather",
   "hostApi": "^1.18",
-  "integrity": "sha512-P9wieuXzuHmwTFKtmfw4itbRdjnZ1zAcm8bSyb4Xo5Lx7X2juAHBb5BjJRIbZ2o3nhGjXZuKR+P/gFI0jZ/9CA==",
+  "integrity": "sha512-8u2eAgv4/3kwedJngAn6nNcgWwpdV9uU5GrSAazNVLDRCF7pKRtq0B7QWqxXZ5VFDKa0Oo8WFL6tqlbEGo2bSQ==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/weather@0.1.4",
-    "commit": "edf8b35a17418f3f6d44bc7ffa249cd8904aa643",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36956760694/attempts/1"
+    "ref": "refs/tags/weather@0.1.5",
+    "commit": "e4ac26288f2b62e2aeea08426be1159e2a58c948",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37140021380/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-weather",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
@@ -61,7 +61,7 @@
     },
     "manifest": {
       "name": "weather",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "schema": "weather",
       "description": "The weather now and the forecast for the places you save, from Open-Meteo with no key, and a message once when severe weather is coming at one of them.",
       "author": {
@@ -150,9 +150,100 @@
         }
       ],
       "views": 2,
-      "home": 1
+      "home": 1,
+      "widgets": [
+        {
+          "id": "weather.now",
+          "title": "Weather",
+          "sizes": [
+            "small",
+            "medium"
+          ],
+          "settings": [
+            {
+              "key": "place",
+              "kind": "select",
+              "label": "Place"
+            },
+            {
+              "key": "units",
+              "kind": "select",
+              "label": "Units"
+            },
+            {
+              "key": "time",
+              "kind": "timeFormat",
+              "label": "Times"
+            }
+          ],
+          "preview": {
+            "small": {
+              "kind": "stat",
+              "icon": "sun",
+              "value": "18°C",
+              "caption": "Sunny · Lyon",
+              "trend": {
+                "label": "Next 12 hours",
+                "points": [
+                  18,
+                  19,
+                  21,
+                  22,
+                  22,
+                  21,
+                  19,
+                  17,
+                  15,
+                  14,
+                  13,
+                  13
+                ]
+              },
+              "foot": "High 22° · Low 11°"
+            },
+            "medium": {
+              "kind": "strip",
+              "icon": "sun",
+              "value": "18°C",
+              "caption": "Sunny · Lyon",
+              "items": [
+                {
+                  "label": "15:00",
+                  "icon": "sun",
+                  "value": "21°"
+                },
+                {
+                  "label": "17:00",
+                  "icon": "sun",
+                  "value": "22°"
+                },
+                {
+                  "label": "19:00",
+                  "icon": "partly-cloudy",
+                  "value": "19°"
+                },
+                {
+                  "label": "21:00",
+                  "icon": "moon-clear",
+                  "value": "16°"
+                },
+                {
+                  "label": "23:00",
+                  "icon": "moon-cloud",
+                  "value": "14°"
+                },
+                {
+                  "label": "01:00",
+                  "icon": "moon-clear",
+                  "value": "13°"
+                }
+              ]
+            }
+          }
+        }
+      ]
     },
     "drift": []
   },
-  "checkedAt": "2026-10-02"
+  "checkedAt": "2026-10-03"
 }

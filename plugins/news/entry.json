@@ -1,7 +1,7 @@
 {
   "name": "news",
   "npm": "@withbuddi/plugin-news",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "title": "News",
   "summary": "The news on the topics you follow, from a mix of English and French outlets you can see, grouped into stories on your own machine and told once. No model, no account, no service in between.",
   "category": "days",
@@ -19,18 +19,18 @@
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/news",
   "hostApi": "^1.27",
-  "integrity": "sha512-+ZB4pxV3naeL0YfUxQmHi7pAKR+Mnkazp8vHelPay0N/cy5Opdj5/1W30Hf6MVupkB6xfOJ9I6x3ii+xNVRHKg==",
+  "integrity": "sha512-y5WxzFfRmo5qFwHYK+HYm9U9B61UTPAk9JvIIXlvH5wHgJ3flShLzuzKhdndvO2N74+vP5zfJxjVW3in0LfcPA==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/news@0.2.2",
-    "commit": "a469b660e432ec6f461fc669b3e62daf817dbea0",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37120024871/attempts/2"
+    "ref": "refs/tags/news@0.2.3",
+    "commit": "e4ac26288f2b62e2aeea08426be1159e2a58c948",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37140021384/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-news",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
@@ -149,7 +149,7 @@
     },
     "manifest": {
       "name": "news",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "schema": "news",
       "description": "The news on the topics you follow, from English and French feeds you can see and change, grouped into stories on your own machine, with what was already told kept so nothing is told twice.",
       "author": {
@@ -697,7 +697,72 @@
         }
       ],
       "views": 0,
-      "home": 0
+      "home": 0,
+      "widgets": [
+        {
+          "id": "news.top",
+          "title": "Top stories",
+          "sizes": [
+            "small",
+            "medium"
+          ],
+          "settings": [
+            {
+              "key": "topics",
+              "kind": "multiselect",
+              "label": "Topics"
+            },
+            {
+              "key": "show",
+              "kind": "select",
+              "label": "Show"
+            }
+          ],
+          "preview": {
+            "small": {
+              "kind": "list",
+              "rows": [
+                {
+                  "title": "Central banks hold rates as inflation cools"
+                },
+                {
+                  "title": "A comet bright enough to see is passing this week"
+                },
+                {
+                  "title": "Lyon opens its third tram line"
+                }
+              ],
+              "wrap": true
+            },
+            "medium": {
+              "kind": "list",
+              "rows": [
+                {
+                  "title": "Central banks hold rates as inflation cools",
+                  "side": "Reuters · 1 h"
+                },
+                {
+                  "title": "A comet bright enough to see is passing this week",
+                  "side": "BBC · 2 h"
+                },
+                {
+                  "title": "Lyon opens its third tram line",
+                  "side": "Le Progrès · 3 h"
+                },
+                {
+                  "title": "The new phone that folds twice",
+                  "side": "The Verge · 4 h"
+                },
+                {
+                  "title": "A quiet start to the Champions League",
+                  "side": "L’Équipe · 5 h"
+                }
+              ],
+              "max": 5
+            }
+          }
+        }
+      ]
     },
     "drift": []
   },
