@@ -1,12 +1,12 @@
 {
   "kind": "agent",
   "name": "chief-of-staff",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "handle": "chief",
   "title": "Chief of Staff",
   "pitch": "Keeps your day: mail that needs you, meetings, follow-ups, a brief every morning.",
-  "description": "Keeps the owner's day: what needs them in their mail, today's meetings, reminders and follow-ups, drafted replies (never sent), and a short brief every morning.",
-  "about": "Reads your mail for what needs you, holds every follow-up you mention, and drafts replies for you to send yourself. Each morning it can send a short brief of the day. It never sends mail, never sorts your inbox (that is Mail Triage's job) and never books or moves a meeting.",
+  "description": "Keeps the owner's day: what needs them in their mail, today's meetings and the events they ask for, reminders and follow-ups, drafted replies (never sent), and a short brief every morning.",
+  "about": "Reads your mail for what needs you, holds every follow-up you mention, and drafts replies for you to send yourself. Each morning it can send a short brief of the day. In the calendars you allow it to change, it adds, moves and cancels events, each one after you approve it, and never invites anyone. It never sends mail and never sorts your inbox (that is Mail Triage's job).",
   "category": "work",
   "trust": "by-buddi",
   "author": {
@@ -17,7 +17,7 @@
   "buddi": ">=0.1.0-pre.35",
   "requires": {},
   "optional": {
-    "calendar": ">=0.1.3",
+    "calendar": ">=0.2.0",
     "weather": ">=0.1.4"
   },
   "needs": [
@@ -38,6 +38,9 @@
     "email.draft_new?",
     "email.read_draft?",
     "calendar.*?",
+    "calendar.create_event?",
+    "calendar.update_event?",
+    "calendar.cancel_event?",
     "weather.now?",
     "weather.forecast?",
     "artifacts.write"
@@ -82,8 +85,8 @@
   "replaces": [
     "buddi/planner"
   ],
-  "changes": "Can write a plan, an agenda or a brief into your Files, downloadable as PDF or Word.",
-  "integrity": "sha256-OoRJFbrnDQuMIWJZxeSp5kvjBINf22ZSeqPIFnsL+NU=",
+  "changes": "Adds, moves and cancels events in the calendars you allow it to change (iCloud, Fastmail, CalDAV), each one approved by you first.",
+  "integrity": "sha256-Xz1boE6ozUF8TbInTXgA0OmbAQ1XaupyvRYkAJMhYDc=",
   "claims": {
     "tools": [
       {
@@ -323,7 +326,7 @@
       "optional": [
         {
           "name": "calendar",
-          "range": ">=0.1.3",
+          "range": ">=0.2.0",
           "listed": "0.2.0",
           "hostApi": "^1.26"
         },
@@ -359,7 +362,7 @@
       "height": 512
     },
     "sizes": {
-      "persona": 4147,
+      "persona": 4670,
       "skills": 6036
     }
   }
