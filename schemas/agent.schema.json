@@ -25,12 +25,12 @@
       "type": "string", "pattern": "^[a-z][a-z0-9-]{1,31}$"
     },
     "title": { "type": "string", "minLength": 1, "maxLength": 40 },
-    "pitch": { "description": "The card's one line.", "type": "string", "minLength": 1, "maxLength": 120 },
+    "pitch": { "description": "The card's one line. No tool names (the check refuses a known one).", "type": "string", "minLength": 1, "maxLength": 120 },
     "description": {
-      "description": "The agent file's description: one line other agents read to hand it work.",
+      "description": "The agent file's description: one line other agents read to hand it work. No tool names.",
       "type": "string", "minLength": 1, "maxLength": 240
     },
-    "about": { "description": "Two or three sentences for the detail page.", "type": "string", "minLength": 1, "maxLength": 600 },
+    "about": { "description": "Two or three sentences for the detail page. No tool names.", "type": "string", "minLength": 1, "maxLength": 600 },
     "category": { "enum": ["work", "money", "home", "health", "learning", "life"] },
     "trust": { "description": "By-buddi only in v1.", "const": "by-buddi" },
     "author": {
@@ -89,7 +89,7 @@
       }
     },
     "examples": {
-      "description": "Example asks for the detail page and the done screen.",
+      "description": "Example asks for the detail page and the done screen. No tool names.",
       "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "string", "minLength": 1, "maxLength": 120 }
     },
     "language": { "enum": ["mirror", "en", "fr"] },
@@ -102,7 +102,7 @@
       "description": "Older agents this package supersedes, as <source>/<id>.",
       "type": "array", "maxItems": 4, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*/[a-z][a-z0-9-]*$" }
     },
-    "changes": { "description": "One line for this version.", "type": "string", "minLength": 1, "maxLength": 200 },
+    "changes": { "description": "One line for this version, in the owner's words: no tool names.", "type": "string", "minLength": 1, "maxLength": 200 },
     "integrity": { "description": "Written by the check.", "type": "string", "pattern": "^sha256-[A-Za-z0-9+/]{43}=$" },
     "claims": { "description": "Written by the check.", "type": "object" }
   }
