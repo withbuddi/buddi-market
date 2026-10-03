@@ -176,7 +176,7 @@
         {
           "name": "speech",
           "range": ">=0.1.3",
-          "listed": "0.1.3",
+          "listed": "0.1.4",
           "hostApi": "^1.0"
         }
       ]

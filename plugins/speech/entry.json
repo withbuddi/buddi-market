@@ -1,7 +1,7 @@
 {
   "name": "speech",
   "npm": "@withbuddi/plugin-speech",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "title": "Speech",
   "summary": "Your team hear you and answer with a voice: on the dashboard and on Telegram. Whisper and Kokoro run on your computer, or a cloud service you choose.",
   "category": "voice",
@@ -19,18 +19,18 @@
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/speech",
   "hostApi": "^1.0",
-  "integrity": "sha512-X6lQlu4mNcmZTJsB3M+I6S8x9ut58n79Df2d2rJiEkHeUuZMFrPjTW2VlCgzjuWyNU1ZWGKwxt+h8dqR0H+wPQ==",
+  "integrity": "sha512-7pOR0ef/1ATk4l1mgKYZB4Y09bWlaSn69vrREKUYMZWs4bybfNClgypnsxXveuDvieDQqQX//qKvLqDxDVQYvQ==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/speech@0.1.3",
-    "commit": "652b2c8c277bf143309924544868398224fceb02",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/36924194630/attempts/1"
+    "ref": "refs/tags/speech@0.1.4",
+    "commit": "69fd43d5edaa82eab660603e4b540b0d0d6b4cc5",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37110232547/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-speech",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "license": "GPL-3.0-only",
       "author": {
         "name": "withbuddi",
@@ -64,7 +64,7 @@
     },
     "manifest": {
       "name": "speech",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "schema": "speech",
       "description": "Lets agents listen to an audio file and answer with a voice, through the OpenAI or OpenAI-compatible account you choose on Settings → Speech, or Whisper and Kokoro on this computer, with daily limits.",
       "author": {
@@ -166,5 +166,5 @@
     },
     "drift": []
   },
-  "checkedAt": "2026-10-01"
+  "checkedAt": "2026-10-03"
 }
