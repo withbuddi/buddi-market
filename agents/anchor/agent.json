@@ -278,7 +278,7 @@
         {
           "name": "news",
           "range": ">=0.2.0",
-          "listed": "0.2.0",
+          "listed": "0.2.2",
           "hostApi": "^1.27"
         }
       ],
