@@ -3,6 +3,11 @@
   "buddi": "0.1.0-pre.35",
   "tools": [
     {
+      "name": "agent.delegate",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
       "name": "artifacts.describe",
       "tier": "auto",
       "ownerOnly": false
