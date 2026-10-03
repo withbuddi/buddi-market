@@ -70,7 +70,20 @@
           "cron": { "description": "Five fields, in the owner's timezone.", "type": "string", "pattern": "^\\S+ \\S+ \\S+ \\S+ \\S+$" },
           "prompt": { "type": "string", "minLength": 1, "maxLength": 4000 },
           "misfirePolicy": { "enum": ["replay-all", "coalesce", "latest-only", "skip-after-deadline"] },
-          "alwaysDeliver": { "type": "boolean" }
+          "alwaysDeliver": { "type": "boolean" },
+          "reportMax": {
+            "description": "The longest report this mission sends, in characters (buddi 1.27; the default is 1,500).",
+            "type": "integer", "minimum": 200, "maximum": 6000
+          },
+          "context": {
+            "description": "An export of a plugin in requires that buddi calls before each run, its answer in the run's first message (buddi 1.27).",
+            "type": "object", "additionalProperties": false, "required": ["plugin", "export"],
+            "properties": {
+              "plugin": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,39}$" },
+              "export": { "type": "string", "pattern": "^[a-z][a-zA-Z0-9_]{0,63}$" },
+              "args": { "type": "object" }
+            }
+          }
         }
       }
     },
