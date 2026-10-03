@@ -28,6 +28,7 @@ const core = [
   { name: 'web.search', tier: 'auto', ownerOnly: false },
   { name: 'web.status', tier: 'auto', ownerOnly: false },
   { name: 'browser.status', tier: 'auto', ownerOnly: false },
+  { name: 'browser.act', tier: 'session', ownerOnly: false },
   { name: 'artifacts.list', tier: 'auto', ownerOnly: false },
   { name: 'artifacts.describe', tier: 'auto', ownerOnly: false },
   { name: 'artifacts.text', tier: 'auto', ownerOnly: false },
@@ -41,6 +42,10 @@ const core = [
   { name: 'email.send', tier: 'gated', ownerOnly: false },
   { name: 'email.add_account', tier: 'auto', ownerOnly: true },
   { name: 'host.exec', tier: 'gated', ownerOnly: false },
+  { name: 'agent.delegate', tier: 'auto', ownerOnly: false },
+  { name: 'secret.list', tier: 'auto', ownerOnly: false },
+  { name: 'secret.fill', tier: 'auto', ownerOnly: false },
+  { name: 'secret.type', tier: 'auto', ownerOnly: false },
 ];
 const plugins = {
   weather: { version: '0.1.4', hostApi: '^1.18', tools: [{ name: 'weather.forecast', tier: 'auto', ownerOnly: false }, { name: 'weather.set_home', tier: 'auto', ownerOnly: true }] },
@@ -67,11 +72,21 @@ test('an unknown field is refused', () => {
   has(problemsOf((p) => { p.manifest.colour = 'blue'; }), /colour is not a known field/);
 });
 
-test('model, delegates and bundles are refused by name', () => {
-  const problems = problemsOf((p) => { p.manifest.model = 'x'; p.manifest.delegates = []; p.manifest.bundles = []; });
+test('model and bundles are refused by name', () => {
+  const problems = problemsOf((p) => { p.manifest.model = 'x'; p.manifest.bundles = []; });
   has(problems, /model is not allowed in v1/);
-  has(problems, /delegates is not allowed in v1/);
   has(problems, /bundles is not allowed in v1/);
+});
+
+test('delegates name catalogue agents and need agent.delegate', () => {
+  has(problemsOf((p) => { p.manifest.delegates = ['cfo']; }), /delegates needs agent.delegate/);
+  has(problemsOf((p) => { p.manifest.tools.push('agent.delegate'); p.manifest.delegates = ['nobody-here']; }), /not a catalogue agent/);
+  assert.deepEqual(problemsOf((p) => { p.manifest.tools.push('agent.delegate'); p.manifest.delegates = ['cfo']; }), []);
+});
+
+test('secret.list and secret.fill are grantable, secret.type is not', () => {
+  assert.deepEqual(problemsOf((p) => { p.manifest.tools.push('secret.list', 'secret.fill'); }), []);
+  has(problemsOf((p) => { p.manifest.tools.push('secret.type'); }), /secret\.type/);
 });
 
 test('roles are by-buddi only', () => {

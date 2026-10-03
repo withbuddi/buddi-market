@@ -28,7 +28,6 @@ const REFUSED = {
   model: 'the agent thinks with the account the owner\'s default agent uses',
   provider: 'the agent thinks with the account the owner\'s default agent uses',
   account: 'the agent thinks with the account the owner\'s default agent uses',
-  delegates: 'a catalogue agent hands work to nobody until the owner says so',
   bundles: 'skill bundles with scripts wait for the Skills zone; plain skills/*.md only',
 };
 
@@ -38,11 +37,11 @@ const REFUSED = {
  */
 export const DENIED = [
   /^host\./,
-  /^secret\./,
+  // secret.list and secret.fill are grantable (buddi >=0.1.0-pre.37): fill only puts a value on a page the owner bound it to.
+  /^secret\.type$/,
   /^secrets\./,
   /^developer\./,
   /^mcp\./,
-  /^agent\.delegate$/,
   /^owner\.set_profile$/,
   /^owner\.finish_onboarding$/,
   /^owner\.rename_me$/,
@@ -357,6 +356,12 @@ export function validateAgent(name, pkg, ctx) {
   if (typeof m.version === 'string' && !parseVersion(m.version)) problems.push('version is not semver');
   if (Array.isArray(m.roles) && m.roles.length > 0 && m.trust !== 'by-buddi') problems.push('roles are for by-buddi packages only; anything else carries roles: []');
   if (Array.isArray(m.roles) && new Set(m.roles).size !== m.roles.length) problems.push('a role is named twice');
+  if (Array.isArray(m.delegates) && m.delegates.length > 0) {
+    if (!Array.isArray(m.tools) || !m.tools.includes('agent.delegate')) problems.push('delegates needs agent.delegate in tools');
+    if (m.delegates.includes(m.name)) problems.push('an agent cannot delegate to itself');
+    const listed = ctx.agentNames ?? listAgents();
+    for (const d of m.delegates) if (!listed.includes(d)) problems.push(`delegates names "${d}", which is not a catalogue agent`);
+  }
   if (Array.isArray(m.needs) && m.needs.includes('mailbox') && m.needs.includes('mailbox?')) problems.push('needs names mailbox and mailbox? both; pick one');
   if (typeof m.buddi === 'string' && !validRange(m.buddi)) problems.push(`buddi "${m.buddi}" is not a range this check reads (>=, ^, ~ or exact)`);
   for (const stray of pkg.strays) problems.push(`${stray} is not part of an agent package (agent.json, persona.md, skills/*.md, avatar.png)`);

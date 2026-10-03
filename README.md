@@ -102,9 +102,11 @@ for a mailbox that makes it better, whose `email.*` tools then end in `?`.
 `roles` (the capabilities plugin missions and watchers address) are for by-buddi
 packages only.
 
-Not allowed: `model`, `provider`, `account`, `delegates`, `bundles`, and any
-unknown field. Never grantable by a package: `host.*`,
-`secret.*`, `developer.*`, `mcp.*`, `platform.*` writes, `owner.set_profile`,
+`delegates` names catalogue agents it hands work to (with `agent.delegate` in
+its tools); buddi resolves them at install to the agents installed there.
+
+Not allowed: `model`, `provider`, `account`, `bundles`, and any unknown field.
+Never grantable by a package: `host.*`, `secret.type`, `secrets.*`, `developer.*`, `mcp.*`, `platform.*` writes, `owner.set_profile`,
 `email.send` and the mail account tools, and any owner-only tool. The owner can
 add these by hand after install.
 
