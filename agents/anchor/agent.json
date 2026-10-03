@@ -96,19 +96,19 @@
     {
       "id": "morning-time",
       "kind": "time",
-      "label": "Morning edition",
+      "label": "Morning",
       "mission": "morning"
     },
     {
       "id": "midday-time",
       "kind": "time",
-      "label": "Midday edition",
+      "label": "Midday",
       "mission": "midday"
     },
     {
       "id": "evening-time",
       "kind": "time",
-      "label": "Evening edition",
+      "label": "Evening",
       "mission": "evening"
     }
   ],
