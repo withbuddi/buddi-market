@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "researcher",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "handle": "researcher",
   "title": "Researcher",
   "pitch": "Reads the web, compares, gives a second opinion with sources.",
@@ -14,7 +14,7 @@
     "url": "https://withbuddi.com"
   },
   "license": "Apache-2.0",
-  "buddi": ">=0.1.0-pre.32",
+  "buddi": ">=0.1.0-pre.35",
   "requires": {},
   "optional": {},
   "needs": [],
@@ -26,7 +26,8 @@
     "browser.status",
     "artifacts.list",
     "artifacts.describe",
-    "artifacts.text"
+    "artifacts.text",
+    "artifacts.write"
   ],
   "missions": [
     {
@@ -47,8 +48,8 @@
   "replaces": [
     "buddi/scout"
   ],
-  "changes": "Gives a figure only from a page it actually opened, names the page, and labels its own arithmetic; says so instead of guessing when a page will not open.",
-  "integrity": "sha256-vzzCpj6okyH6iUdxcTfTtoa7owd1P2ZDNgvW5JWKwfM=",
+  "changes": "Writes reports into your Files (artifacts.write). Figures only from pages opened in this conversation; snippets are leads; its own arithmetic and estimates are labelled.",
+  "integrity": "sha256-q4HxZmBp6HBVO9t6IbEfUxFU4vQlt5eKzJg17YT1ZAQ=",
   "claims": {
     "tools": [
       {
@@ -158,6 +159,13 @@
       },
       {
         "name": "artifacts.text",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.write",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,

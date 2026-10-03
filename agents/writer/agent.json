@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "writer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "handle": "writer",
   "title": "Writer",
   "pitch": "Drafts, edits and tightens your writing in your own voice.",
@@ -14,7 +14,7 @@
     "url": "https://withbuddi.com"
   },
   "license": "Apache-2.0",
-  "buddi": ">=0.1.0-pre.32",
+  "buddi": ">=0.1.0-pre.35",
   "requires": {},
   "optional": {},
   "needs": [],
@@ -23,6 +23,7 @@
     "artifacts.list",
     "artifacts.describe",
     "artifacts.text",
+    "artifacts.write",
     "web.read"
   ],
   "missions": [],
@@ -42,8 +43,8 @@
   "language": "mirror",
   "idleRollover": "1d",
   "replaces": [],
-  "changes": "First version.",
-  "integrity": "sha256-rxlvKGvd1U/xS6pdj0RM2cMvE3hfMf1nI3QTJkayKyA=",
+  "changes": "Saves a finished piece into your Files (artifacts.write), so you download it as PDF or Word instead of copying it out of the chat.",
+  "integrity": "sha256-WgIXPNNBwJxxG9Gl9tNvz2E04dq18Qw7s2zJpOJkjno=",
   "claims": {
     "tools": [
       {
@@ -97,6 +98,13 @@
       },
       {
         "name": "artifacts.text",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.write",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,

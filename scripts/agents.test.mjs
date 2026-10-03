@@ -31,6 +31,7 @@ const core = [
   { name: 'artifacts.list', tier: 'auto', ownerOnly: false },
   { name: 'artifacts.describe', tier: 'auto', ownerOnly: false },
   { name: 'artifacts.text', tier: 'auto', ownerOnly: false },
+  { name: 'artifacts.write', tier: 'auto', ownerOnly: false },
   { name: 'memory.forget', tier: 'auto', ownerOnly: false },
   { name: 'memory.get_preferences', tier: 'auto', ownerOnly: false },
   { name: 'memory.remember_preference', tier: 'auto', ownerOnly: false },
@@ -160,7 +161,7 @@ test('an unmoved version is refused, a moved one passes', () => {
   const was = base();
   const now = { ...base(), persona: `${base().persona}\nOne more line.\n` };
   assert.match(versionProblem(now, was), /did not move/);
-  now.manifest.version = '1.0.1';
+  now.manifest.version = was.manifest.version.replace(/\d+$/, (n) => String(Number(n) + 1));
   assert.match(versionProblem(now, was), /changes still describes/);
   now.manifest.changes = 'One more line in the persona.';
   assert.equal(versionProblem(now, was), null);

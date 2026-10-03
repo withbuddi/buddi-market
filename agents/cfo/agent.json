@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "cfo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "handle": "cfo",
   "title": "CFO",
   "pitch": "Reads your statements, tracks spending and cards, a weekly money recap.",
@@ -14,7 +14,7 @@
     "url": "https://withbuddi.com"
   },
   "license": "Apache-2.0",
-  "buddi": ">=0.1.0-pre.32",
+  "buddi": ">=0.1.0-pre.35",
   "requires": {
     "finance": ">=0.1.3"
   },
@@ -26,6 +26,7 @@
     "artifacts.list",
     "artifacts.describe",
     "artifacts.text",
+    "artifacts.write",
     "reminder.*",
     "schedule.*",
     "goal.*"
@@ -71,8 +72,8 @@
     "finance/ledger",
     "buddi/finance-advisor"
   ],
-  "changes": "Also takes over the Finance Advisor (@ledger) buddi shipped before the Finance plugin.",
-  "integrity": "sha256-jDPF5G/zP+RdiryZarnYm7WVxwPUyT4ZvExIBplosC0=",
+  "changes": "Writes a budget or a report into your Files (artifacts.write): a table downloads as Excel, a report as PDF or Word.",
+  "integrity": "sha256-tZM3WEnyNDjoIL+U0uskLvzsr5el/POPjQ1RwleyupI=",
   "claims": {
     "tools": [
       {
@@ -413,6 +414,13 @@
       },
       {
         "name": "artifacts.text",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "artifacts.write",
         "plugin": "core",
         "tier": "auto",
         "ownerOnly": false,

@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "chief-of-staff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "handle": "chief",
   "title": "Chief of Staff",
   "pitch": "Keeps your day: mail that needs you, meetings, follow-ups, a brief every morning.",
@@ -14,7 +14,7 @@
     "url": "https://withbuddi.com"
   },
   "license": "Apache-2.0",
-  "buddi": ">=0.1.0-pre.32",
+  "buddi": ">=0.1.0-pre.35",
   "requires": {},
   "optional": {
     "calendar": ">=0.1.3",
@@ -39,7 +39,8 @@
     "email.read_draft?",
     "calendar.*?",
     "weather.now?",
-    "weather.forecast?"
+    "weather.forecast?",
+    "artifacts.write"
   ],
   "missions": [
     {
@@ -81,8 +82,8 @@
   "replaces": [
     "buddi/planner"
   ],
-  "changes": "First version: Planner's day-keeping, plus reading mail and drafting replies.",
-  "integrity": "sha256-uJ8Gz0urWA2kbXZ3QRdg5rdjOFssO0YksDd7KxWIu9c=",
+  "changes": "Can write a plan, an agenda or a brief into your Files (artifacts.write), downloadable as PDF or Word.",
+  "integrity": "sha256-DKsSxBmjcpKnMELUGrYwZuGNLNjLB+A8pfGyWNlz+no=",
   "claims": {
     "tools": [
       {
@@ -273,6 +274,13 @@
         "tier": "auto",
         "ownerOnly": false,
         "optional": true
+      },
+      {
+        "name": "artifacts.write",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
       }
     ],
     "missions": [
