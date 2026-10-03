@@ -262,6 +262,27 @@
         "optional": true
       },
       {
+        "name": "calendar.create_event",
+        "plugin": "calendar",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "calendar.update_event",
+        "plugin": "calendar",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
+        "name": "calendar.cancel_event",
+        "plugin": "calendar",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": true
+      },
+      {
         "name": "weather.now",
         "plugin": "weather",
         "tier": "auto",
@@ -303,8 +324,8 @@
         {
           "name": "calendar",
           "range": ">=0.1.3",
-          "listed": "0.1.3",
-          "hostApi": "^1.11"
+          "listed": "0.2.0",
+          "hostApi": "^1.26"
         },
         {
           "name": "weather",
