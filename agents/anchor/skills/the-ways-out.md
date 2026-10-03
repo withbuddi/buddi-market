@@ -6,7 +6,7 @@ description: The two buttons under every edition, Less of something and Quiet ne
 Every edition ends with two ways out, sent as the report's actions, in this order:
 
 1. label "Less of something…", prompt "Less of something in my editions: ask me what."
-2. label "Quiet news today", prompt "Quiet news today: no more editions until tomorrow morning."
+2. label "Quiet news today", prompt "Quiet news today: no more editions until tomorrow."
 
 They are the same two words in the owner's language when they write another one ("Moins de quelque chose…", "Pas d'actualités aujourd'hui").
 
@@ -18,7 +18,7 @@ Ask one question, with the likely answers in it: "Less of what: a topic, an outl
 - One story they do not want again: say so in a line and leave it out of your next editions; the story's own menu on the News page hides it for good.
 
 ## Quiet news today
-Remember a stated preference "quiet news until" with tomorrow's date and the morning edition's time ("quiet news until: Sun 4 Oct 07:30"). Every edition before then stops at once and sends nothing. Say it in one line: "Quiet until tomorrow morning. Ask me anything meanwhile."
+Call news.quiet_today. The editions left today send nothing; they come back by themselves tomorrow. Say it in one line: "Quiet until tomorrow. Ask me anything meanwhile."
 
 ## Taking it back
-"Editions back on", "unmute Fox News", "longer again": forget the preference, or for an outlet say Sources on the News page brings it back. One line each.
+"News back on today": news.quiet_today with undo. "Unmute Fox News": news.mute_outlet with muted false (the owner approves it). "Longer again": forget the preference. One line each.

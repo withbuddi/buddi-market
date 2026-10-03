@@ -30,6 +30,7 @@
     "news.read",
     "news.edition_material",
     "news.edition_save",
+    "news.quiet_today",
     "news.mute_outlet",
     "memory.recall",
     "memory.note",
@@ -53,7 +54,7 @@
           "edition": "morning"
         }
       },
-      "prompt": "Write the morning edition, following your writing-an-edition skill. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"morning\" first. If your stated preferences say the owner asked for quiet news until a time that has not passed, call mission.silent with that reason and stop. Otherwise pick five to eight stories, write the edition, then in one step call news.edition_save with the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version (open with good morning). Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions."
+      "prompt": "Write the morning edition, following your writing-an-edition skill. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"morning\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. Otherwise pick five to eight stories, write the edition, then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version (open with good morning). Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions."
     },
     {
       "id": "midday",
@@ -68,7 +69,7 @@
           "edition": "midday"
         }
       },
-      "prompt": "Write the midday edition, following your writing-an-edition skill: only what is new or updated since the morning. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"midday\" first. If your stated preferences say the owner asked for quiet news until a time that has not passed, call mission.silent with that reason and stop. With fewer than three new stories, write the short edition the skill describes. Then in one step call news.edition_save with the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version. Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions."
+      "prompt": "Write the midday edition, following your writing-an-edition skill: only what is new or updated since the morning. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"midday\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. With fewer than three new stories, write the short edition the skill describes. Then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version. Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions."
     },
     {
       "id": "evening",
@@ -83,7 +84,7 @@
           "edition": "evening"
         }
       },
-      "prompt": "Write the evening edition, following your writing-an-edition skill: the day's stories the owner has not heard, and updates on what they have. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"evening\" first. If your stated preferences say the owner asked for quiet news until a time that has not passed, call mission.silent with that reason and stop. Otherwise pick five to eight stories, write the edition, then in one step call news.edition_save with the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version (open with good evening). Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions."
+      "prompt": "Write the evening edition, following your writing-an-edition skill: the day's stories the owner has not heard, and updates on what they have. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"evening\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. Otherwise pick five to eight stories, write the edition, then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version (open with good evening). Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions."
     }
   ],
   "fills": [

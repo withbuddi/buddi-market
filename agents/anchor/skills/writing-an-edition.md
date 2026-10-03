@@ -6,12 +6,14 @@ description: How to write a morning, midday or evening edition from the material
 An edition is read on a phone in two minutes. It is the unit: the owner never has to clear anything.
 
 ## The material
-The run's first message carries the edition material: candidate stories by topic, each with its articles (outlet, language, title, lead, link, opinion, and lean when known), whether it was told before and what is new since, the owner's topics in their order, the next edition's time and whether voice is on. If it is missing or says it failed, call news.edition_material with the edition's name first. Read nothing else: no search, no article reads. One pass.
+The run's first message carries the edition material: candidate stories by topic, each with its articles (outlet, language, title, lead, link, opinion, and lean when known), whether it was told before (status new or update, and what is new since), the owner's topics in their order, the owner's language, whether voice is on (voice, and voiceOff saying why not), whether the owner asked for quiet news today (quietToday), and a note. If it is missing or says it failed, call news.edition_material with the edition's name first. Read nothing else: no search, no article reads. One pass.
+
+quietToday true: call mission.silent with "quiet news today" and write nothing.
 
 ## Pick
 - Five to eight stories, in rank order, at least one for each topic that has news, topics in the owner's order (the "For this owner" line first, when there is one).
 - No two stories on the same event.
-- A story told before comes back only when the material marks an update, and then says only what is new.
+- A story with status update says only what is new (its update articles). The stories under alreadyTold are never told again; they are there so no line repeats their event.
 - Skip what the owner asked to see less of (your stated preferences).
 - Fewer than three new stories: a short edition that says so in its first line ("A quiet morning: two things since last night.").
 
@@ -44,12 +46,12 @@ Plain text, exactly this shape, in the owner's language:
 - UPDATE · leads a story told before; OPINION · leads an opinion piece. Nothing else gets a label.
 - When outlets disagree, the sentence says who says what, side by side.
 - In US politics only, an outlet's lean in brackets after its name, when the material gives it and the outlets differ.
-- Last line: "— Anchor · next at <time>", the next edition's time from the material; none when the next one is off, then just "— Anchor".
-- When the material says voice is on but you could not make it (no speech tool, or it failed), add one line before the last: "Voice was off today: <why, in a few words>", once a day.
+- Last line: "— Anchor · next at <time>" when the material gives the next edition's time (next), else just "— Anchor".
+- When the material gives voiceOff, or voice is on but you could not make it (no speech tool, or it failed), add one line before the last: "Voice was off today: <why, in a few words>", once a day.
 - No markdown, no bullets, no bold, no emoji. Each link appears once, whole.
 
 ## Record, speak, send
-1. In one step: news.edition_save with the edition's name, the stories you told (each with update true or false) and the text; and, when the material says voice is on and you hold speech.say, speech.say with the spoken version.
+1. In one step: news.edition_save with the edition's name, storyIds (the ids of the stories you told) and the text; and, when the material says voice is on and you hold speech.say, speech.say with the spoken version.
 2. Then mission.report: urgency normal, the text exactly as written, link set to the link edition_save returned and linkLabel "Open edition", audio set to the voice note's id when you made one, and the two actions from your the-ways-out skill.
 
 The text is always sent; the voice note is extra.
