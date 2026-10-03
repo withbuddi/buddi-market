@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "chief-of-staff",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "handle": "chief",
   "title": "Chief of Staff",
   "pitch": "Keeps your day: mail that needs you, meetings, follow-ups, a brief every morning.",
@@ -96,8 +96,8 @@
     "travel-planner",
     "home-manager"
   ],
-  "changes": "Looks in your browser when the answer is on a site you use, and hands money, research and trips to the colleague who owns them.",
-  "integrity": "sha256-gorkwWSJV07FgLHHLrbUpWsvxs4wVMYL6yHpUsd3fMc=",
+  "changes": "Reads birthdays and anniversaries as occasions, not meetings; wishes the owner a happy birthday first; keeps people with memory.person.",
+  "integrity": "sha256-JjzZ6/4wABM5yPBHPr0nlFyi97oQPn4exIyFejI/R8I=",
   "claims": {
     "tools": [
       {
@@ -415,8 +415,8 @@
       "height": 512
     },
     "sizes": {
-      "persona": 5524,
-      "skills": 6036
+      "persona": 6305,
+      "skills": 6666
     }
   }
 }
