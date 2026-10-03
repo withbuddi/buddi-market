@@ -57,6 +57,6 @@ jobs:
           BASE_REF: origin/${{ github.base_ref || 'main' }}
         run: node scripts/check.mjs --agents
       - name: The check's own tests
-        run: node --test scripts/agents.test.mjs
+        run: node --test scripts/agents.test.mjs scripts/lib.test.mjs
       - name: The index builds
         run: node scripts/index.mjs "$RUNNER_TEMP/index.json" && node -e 'const i=require(process.argv[1]);console.log(i.plugins.map(p=>p.name+"@"+p.version).concat(i.agents.map(a=>"agent:"+a.name+"@"+a.version)).join(", "))' "$RUNNER_TEMP/index.json"

@@ -385,9 +385,10 @@
       ],
       "pages": [],
       "views": 14,
-      "home": 1
+      "home": 1,
+      "widgets": []
     },
     "drift": []
   },
-  "checkedAt": "2026-10-02"
+  "checkedAt": "2026-10-03"
 }
