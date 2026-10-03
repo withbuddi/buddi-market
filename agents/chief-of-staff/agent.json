@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "chief-of-staff",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "handle": "chief",
   "title": "Chief of Staff",
   "pitch": "Keeps your day: mail that needs you, meetings, follow-ups, a brief every morning.",
@@ -85,8 +85,8 @@
   "replaces": [
     "buddi/planner"
   ],
-  "changes": "Adds, moves and cancels events in the calendars you allow it to change (iCloud, Fastmail, CalDAV), each one approved by you first.",
-  "integrity": "sha256-Xz1boE6ozUF8TbInTXgA0OmbAQ1XaupyvRYkAJMhYDc=",
+  "changes": "Reads birthdays and anniversaries as occasions, not meetings; wishes the owner a happy birthday first; keeps people with memory.person.",
+  "integrity": "sha256-9WMqO6sNcyxcYktk4u1F/lMAkjlGG8q17qvffhc+FSo=",
   "claims": {
     "tools": [
       {
@@ -362,8 +362,8 @@
       "height": 512
     },
     "sizes": {
-      "persona": 4670,
-      "skills": 6036
+      "persona": 5451,
+      "skills": 6666
     }
   }
 }
