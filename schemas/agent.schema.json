@@ -115,6 +115,10 @@
       "description": "Older agents this package supersedes, as <source>/<id>.",
       "type": "array", "maxItems": 4, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*/[a-z][a-z0-9-]*$" }
     },
+    "delegates": {
+      "description": "Colleagues it hands work to, by catalogue agent name; resolved at install to the agents installed (needs agent.delegate in tools, buddi >=0.1.0-pre.37).",
+      "type": "array", "maxItems": 12, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,39}$" }
+    },
     "changes": { "description": "One line for this version, in the owner's words: no tool names.", "type": "string", "minLength": 1, "maxLength": 200 },
     "integrity": { "description": "Written by the check.", "type": "string", "pattern": "^sha256-[A-Za-z0-9+/]{43}=$" },
     "claims": { "description": "Written by the check.", "type": "object" }

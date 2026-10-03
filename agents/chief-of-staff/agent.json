@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "chief-of-staff",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "handle": "chief",
   "title": "Chief of Staff",
   "pitch": "Keeps your day: mail that needs you, meetings, follow-ups, a brief every morning.",
@@ -14,7 +14,7 @@
     "url": "https://withbuddi.com"
   },
   "license": "Apache-2.0",
-  "buddi": ">=0.1.0-pre.35",
+  "buddi": ">=0.1.0-pre.37",
   "requires": {},
   "optional": {
     "calendar": ">=0.2.0",
@@ -43,7 +43,12 @@
     "calendar.cancel_event?",
     "weather.now?",
     "weather.forecast?",
-    "artifacts.write"
+    "artifacts.write",
+    "browser.status",
+    "browser.act",
+    "secret.list",
+    "secret.fill",
+    "agent.delegate"
   ],
   "missions": [
     {
@@ -85,8 +90,14 @@
   "replaces": [
     "buddi/planner"
   ],
-  "changes": "Adds, moves and cancels events in the calendars you allow it to change (iCloud, Fastmail, CalDAV), each one approved by you first.",
-  "integrity": "sha256-Xz1boE6ozUF8TbInTXgA0OmbAQ1XaupyvRYkAJMhYDc=",
+  "delegates": [
+    "cfo",
+    "researcher",
+    "travel-planner",
+    "home-manager"
+  ],
+  "changes": "Looks in your browser when the answer is on a site you use, and hands money, research and trips to the colleague who owns them.",
+  "integrity": "sha256-gorkwWSJV07FgLHHLrbUpWsvxs4wVMYL6yHpUsd3fMc=",
   "claims": {
     "tools": [
       {
@@ -305,6 +316,41 @@
         "tier": "auto",
         "ownerOnly": false,
         "optional": false
+      },
+      {
+        "name": "browser.status",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "browser.act",
+        "plugin": "core",
+        "tier": "session",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "secret.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "secret.fill",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "agent.delegate",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
       }
     ],
     "missions": [
@@ -362,7 +408,7 @@
       "height": 512
     },
     "sizes": {
-      "persona": 4670,
+      "persona": 5524,
       "skills": 6036
     }
   }

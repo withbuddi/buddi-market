@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "cfo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "handle": "cfo",
   "title": "CFO",
   "pitch": "Reads your statements, tracks spending and cards, a weekly money recap.",
@@ -14,7 +14,7 @@
     "url": "https://withbuddi.com"
   },
   "license": "Apache-2.0",
-  "buddi": ">=0.1.0-pre.35",
+  "buddi": ">=0.1.0-pre.37",
   "requires": {
     "finance": ">=0.1.3"
   },
@@ -29,7 +29,11 @@
     "artifacts.write",
     "reminder.*",
     "schedule.*",
-    "goal.*"
+    "goal.*",
+    "browser.status",
+    "browser.act",
+    "secret.list",
+    "secret.fill"
   ],
   "missions": [
     {
@@ -72,8 +76,8 @@
     "finance/ledger",
     "buddi/finance-advisor"
   ],
-  "changes": "Writes a budget or a report into your Files: a table downloads as Excel, a report as PDF or Word.",
-  "integrity": "sha256-VJCzZWLLcwJzXH8A0qnfP28GldlYZYCCmTgtEVTZHnE=",
+  "changes": "Reads a statement or a card's page in your browser when you ask, with your approval; never pays or moves money there.",
+  "integrity": "sha256-DWMXa0uFuDMBVUwQC0X7gn9aqgKOrRq02JSbL5pWUrA=",
   "claims": {
     "tools": [
       {
@@ -516,6 +520,34 @@
         "tier": "gated",
         "ownerOnly": false,
         "optional": false
+      },
+      {
+        "name": "browser.status",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "browser.act",
+        "plugin": "core",
+        "tier": "session",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "secret.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "secret.fill",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
       }
     ],
     "missions": [
@@ -562,7 +594,7 @@
       "height": 512
     },
     "sizes": {
-      "persona": 4881,
+      "persona": 5730,
       "skills": 10030
     }
   }

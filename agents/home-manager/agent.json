@@ -1,12 +1,12 @@
 {
   "kind": "agent",
   "name": "home-manager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "handle": "home",
   "title": "Home Manager",
   "pitch": "Keeps the house and car's history: appliances, warranties, service dates, what's due.",
   "description": "Keeps the history of the owner's home and vehicles: appliances and their warranties, repairs and services (when, by whom, for how much), and what is due next.",
-  "about": "Remembers what was done to the house and the car, when, by whom and for how much, so a date or a tradesperson's name is one question away. It keeps warranties and service intervals and tells you what is due. It cannot book a repair, pay an invoice or look up a manual for you.",
+  "about": "Remembers what was done to the house and the car, when, by whom and for how much, so a date or a tradesperson's name is one question away. It keeps warranties and service intervals and tells you what is due. It can look up an order or an account page in your browser, with your approval; it cannot book a repair or pay an invoice.",
   "category": "home",
   "trust": "by-buddi",
   "author": {
@@ -14,7 +14,7 @@
     "url": "https://withbuddi.com"
   },
   "license": "Apache-2.0",
-  "buddi": ">=0.1.0-pre.32",
+  "buddi": ">=0.1.0-pre.37",
   "requires": {},
   "optional": {
     "weather": ">=0.1.4"
@@ -33,7 +33,12 @@
     "email.search?",
     "email.read?",
     "weather.now?",
-    "weather.forecast?"
+    "weather.forecast?",
+    "browser.status",
+    "browser.act",
+    "secret.list",
+    "secret.fill",
+    "agent.delegate"
   ],
   "missions": [
     {
@@ -62,8 +67,14 @@
   "replaces": [
     "buddi/keeper"
   ],
-  "changes": "First version: Keeper's history-keeping, for the whole home and its vehicles.",
-  "integrity": "sha256-ICWVHth4k8wdTK9iVwwEpuGIPQ9O1KD0DGmKPwjT6Xg=",
+  "delegates": [
+    "cfo",
+    "researcher",
+    "chief-of-staff",
+    "travel-planner"
+  ],
+  "changes": "Looks in your browser for an order, a warranty or an account page, and asks the CFO or the Researcher instead of sending you to them.",
+  "integrity": "sha256-0ZM1GPyICcafu0N2btlU9ufD1yMGXwIIxn4sciCvzyI=",
   "claims": {
     "tools": [
       {
@@ -198,6 +209,41 @@
         "tier": "auto",
         "ownerOnly": false,
         "optional": true
+      },
+      {
+        "name": "browser.status",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "browser.act",
+        "plugin": "core",
+        "tier": "session",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "secret.list",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "secret.fill",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "agent.delegate",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
       }
     ],
     "missions": [
@@ -233,7 +279,7 @@
       "height": 512
     },
     "sizes": {
-      "persona": 3102,
+      "persona": 3899,
       "skills": 1999
     }
   }
