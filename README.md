@@ -11,7 +11,8 @@ plugins/<name>/shots/*.webp  screenshots, 1440 px wide at most
 ```
 
 The site builds from this repository and publishes each page and
-`plugins/index.json`. buddi fetches that file when the owner opens Browse,
+`plugins/index.json`, where each plugin carries its `widgets` beside the
+entry (the same list as in its claims). buddi fetches that file when the owner opens Browse,
 and installs from npm exactly as it always has: the package is staged, hashed
 and read, and the owner approves it. The market changes nothing about that.
 
@@ -56,7 +57,12 @@ node scripts/check.mjs --write tides
 It asks npm for the version, reads its provenance, and runs
 `buddi plugins describe`, which stages the package the way an install would
 and reads its manifest. What it writes (`claims`, `integrity`, `provenance`) is what the page shows: the tools and their tiers, the schema,
-the hosts, what runs on a timer, the agents it proposes. The page can never
+the hosts, what runs on a timer, the agents it proposes, and the widgets it
+brings (`claims.manifest.widgets`: each one's id, title, sizes, settings, and
+the sample body per size the widget declares as `preview`, which the site and
+buddi's Browse draw on the listing and on their Widgets shelf). A plugin that
+is only a widget is welcome; give it a `preview` so its listing has something
+to show. The page can never
 claim less than the code does, because the page is written from the code. The
 same check runs on the pull request and fails when the committed block is not
 what it computes.
