@@ -4,13 +4,17 @@
 // which buddi's Browse tab reads. An entry the check has not written yet has
 // no claims and is left out: the page never lists what nobody verified.
 //
+// Each plugin carries `widgets` (from its claims, as the check recorded them
+// from the manifest), so Browse and the site can filter by widgets and draw
+// each one from the plugin's own sample, without reading the claims block.
+//
 // Catalogue agents ride along as `agents`, with the persona and the skills
 // inline (the whole lineup is well under 100 KB) and the avatar as a URL plus
 // its hash, so buddi can recompute the package integrity from the entry and
 // the fetched avatar alone (scripts/agents.mjs, agentIntegrity).
 import { writeFileSync } from 'node:fs';
 import { agentIntegrity, listAgents, readAgentPackage } from './agents.mjs';
-import { listEntries, readEntry, stableJson, validateEntry } from './lib.mjs';
+import { listEntries, readEntry, stableJson, validateEntry, widgetsOf } from './lib.mjs';
 
 const [out = 'index.json', origin = 'https://withbuddi.com'] = process.argv.slice(2);
 const plugins = [];
@@ -31,6 +35,8 @@ for (const name of listEntries()) {
     icon: entry.icon ? `${base}/icon.svg` : null,
     screenshots: entry.screenshots.map((shot) => `${base}/${shot}`),
     page: `${base}/`,
+    // What Browse's and the site's Widgets filter and previews read: id, title, sizes, settings, preview per size.
+    widgets: widgetsOf(entry),
   });
 }
 const order = { 'by-buddi': 0, reviewed: 1 };

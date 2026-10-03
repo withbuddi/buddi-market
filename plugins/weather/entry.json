@@ -150,9 +150,36 @@
         }
       ],
       "views": 2,
-      "home": 1
+      "home": 1,
+      "widgets": [
+        {
+          "id": "weather.now",
+          "title": "Weather",
+          "sizes": [
+            "small",
+            "medium"
+          ],
+          "settings": [
+            {
+              "key": "place",
+              "kind": "select",
+              "label": "Place"
+            },
+            {
+              "key": "units",
+              "kind": "select",
+              "label": "Units"
+            },
+            {
+              "key": "time",
+              "kind": "timeFormat",
+              "label": "Times"
+            }
+          ]
+        }
+      ]
     },
     "drift": []
   },
-  "checkedAt": "2026-10-02"
+  "checkedAt": "2026-10-03"
 }

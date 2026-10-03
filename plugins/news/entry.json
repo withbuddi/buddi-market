@@ -697,7 +697,29 @@
         }
       ],
       "views": 0,
-      "home": 0
+      "home": 0,
+      "widgets": [
+        {
+          "id": "news.top",
+          "title": "Top stories",
+          "sizes": [
+            "small",
+            "medium"
+          ],
+          "settings": [
+            {
+              "key": "topics",
+              "kind": "multiselect",
+              "label": "Topics"
+            },
+            {
+              "key": "show",
+              "kind": "select",
+              "label": "Show"
+            }
+          ]
+        }
+      ]
     },
     "drift": []
   },

@@ -200,7 +200,34 @@
         }
       ],
       "views": 2,
-      "home": 1
+      "home": 1,
+      "widgets": [
+        {
+          "id": "calendar.today",
+          "title": "Coming up",
+          "sizes": [
+            "medium",
+            "small"
+          ],
+          "settings": [
+            {
+              "key": "calendars",
+              "kind": "multiselect",
+              "label": "Calendars"
+            },
+            {
+              "key": "days",
+              "kind": "select",
+              "label": "How far ahead"
+            },
+            {
+              "key": "time",
+              "kind": "timeFormat",
+              "label": "Times"
+            }
+          ]
+        }
+      ]
     },
     "drift": []
   },
