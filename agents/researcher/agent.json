@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "researcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "handle": "researcher",
   "title": "Researcher",
   "pitch": "Reads the web, compares, gives a second opinion with sources.",
@@ -47,8 +47,8 @@
   "replaces": [
     "buddi/scout"
   ],
-  "changes": "First version: Scout's research and second opinion, with page watching and reading your files.",
-  "integrity": "sha256-mOXbfojJwLWkvVBFBN2AKhZvF+hByoeVncYYMU3G0nw=",
+  "changes": "Gives a figure only from a page it actually opened, names the page, and labels its own arithmetic; says so instead of guessing when a page will not open.",
+  "integrity": "sha256-vzzCpj6okyH6iUdxcTfTtoa7owd1P2ZDNgvW5JWKwfM=",
   "claims": {
     "tools": [
       {
@@ -200,8 +200,8 @@
       "height": 512
     },
     "sizes": {
-      "persona": 3576,
-      "skills": 6133
+      "persona": 4028,
+      "skills": 7044
     }
   }
 }
