@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "travel-planner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "handle": "travel",
   "title": "Travel Planner",
   "pitch": "Turns a trip into a plan: days, bookings found in mail, packing for the forecast.",
@@ -14,7 +14,7 @@
     "url": "https://withbuddi.com"
   },
   "license": "Apache-2.0",
-  "buddi": ">=0.1.0-pre.37",
+  "buddi": ">=0.1.0-pre.38",
   "requires": {},
   "optional": {
     "weather": ">=0.1.4",
@@ -47,7 +47,8 @@
       "name": "Trip check",
       "cron": "0 9 * * 1",
       "misfirePolicy": "latest-only",
-      "prompt": "Check for trips in the next 14 days: recall the trips you hold, look at the calendar when you can, and search the owner's mail for new booking confirmations (flights, trains, hotels, rentals) when you can read mail. For each trip in the window, a few lines: where and when, what is booked and what is not yet (a night without a hotel, a missing return), what the forecast says when you have it, and anything to do this week (check-in opening, a document to bring). Note any new booking you found. Set a check-in reminder when the opening time is known and none is set. When no trip falls in the next 14 days and nothing is new, call mission.silent."
+      "prompt": "Check for trips in the next 14 days: recall the trips you hold, look at the calendar when you can, and search the owner's mail for new booking confirmations (flights, trains, hotels, rentals) when you can read mail. For each trip in the window, a few lines: where and when, what is booked and what is not yet (a night without a hotel, a missing return), what the forecast says when you have it, and anything to do this week (check-in opening, a document to bring). Note any new booking you found. Set a check-in reminder when the opening time is known and none is set. When no trip falls in the next 14 days and nothing is new, call mission.silent.",
+      "browser": "own"
     }
   ],
   "fills": [
@@ -70,8 +71,8 @@
     "chief-of-staff",
     "cfo"
   ],
-  "changes": "Reads a booking in your account in the browser, with your approval, and asks the CFO or the Chief of Staff instead of sending you to them.",
-  "integrity": "sha256-1dX2yT/RQ1hu07NbetrKgwIMVh7qj+W+bCwyWFPnHLE=",
+  "changes": "Trip check may look at booking and check-in pages in buddi's own browser while you are away (never your Chrome or apps); a sign-in or a check waits for you.",
+  "integrity": "sha256-LKqTUkvjnBtJzi+bhuDLBz+fqqQ08oyX78ymScLIlIw=",
   "claims": {
     "tools": [
       {

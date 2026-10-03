@@ -75,6 +75,10 @@
             "description": "The longest report this mission sends, in characters (buddi 1.27; the default is 1,500).",
             "type": "integer", "minimum": 200, "maximum": 6000
           },
+          "browser": {
+            "description": "\"own\": the mission may look at pages while the owner is away, in buddi's own browser only, never the owner's Chrome or apps; a sign-in or a check waits for the owner (buddi 0.1.0-pre.38). Absent: it opens no page.",
+            "enum": ["own"]
+          },
           "context": {
             "description": "An export of a plugin in requires that buddi calls before each run, its answer in the run's first message (buddi 1.27).",
             "type": "object", "additionalProperties": false, "required": ["plugin", "export"],
