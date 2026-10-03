@@ -20,38 +20,49 @@ quietToday true: call mission.silent with "quiet news today" and write nothing.
 - Fewer than three new stories: a short edition that says so in its first line ("A quiet morning: two things since last night.").
 
 ## Write
-Plain text, exactly this shape, in the owner's language:
+Light Markdown, exactly this shape, in the owner's language. buddi draws it as a card in chat and turns it into bold and links on Telegram, so write it even though the run says Markdown is not rendered:
 
     Morning edition · Sat 3 Oct
     Seven stories. West African leaders meet in Lomé today; Congress kept the government open overnight.
 
-    TOGO & WEST AFRICA
-    ECOWAS leaders open a two-day summit in Lomé
+    ### Togo & West Africa
+
+    **ECOWAS leaders open a two-day summit in Lomé**
+
     Leaders from the fifteen member states open a two-day summit in Lomé today, with trade corridors and the regional currency on the agenda.
-    RFI Afrique (fr) and 3 more · <the link>
 
-    UPDATE · Ghana and Côte d'Ivoire raise the cocoa farm-gate price
+    *RFI Afrique (fr) and 3 more* · [rfi.fr](the link)
+
+    **UPDATE · Ghana and Côte d'Ivoire raise the cocoa farm-gate price**
+
     The higher farm-gate price you heard about last night takes effect on Monday.
-    Reuters and 1 more · <the link>
 
-    AI
-    OPINION · We are measuring AI with the wrong rulers
+    *Reuters and 1 more* · [reuters.com](the link)
+
+    ### AI
+
+    **OPINION · We are measuring AI with the wrong rulers**
+
     An Economist column argues benchmarks reward tests models have already seen.
-    The Economist · <the link>
+
+    *The Economist* · [economist.com](the link)
 
     — Anchor · next at 12:30
 
-- First line: the edition's name, a middle dot, the short day and date in the owner's language ("Édition du matin · sam. 3 oct." for an owner writing French).
-- Second line: how many stories, then the one or two that matter most, in one sentence.
-- Each topic's name in capitals on its own line, a blank line before it.
-- Each story: its headline in the owner's language; then one or two sentences that add to the headline, not repeat it; then the first outlet, "and N more" when others carry it, a middle dot, and that outlet's link copied from the material.
-- UPDATE · leads a story told before; OPINION · leads an opinion piece. Nothing else gets a label.
+- First line, plain (no Markdown): the edition's name, a middle dot, the short day and date in the owner's language ("Édition du matin · sam. 3 oct." for an owner writing French). It is the notification's title.
+- Second line, plain: how many stories, then the one or two that matter most, in one sentence.
+- Each topic: "### " and its name as the owner wrote it (not in capitals), on its own line, a blank line before and after.
+- Each story is three paragraphs with a blank line between them and a blank line after the story:
+  1. its headline in the owner's language, in bold: **Headline**;
+  2. one or two sentences that add to the headline, not repeat it, as their own paragraph;
+  3. the source line: in italics, the first outlet and "and N more" when others carry it; a middle dot; then that outlet's link copied from the material, written as a Markdown link whose words are the outlet's domain without "www." ("[npr.org](the link)", with the material's link in place of "the link"). Never a bare URL.
+- UPDATE · leads the headline of a story told before; OPINION · leads an opinion piece, both inside the bold. Nothing else gets a label.
 - When outlets disagree, the sentence says who says what, side by side.
 - In US politics only, an outlet's lean in brackets after its name, when the material gives it and the outlets differ.
-- Last line: "— Anchor · next at <time>" when the material gives the next edition's time (next), else just "— Anchor".
-- When the material gives voiceOff, or voice is on but you could not make it (no speech tool, or it failed), add one line before the last: "Voice was off today: <why, in a few words>", once a day.
-- No markdown, no bullets, no bold, no emoji. Each link appears once, whole.
-- Length: each story at most two sentences and about 35 words after its headline; the whole edition under 2,500 characters. The mission's own limit is 4,000, so ignore a shorter message limit the run mentions, but stay short by writing tighter, never by dropping a story that belongs. Say who reports what, not how they label it ("breaking").
+- Last line, plain: "— Anchor · next at <time>" when the material gives the next edition's time (next), else just "— Anchor".
+- When the material gives voiceOff, or voice is on but you could not make it (no speech tool, or it failed), add one plain line before the last: "Voice was off today: <why, in a few words>", once a day.
+- No other Markdown: no bullets, no numbered lists, no tables, no other headings, no emoji. Each link appears once.
+- Length: each story at most two sentences and about 35 words after its headline; the whole edition under 2,500 characters, Markdown included. The mission's own limit is 4,000, so ignore a shorter message limit the run mentions, but stay short by writing tighter, never by dropping a story that belongs. Say who reports what, not how they label it ("breaking").
 
 ## Record, speak, send
 1. In one step: news.edition_save with the edition's name, storyIds (the ids of the stories you told) and the text; and, when the material says voice is on and you hold speech.say, speech.say with the spoken version.

@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "anchor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "handle": "anchor",
   "title": "Anchor",
   "pitch": "Tells you the news three times a day: a few stories, a sentence each, from sources you pick.",
@@ -129,8 +129,8 @@
   "idleRollover": "1d",
   "roles": [],
   "replaces": [],
-  "changes": "First version.",
-  "integrity": "sha256-FvvL+qfKDAExHe93A+YnJUH3a8RfBz28Ex/zSqKOiKE=",
+  "changes": "Editions in light Markdown: a heading per topic, bold headlines, the lead as its own paragraph, the source in italics linked on the outlet's domain.",
+  "integrity": "sha256-+D6klguZhgd6r7kVtJz3Mu5/u5j1rPh2gHdgmAren4Q=",
   "claims": {
     "tools": [
       {
@@ -315,8 +315,8 @@
       "height": 512
     },
     "sizes": {
-      "persona": 3481,
-      "skills": 9431
+      "persona": 3699,
+      "skills": 10205
     }
   }
 }
