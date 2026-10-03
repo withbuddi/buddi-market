@@ -1,0 +1,22 @@
+{
+  "name": "news",
+  "npm": "@withbuddi/plugin-news",
+  "version": "0.2.1",
+  "title": "News",
+  "summary": "The news on the topics you follow, from a mix of English and French outlets you can see, grouped into stories on your own machine and told once. No model, no account, no service in between.",
+  "category": "days",
+  "trust": "by-buddi",
+  "pricing": {
+    "kind": "free"
+  },
+  "icon": "icon.svg",
+  "screenshots": [],
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/withbuddi/buddi-plugins",
+  "homepage": "https://withbuddi.com/plugins/news",
+  "hostApi": "^1.27"
+}
