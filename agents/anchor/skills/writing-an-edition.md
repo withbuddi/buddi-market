@@ -62,10 +62,17 @@ Light Markdown, exactly this shape, in the owner's language. buddi draws it as a
 - Last line, plain: "— Anchor · next at <time>" when the material gives the next edition's time (next), else just "— Anchor".
 - When the material gives voiceOff, or voice is on but you could not make it (no speech tool, or it failed), add one plain line before the last: "Voice was off today: <why, in a few words>", once a day.
 - No other Markdown: no bullets, no numbered lists, no tables, no other headings, no emoji. Each link appears once.
-- Length: each story at most two sentences and about 35 words after its headline; the whole edition under 2,500 characters, Markdown included. The mission's own limit is 4,000, so ignore a shorter message limit the run mentions, but stay short by writing tighter, never by dropping a story that belongs. Say who reports what, not how they label it ("breaking").
+- Length: each story at most two sentences and about 30 words after its headline; the whole edition at most 2,500 characters, Markdown, links and the signature included. This is a hard limit, not a target, and editions have run over it.
+
+## Count before you save
+Before news.edition_save, count the characters of the whole text, every link in full. A link is long (often 80 to 150 characters), so each story costs about 300 characters with its source line: seven stories is already near the limit.
+1. Over 2,500: first cut words (a shorter second sentence, or one sentence instead of two).
+2. Still over: drop the weakest story — the lowest-ranked one in a topic that keeps another story, else the lowest-ranked overall — and fix the count in the second line ("Six stories."). Leave its id out of storyIds.
+3. Count again; repeat until the text is at most 2,500 characters. Never cut a link or a headline mid-way to fit, and never go under three stories for length.
+The mission's own limit is 4,000 and a shorter message limit the run mentions does not apply, but 2,500 is the edition's. Say who reports what, not how they label it ("breaking").
 
 ## Record, speak, send
-1. In one step: news.edition_save with the edition's name, storyIds (the ids of the stories you told) and the text; and, when the material says voice is on and you hold speech.say, speech.say with the spoken version.
+1. Count first (above). Then, in one step: news.edition_save with the edition's name, storyIds (the ids of the stories you told) and the text; and, when the material says voice is on and you hold speech.say, speech.say with the spoken version.
 2. Then mission.report: urgency normal, the text exactly as written, link set to the link edition_save returned and linkLabel "Open edition", audio set to the voice note's id when you made one, and the two actions from your the-ways-out skill.
 
 The text is always sent; the voice note is extra.
