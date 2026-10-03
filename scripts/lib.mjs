@@ -143,6 +143,54 @@ export function withClaims(entry, described, view, provenance) {
   };
 }
 
+/** The sizes a widget can sit at on Home; a preview is keyed by them. */
+export const WIDGET_SIZES = ['small', 'medium'];
+
+/**
+ * The widgets an entry's claims record (what `buddi plugins describe` read
+ * from the manifest: id, title, sizes, settings, and the plugin's sample per
+ * size as `preview`), as the index publishes them. An entry checked by a buddi
+ * from before widgets were described has none.
+ */
+export function widgetsOf(entry) {
+  const widgets = entry.claims?.manifest?.widgets;
+  return Array.isArray(widgets) ? widgets : [];
+}
+
+/**
+ * What can be wrong with the widgets a check recorded: each named
+ * <plugin>.<name>, with a title, sizes among small and medium, settings as
+ * key/kind/label, and a preview only for sizes it offers, each a body with a
+ * kind. Returns a list of problems, empty when fine.
+ */
+export function widgetProblems(name, widgets) {
+  const problems = [];
+  if (!Array.isArray(widgets)) return ['claims.manifest.widgets must be a list'];
+  const seen = new Set();
+  for (const w of widgets) {
+    const id = typeof w?.id === 'string' ? w.id : '';
+    if (!id.startsWith(`${name}.`) || seen.has(id)) problems.push(`widget ${JSON.stringify(w?.id)} must be named ${name}.<name>, once`);
+    seen.add(id);
+    if (typeof w?.title !== 'string' || w.title.trim() === '' || w.title.length > 40) problems.push(`widget ${id}: title must be 1 to 40 characters`);
+    const sizes = Array.isArray(w?.sizes) ? w.sizes : [];
+    if (sizes.length === 0 || !sizes.every((size) => WIDGET_SIZES.includes(size)) || new Set(sizes).size !== sizes.length) {
+      problems.push(`widget ${id}: sizes must list small and/or medium, each once`);
+    }
+    if (!Array.isArray(w?.settings) || !w.settings.every((f) => typeof f?.key === 'string' && typeof f?.kind === 'string' && typeof f?.label === 'string')) {
+      problems.push(`widget ${id}: settings must be a list of { key, kind, label }`);
+    }
+    if (w?.preview !== undefined) {
+      const entries = typeof w.preview === 'object' && w.preview !== null ? Object.entries(w.preview) : [];
+      if (entries.length === 0) problems.push(`widget ${id}: preview must name at least one size`);
+      for (const [size, body] of entries) {
+        if (!sizes.includes(size)) problems.push(`widget ${id}: preview for ${size}, which it does not offer`);
+        if (typeof body?.kind !== 'string') problems.push(`widget ${id}: the ${size} preview is not a body`);
+      }
+    }
+  }
+  return problems;
+}
+
 export function stableJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`;
 }

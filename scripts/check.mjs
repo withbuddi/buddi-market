@@ -43,6 +43,8 @@ import {
   readEntry,
   stableJson,
   validateEntry,
+  widgetProblems,
+  widgetsOf,
   withClaims,
 } from './lib.mjs';
 
@@ -147,6 +149,15 @@ async function checkOne(name) {
   }
 
   const next = withClaims(entry, described, view, provenance);
+  const widgetsRead = Array.isArray(described.manifest?.widgets);
+  if (!widgetsRead) {
+    // A buddi from before `describe` reported widgets cannot say what they are:
+    // keep what was recorded and say so, rather than claim the plugin has none.
+    console.log(`note  ${name}: this buddi does not report widgets; the recorded ones are kept unchecked`);
+    if (entry.claims?.manifest?.widgets !== undefined) next.claims.manifest.widgets = entry.claims.manifest.widgets;
+  }
+  const widgetIssues = widgetProblems(entry.name, widgetsOf(next));
+  if (widgetIssues.length > 0) throw new Error(`\n  - ${widgetIssues.join('\n  - ')}`);
   const same = JSON.stringify(comparable(next)) === JSON.stringify(comparable(entry));
   if (write) {
     if (!same) writeFileSync(entryPath(name), stableJson(next));

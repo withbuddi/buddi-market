@@ -116,9 +116,10 @@
         }
       ],
       "views": 1,
-      "home": 0
+      "home": 0,
+      "widgets": []
     },
     "drift": []
   },
-  "checkedAt": "2026-10-02"
+  "checkedAt": "2026-10-03"
 }
