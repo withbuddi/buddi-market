@@ -1,0 +1,22 @@
+{
+  "name": "computer",
+  "npm": "@withbuddi/plugin-computer",
+  "version": "0.1.0",
+  "title": "Computer",
+  "summary": "Agents work in the apps on your Mac that you allow, in each app's own window and signed in as you. macOS only; one agent at a time, and you can take over.",
+  "category": "work",
+  "trust": "by-buddi",
+  "pricing": {
+    "kind": "free"
+  },
+  "icon": "icon.svg",
+  "screenshots": [],
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/withbuddi/buddi-plugins",
+  "homepage": "https://withbuddi.com/plugins/computer",
+  "hostApi": "^1.29"
+}
