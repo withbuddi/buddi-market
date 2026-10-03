@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "illustrator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "handle": "art",
   "title": "Illustrator",
   "pitch": "Turns a request into one clear picture.",
@@ -37,8 +37,8 @@
   "replaces": [
     "image/illustrator"
   ],
-  "changes": "First version: the Image plugin's Illustrator, as a catalogue agent.",
-  "integrity": "sha256-ImlRlnNLAbRUi3Wi6jd5olka5z7VJgWKSKEUnqCVzNE=",
+  "changes": "Its image-prompt skill reads in plain words.",
+  "integrity": "sha256-mDCF2csE8p7IpIzXEzMkbyJxdcTG33CXu3tLpswvJGo=",
   "claims": {
     "tools": [
       {
@@ -100,7 +100,7 @@
       {
         "file": "writing-an-image-prompt.md",
         "name": "writing-an-image-prompt",
-        "description": "How one request becomes one image prompt: subject, style, composition, palette, what to avoid; references; no text unless asked; no brands or real people. Read it before calling image.generate."
+        "description": "How one request becomes one image prompt: subject, style, composition, palette, what to avoid; references; no text unless asked; no brands or real people. Read it before making an image."
       }
     ],
     "avatar": {
@@ -111,7 +111,7 @@
     },
     "sizes": {
       "persona": 3118,
-      "skills": 2700
+      "skills": 2693
     }
   }
 }

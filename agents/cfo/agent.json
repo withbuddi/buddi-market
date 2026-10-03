@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "cfo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "handle": "cfo",
   "title": "CFO",
   "pitch": "Reads your statements, tracks spending and cards, a weekly money recap.",
@@ -72,8 +72,8 @@
     "finance/ledger",
     "buddi/finance-advisor"
   ],
-  "changes": "Writes a budget or a report into your Files (artifacts.write): a table downloads as Excel, a report as PDF or Word.",
-  "integrity": "sha256-tZM3WEnyNDjoIL+U0uskLvzsr5el/POPjQ1RwleyupI=",
+  "changes": "Writes a budget or a report into your Files: a table downloads as Excel, a report as PDF or Word.",
+  "integrity": "sha256-VJCzZWLLcwJzXH8A0qnfP28GldlYZYCCmTgtEVTZHnE=",
   "claims": {
     "tools": [
       {

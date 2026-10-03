@@ -1,6 +1,6 @@
 ---
 name: writing-an-image-prompt
-description: How one request becomes one image prompt: subject, style, composition, palette, what to avoid; references; no text unless asked; no brands or real people. Read it before calling image.generate.
+description: How one request becomes one image prompt: subject, style, composition, palette, what to avoid; references; no text unless asked; no brands or real people. Read it before making an image.
 ---
 
 # Writing an image prompt

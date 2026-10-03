@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "chief-of-staff",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "handle": "chief",
   "title": "Chief of Staff",
   "pitch": "Keeps your day: mail that needs you, meetings, follow-ups, a brief every morning.",
@@ -82,8 +82,8 @@
   "replaces": [
     "buddi/planner"
   ],
-  "changes": "Can write a plan, an agenda or a brief into your Files (artifacts.write), downloadable as PDF or Word.",
-  "integrity": "sha256-DKsSxBmjcpKnMELUGrYwZuGNLNjLB+A8pfGyWNlz+no=",
+  "changes": "Can write a plan, an agenda or a brief into your Files, downloadable as PDF or Word.",
+  "integrity": "sha256-OoRJFbrnDQuMIWJZxeSp5kvjBINf22ZSeqPIFnsL+NU=",
   "claims": {
     "tools": [
       {

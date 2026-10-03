@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "writer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "handle": "writer",
   "title": "Writer",
   "pitch": "Drafts, edits and tightens your writing in your own voice.",
@@ -43,8 +43,8 @@
   "language": "mirror",
   "idleRollover": "1d",
   "replaces": [],
-  "changes": "Saves a finished piece into your Files (artifacts.write), so you download it as PDF or Word instead of copying it out of the chat.",
-  "integrity": "sha256-WgIXPNNBwJxxG9Gl9tNvz2E04dq18Qw7s2zJpOJkjno=",
+  "changes": "Saves a finished piece into your Files, so you download it as PDF or Word instead of copying it out of the chat.",
+  "integrity": "sha256-T3oMUw3s/aRWmk8g3NqV59jgQcFHSdTa1aAglQTCKL8=",
   "claims": {
     "tools": [
       {

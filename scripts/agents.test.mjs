@@ -88,6 +88,20 @@ test('an optional mailbox makes mail tools optional, and only then', () => {
   has(problemsOf((p) => { p.manifest.needs = ['mailbox?']; p.manifest.tools.push('email.send?'); }), /v1 denylist/);
 });
 
+test('a known tool name in owner-facing text is refused, anything else that looks like one passes', () => {
+  has(problemsOf((p) => { p.manifest.changes = 'Writes reports into your Files (artifacts.write).'; }), /changes names the tool artifacts\.write; the owner reads this/);
+  has(problemsOf((p) => { p.manifest.pitch = 'Uses web.search a lot.'; }), /pitch names the tool web\.search/);
+  has(problemsOf((p) => { p.manifest.examples[1] = 'Check weather.forecast for Sunday'; }), /examples\[1\] names the tool weather\.forecast/);
+  has(problemsOf((p) => { p.manifest.about = 'It keeps memory.note tidy.'; }), /about names the tool memory\.note/);
+  has(problemsOf((p) => { p.manifest.description = 'Researcher; owner.notify when done.'; }), /description names the tool owner\.notify/);
+  has(problemsOf((p) => { p.manifest.missions.push({ id: 'x', name: 'Daily web.read sweep', cron: '0 9 * * *', prompt: 'Sweep.', enabled: false }); }), /missions\.x\.name names the tool web\.read/);
+  has(problemsOf((p) => {
+    const file = Object.keys(p.skills)[0];
+    p.skills[file] = p.skills[file].replace(/^description: .*$/m, 'description: When a source needs web.read first.');
+  }), /skills\/.+ description names the tool web\.read/);
+  assert.deepEqual(problemsOf((p) => { p.manifest.about = 'Listed on withbuddi.com, e.g. for research.'; }), []);
+});
+
 test('an unknown tool is refused', () => {
   has(problemsOf((p) => { p.manifest.tools.push('teleport.now'); }), /teleport\.now is not a tool/);
 });

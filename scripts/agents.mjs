@@ -420,6 +420,16 @@ export function validateAgent(name, pkg, ctx) {
     if (typeof text === 'string') problems.push(...lintText('agent.json', text));
   }
 
+  // Owner-facing text says what the agent does in words, never a tool's name.
+  const toolNames = new Set([...ctx.core, ...Object.values(ctx.plugins).flatMap((p) => p.tools ?? [])].map((t) => t.name));
+  const ownerFacing = [
+    ['pitch', m.pitch], ['description', m.description], ['about', m.about], ['changes', m.changes],
+    ...(Array.isArray(m.examples) ? m.examples.map((t, i) => [`examples[${i}]`, t]) : []),
+    ...(Array.isArray(m.missions) ? m.missions.map((mi) => [`missions.${mi.id}.name`, mi.name]) : []),
+    ...skillFiles.map((file) => [`skills/${file} description`, frontMatter(pkg.skills[file])?.fields.description]),
+  ];
+  for (const [where, text] of ownerFacing) problems.push(...toolNameProblems(where, text, toolNames));
+
   // Plugins.
   const req = isObj(m.requires) ? m.requires : {};
   const opt = isObj(m.optional) ? m.optional : {};
@@ -474,6 +484,16 @@ export function validateAgent(name, pkg, ctx) {
     seen.set(t.name, t);
   }
   return { problems: [...new Set(problems)], tools: [...seen.values()] };
+}
+
+/** What reads like a tool name in prose; only a name in the tool list counts (so withbuddi.com passes). */
+const TOOL_TOKEN = /\b[a-z][a-z0-9_]*\.[a-z][a-z0-9_]*\b/g;
+
+/** A problem for each known tool name in a piece of owner-facing text. */
+export function toolNameProblems(where, text, toolNames) {
+  if (typeof text !== 'string') return [];
+  const named = [...new Set(text.match(TOOL_TOKEN) ?? [])].filter((token) => toolNames.has(token));
+  return named.map((tool) => `${where} names the tool ${tool}; the owner reads this, so say what it does in words (e.g. "saves reports to your Files") instead of a tool's name`);
 }
 
 function isObj(v) {
