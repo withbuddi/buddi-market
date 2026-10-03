@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "anchor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "handle": "anchor",
   "title": "Anchor",
   "pitch": "Tells you the news three times a day: a few stories, a sentence each, from sources you pick.",
@@ -57,7 +57,7 @@
           "maxStories": 16
         }
       },
-      "prompt": "Write the morning edition, following your writing-an-edition skill. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"morning\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. Otherwise pick five to eight stories, write the edition, then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version (open with good morning). Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions, exactly: label \"Less of this…\" with prompt \"Less of something in this edition: ask me which story, outlet or topic.\", then label \"Quiet news today\" with prompt \"Quiet the news for today.\""
+      "prompt": "Write the morning edition, following your writing-an-edition skill. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"morning\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. Otherwise pick five to eight stories, write the edition, count it and keep it at most 2,500 characters (cut words, then drop the weakest story), then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version (open with good morning). Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions, exactly: label \"Less of this…\" with prompt \"Less of something in this edition: ask me which story, outlet or topic.\", then label \"Quiet news today\" with prompt \"Quiet the news for today.\""
     },
     {
       "id": "midday",
@@ -74,7 +74,7 @@
           "maxStories": 16
         }
       },
-      "prompt": "Write the midday edition, following your writing-an-edition skill: only what is new or updated since the morning. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"midday\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. With fewer than three new stories, write the short edition the skill describes. Then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version. Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions, exactly: label \"Less of this…\" with prompt \"Less of something in this edition: ask me which story, outlet or topic.\", then label \"Quiet news today\" with prompt \"Quiet the news for today.\""
+      "prompt": "Write the midday edition, following your writing-an-edition skill: only what is new or updated since the morning. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"midday\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. With fewer than three new stories, write the short edition the skill describes. Count it and keep it at most 2,500 characters (cut words, then drop the weakest story). Then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version. Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions, exactly: label \"Less of this…\" with prompt \"Less of something in this edition: ask me which story, outlet or topic.\", then label \"Quiet news today\" with prompt \"Quiet the news for today.\""
     },
     {
       "id": "evening",
@@ -91,7 +91,7 @@
           "maxStories": 16
         }
       },
-      "prompt": "Write the evening edition, following your writing-an-edition skill: the day's stories the owner has not heard, and updates on what they have. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"evening\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. Otherwise pick five to eight stories, write the edition, then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version (open with good evening). Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions, exactly: label \"Less of this…\" with prompt \"Less of something in this edition: ask me which story, outlet or topic.\", then label \"Quiet news today\" with prompt \"Quiet the news for today.\""
+      "prompt": "Write the evening edition, following your writing-an-edition skill: the day's stories the owner has not heard, and updates on what they have. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"evening\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. Otherwise pick five to eight stories, write the edition, count it and keep it at most 2,500 characters (cut words, then drop the weakest story), then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version (open with good evening). Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions, exactly: label \"Less of this…\" with prompt \"Less of something in this edition: ask me which story, outlet or topic.\", then label \"Quiet news today\" with prompt \"Quiet the news for today.\""
     }
   ],
   "fills": [
@@ -129,8 +129,8 @@
   "idleRollover": "1d",
   "roles": [],
   "replaces": [],
-  "changes": "Editions in light Markdown: a heading per topic, bold headlines, the lead as its own paragraph, the source in italics linked on the outlet's domain.",
-  "integrity": "sha256-+D6klguZhgd6r7kVtJz3Mu5/u5j1rPh2gHdgmAren4Q=",
+  "changes": "Editions stay under 2,500 characters: Anchor counts the whole text, links included, before saving, cuts words first and then drops the weakest story.",
+  "integrity": "sha256-lM/DTGQBSuNvBhmIlM0BqAaH1KZ/9Zblxic5N6GVXxw=",
   "claims": {
     "tools": [
       {
@@ -316,7 +316,7 @@
     },
     "sizes": {
       "persona": 3699,
-      "skills": 10205
+      "skills": 11020
     }
   }
 }
