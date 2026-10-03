@@ -1,6 +1,6 @@
 {
   "//": "The tools a buddi release registers itself (no plugin needed), with their tiers. A snapshot read from the buddi source at the release named here, used by scripts/check.mjs until `buddi tools list --json` exists; when it does, the check asks the buddi on PATH instead. Regenerate on each buddi release that adds or changes a tool.",
-  "buddi": "0.1.0-pre.31",
+  "buddi": "0.1.0-pre.35",
   "tools": [
     {
       "name": "artifacts.describe",
@@ -14,6 +14,11 @@
     },
     {
       "name": "artifacts.text",
+      "tier": "auto",
+      "ownerOnly": false
+    },
+    {
+      "name": "artifacts.write",
       "tier": "auto",
       "ownerOnly": false
     },
