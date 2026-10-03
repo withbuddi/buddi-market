@@ -207,3 +207,17 @@ test('the index carries the agents, with persona and skills inline', () => {
   assert.match(researcher.avatar.url, /\/plugins\/agents\/researcher\/avatar\.png$/);
   assert.equal(researcher.avatar.sha256, researcher.claims.avatar.sha256);
 });
+
+test('a mission may carry reportMax and a context that reads a required plugin', () => {
+  const mission = (p) => p.manifest.missions[0] ?? (p.manifest.missions[0] = { id: 'daily', name: 'Daily', cron: '0 8 * * *', prompt: 'Report.' });
+  assert.deepEqual(problemsOf((p) => {
+    p.manifest.requires = { weather: '>=0.1.4' };
+    Object.assign(mission(p), { reportMax: 4000, context: { plugin: 'weather', export: 'forecast', args: { days: 1 } } });
+  }), []);
+  has(problemsOf((p) => { mission(p).reportMax = 100; }), /reportMax is at least 200/);
+  has(problemsOf((p) => { mission(p).reportMax = 7000; }), /reportMax is at most 6000/);
+  has(problemsOf((p) => { mission(p).reportMax = 'long'; }), /reportMax must be a whole number/);
+  has(problemsOf((p) => { mission(p).context = { plugin: 'weather', export: 'forecast' }; }), /context reads weather, which is not in requires/);
+  has(problemsOf((p) => { p.manifest.requires = { weather: '>=0.1.4' }; mission(p).context = { plugin: 'weather' }; }), /context\.export is required/);
+  has(problemsOf((p) => { p.manifest.requires = { weather: '>=0.1.4' }; mission(p).context = { plugin: 'weather', export: 'forecast', run: true }; }), /context\.run is not a known field/);
+});

@@ -1,0 +1,322 @@
+{
+  "kind": "agent",
+  "name": "anchor",
+  "version": "1.0.0",
+  "handle": "anchor",
+  "title": "Anchor",
+  "pitch": "Tells you the news three times a day: a few stories, a sentence each, from sources you pick.",
+  "description": "Tells the owner the news at fixed times (five to eight stories grouped by topic, each with its outlet and link) and answers questions about the news only from the articles the News plugin fetched.",
+  "about": "Each edition is five to eight stories grouped by topic, a sentence or two each, with the outlet and the link. It remembers what it already told you, so a story comes back only when something changed, marked as an update. Opinion is labelled. With Speech it also reads the edition aloud on Telegram.",
+  "category": "learning",
+  "trust": "by-buddi",
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "buddi": ">=0.1.0-pre.36",
+  "requires": {
+    "news": ">=0.2.0"
+  },
+  "optional": {
+    "speech": ">=0.1.4"
+  },
+  "needs": [],
+  "tools": [
+    "news.topics",
+    "news.headlines",
+    "news.story",
+    "news.search",
+    "news.read",
+    "news.edition_material",
+    "news.edition_save",
+    "news.feedback",
+    "news.quiet_today",
+    "news.mute_outlet",
+    "memory.recall",
+    "memory.note",
+    "memory.forget",
+    "memory.get_preferences",
+    "memory.remember_preference",
+    "owner.notify",
+    "speech.say?"
+  ],
+  "missions": [
+    {
+      "id": "morning",
+      "name": "Morning edition",
+      "cron": "30 7 * * *",
+      "misfirePolicy": "latest-only",
+      "reportMax": 4000,
+      "context": {
+        "plugin": "news",
+        "export": "edition_material",
+        "args": {
+          "edition": "morning",
+          "next": "12:30",
+          "maxStories": 16
+        }
+      },
+      "prompt": "Write the morning edition, following your writing-an-edition skill. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"morning\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. Otherwise pick five to eight stories, write the edition, then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version (open with good morning). Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions, exactly: label \"Less of this…\" with prompt \"Less of something in this edition: ask me which story, outlet or topic.\", then label \"Quiet news today\" with prompt \"Quiet the news for today.\""
+    },
+    {
+      "id": "midday",
+      "name": "Midday edition",
+      "cron": "30 12 * * *",
+      "misfirePolicy": "latest-only",
+      "reportMax": 4000,
+      "context": {
+        "plugin": "news",
+        "export": "edition_material",
+        "args": {
+          "edition": "midday",
+          "next": "19:00",
+          "maxStories": 16
+        }
+      },
+      "prompt": "Write the midday edition, following your writing-an-edition skill: only what is new or updated since the morning. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"midday\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. With fewer than three new stories, write the short edition the skill describes. Then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version. Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions, exactly: label \"Less of this…\" with prompt \"Less of something in this edition: ask me which story, outlet or topic.\", then label \"Quiet news today\" with prompt \"Quiet the news for today.\""
+    },
+    {
+      "id": "evening",
+      "name": "Evening edition",
+      "cron": "0 19 * * *",
+      "misfirePolicy": "latest-only",
+      "reportMax": 4000,
+      "context": {
+        "plugin": "news",
+        "export": "edition_material",
+        "args": {
+          "edition": "evening",
+          "next": "07:30",
+          "maxStories": 16
+        }
+      },
+      "prompt": "Write the evening edition, following your writing-an-edition skill: the day's stories the owner has not heard, and updates on what they have. The material is in this message; only when it is missing or says it failed, call news.edition_material with edition \"evening\" first. If the material says quietToday, call mission.silent with the reason \"quiet news today\" and stop. Otherwise pick five to eight stories, write the edition, then in one step call news.edition_save with the edition, the ids of the stories you told and the text, and, when the material says voice is on and you hold speech.say, speech.say with the spoken version (open with good evening). Last, mission.report: urgency normal, the text, the link edition_save returned with linkLabel \"Open edition\", the voice note's id as audio when you made one, and the two ways out as actions, exactly: label \"Less of this…\" with prompt \"Less of something in this edition: ask me which story, outlet or topic.\", then label \"Quiet news today\" with prompt \"Quiet the news for today.\""
+    }
+  ],
+  "fills": [
+    {
+      "id": "topics",
+      "kind": "text",
+      "label": "Topics to lead with, in order (empty: all of News' topics)",
+      "optional": true
+    },
+    {
+      "id": "morning-time",
+      "kind": "time",
+      "label": "Morning",
+      "mission": "morning"
+    },
+    {
+      "id": "midday-time",
+      "kind": "time",
+      "label": "Midday",
+      "mission": "midday"
+    },
+    {
+      "id": "evening-time",
+      "kind": "time",
+      "label": "Evening",
+      "mission": "evening"
+    }
+  ],
+  "examples": [
+    "What happened in Lomé today?",
+    "Leave US politics out tomorrow.",
+    "Read me the evening edition."
+  ],
+  "language": "mirror",
+  "idleRollover": "1d",
+  "roles": [],
+  "replaces": [],
+  "changes": "First version.",
+  "integrity": "sha256-FvvL+qfKDAExHe93A+YnJUH3a8RfBz28Ex/zSqKOiKE=",
+  "claims": {
+    "tools": [
+      {
+        "name": "news.topics",
+        "plugin": "news",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "news.headlines",
+        "plugin": "news",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "news.story",
+        "plugin": "news",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "news.search",
+        "plugin": "news",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "news.read",
+        "plugin": "news",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "news.edition_material",
+        "plugin": "news",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "news.edition_save",
+        "plugin": "news",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "news.feedback",
+        "plugin": "news",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "news.quiet_today",
+        "plugin": "news",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "news.mute_outlet",
+        "plugin": "news",
+        "tier": "gated",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.recall",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.note",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.forget",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.get_preferences",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "memory.remember_preference",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "owner.notify",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
+        "name": "speech.say",
+        "plugin": "speech",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": true
+      }
+    ],
+    "missions": [
+      {
+        "id": "morning",
+        "name": "Morning edition",
+        "when": "Every day at 07:30",
+        "enabled": false
+      },
+      {
+        "id": "midday",
+        "name": "Midday edition",
+        "when": "Every day at 12:30",
+        "enabled": false
+      },
+      {
+        "id": "evening",
+        "name": "Evening edition",
+        "when": "Every day at 19:00",
+        "enabled": false
+      }
+    ],
+    "plugins": {
+      "requires": [
+        {
+          "name": "news",
+          "range": ">=0.2.0",
+          "listed": "0.2.2",
+          "hostApi": "^1.27"
+        }
+      ],
+      "optional": [
+        {
+          "name": "speech",
+          "range": ">=0.1.4",
+          "listed": "0.1.4",
+          "hostApi": "^1.0"
+        }
+      ]
+    },
+    "skills": [
+      {
+        "file": "answering-from-your-sources.md",
+        "name": "answering-from-your-sources",
+        "description": "How to answer a question about the news only from the articles your sources published, with a link for each fact, and what to say when they have nothing."
+      },
+      {
+        "file": "the-ways-out.md",
+        "name": "the-ways-out",
+        "description": "The two buttons under every edition, Less of this… and Quiet news today, what each does when tapped, and how to take either back."
+      },
+      {
+        "file": "writing-an-edition.md",
+        "name": "writing-an-edition",
+        "description": "How to write a morning, midday or evening edition from the material the run carries, record it, read it aloud when voice is on, and send it."
+      }
+    ],
+    "avatar": {
+      "sha256": "sha256-16VCIMB8gnda2NwKWNq422WOAD9+D+hj9UoJR9RitME=",
+      "bytes": 141039,
+      "width": 512,
+      "height": 512
+    },
+    "sizes": {
+      "persona": 3481,
+      "skills": 9431
+    }
+  }
+}

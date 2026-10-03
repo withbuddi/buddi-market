@@ -168,6 +168,10 @@ export function schemaProblems(value, schema = SCHEMA, at = '') {
     if (schema.pattern && !new RegExp(schema.pattern).test(value)) out.push(`${where} does not match ${schema.pattern}`);
   } else if (type === 'boolean') {
     if (typeof value !== 'boolean') out.push(`${where} must be true or false`);
+  } else if (type === 'integer') {
+    if (!Number.isInteger(value)) return [...out, `${where} must be a whole number`];
+    if (schema.minimum !== undefined && value < schema.minimum) out.push(`${where} is at least ${schema.minimum}`);
+    if (schema.maximum !== undefined && value > schema.maximum) out.push(`${where} is at most ${schema.maximum}`);
   }
   return out;
 }
@@ -403,6 +407,10 @@ export function validateAgent(name, pkg, ctx) {
     missionIds.add(mission.id);
     if (typeof mission.cron === 'string' && !cronWords(mission.cron)) problems.push(`mission ${mission.id}: cron "${mission.cron}" is not one this check can say in words`);
     if (typeof mission.prompt === 'string') problems.push(...lintText(`missions.${mission.id}.prompt`, mission.prompt));
+    const plugin = mission.context?.plugin;
+    if (typeof plugin === 'string' && !(isObj(m.requires) && plugin in m.requires)) {
+      problems.push(`mission ${mission.id}: its context reads ${plugin}, which is not in requires (buddi calls it before every run, so it must be there)`);
+    }
   }
   const fillIds = new Set();
   for (const fill of Array.isArray(m.fills) ? m.fills : []) {
