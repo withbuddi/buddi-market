@@ -1,0 +1,128 @@
+{
+  "name": "computer",
+  "npm": "@withbuddi/plugin-computer",
+  "version": "0.1.1",
+  "title": "Computer",
+  "summary": "Agents work in the apps on your Mac that you allow, in each app's own window and signed in as you. macOS only; one agent at a time, and you can take over.",
+  "category": "work",
+  "trust": "by-buddi",
+  "pricing": {
+    "kind": "free"
+  },
+  "icon": "icon.svg",
+  "screenshots": [],
+  "author": {
+    "name": "withbuddi",
+    "url": "https://withbuddi.com"
+  },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/withbuddi/buddi-plugins",
+  "homepage": "https://withbuddi.com/plugins/computer",
+  "hostApi": "^1.29",
+  "integrity": "sha512-7Z6vyuCIylaP0lJqSh8lVsBpjy3UmBh//mr00d5kTe/DeTluGKsqVenjeGOVJalfB1VLB5ltFlMOEIoc7avCBg==",
+  "provenance": {
+    "repository": "https://github.com/withbuddi/buddi-plugins",
+    "workflow": ".github/workflows/publish.yml",
+    "ref": "refs/tags/computer@0.1.1",
+    "commit": "ee1b84058fe5f380a0c8de4d6a4cf87f1f68a6bd",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37154565993/attempts/1"
+  },
+  "claims": {
+    "package": {
+      "name": "@withbuddi/plugin-computer",
+      "version": "0.1.1",
+      "license": "Apache-2.0",
+      "author": {
+        "name": "withbuddi",
+        "url": "https://withbuddi.com"
+      },
+      "buddiName": "computer",
+      "hostApi": "^1.29",
+      "uses": [],
+      "dependencies": {
+        "count": 2,
+        "withScripts": []
+      },
+      "scripts": []
+    },
+    "claims": {
+      "schema": "computer",
+      "hosts": [],
+      "missing": false
+    },
+    "manifest": {
+      "name": "computer",
+      "version": "0.1.1",
+      "schema": "computer",
+      "description": "Lets agents work in the apps on your Mac that you allow, through a small native helper: macOS accessibility and the app’s own window, signed in as you. One agent at a time; you can take over.",
+      "author": {
+        "name": "withbuddi",
+        "url": "https://withbuddi.com"
+      },
+      "uses": [],
+      "network": [
+        {
+          "host": "* (what the apps you allow reach)",
+          "why": "Your apps use their own network and sign-ins; this plugin sends nothing itself. Each app window’s picture and accessibility text go to the agent’s model provider."
+        }
+      ],
+      "tools": [
+        {
+          "name": "computer.check",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Read the computer helper and macOS permissions again; with prompt, put macOS’s own Allow dialogs in front of the owner."
+        },
+        {
+          "name": "computer.add_app",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Put an app on the list agents may open, by its bundle id or its name."
+        },
+        {
+          "name": "computer.remove_app",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Take an app off the list agents may open."
+        },
+        {
+          "name": "computer.use_as_browser",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "The listed browser websites open in."
+        },
+        {
+          "name": "computer.set_unlisted",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "What happens when an agent wants an app that is not on the list."
+        },
+        {
+          "name": "computer.set_profile",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Which of the browser’s profiles websites open in; empty for whichever is in front."
+        }
+      ],
+      "sentinels": [],
+      "sources": [],
+      "missions": [],
+      "agents": [],
+      "skills": [],
+      "pages": [
+        {
+          "id": "computer",
+          "title": "Computer",
+          "place": "settings"
+        }
+      ],
+      "views": 0,
+      "home": 0,
+      "widgets": []
+    },
+    "drift": [
+      "its manifest declares the host * (what the apps you allow reach), which its buddi.md does not mention"
+    ]
+  },
+  "checkedAt": "2026-10-03"
+}
