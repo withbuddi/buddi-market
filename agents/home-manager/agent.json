@@ -214,7 +214,7 @@
         {
           "name": "weather",
           "range": ">=0.1.4",
-          "listed": "0.1.4",
+          "listed": "0.1.5",
           "hostApi": "^1.18"
         }
       ]
