@@ -18,14 +18,14 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/finance",
-  "hostApi": "^1.0",
-  "integrity": "sha512-tWTFpjkPFEn5BurRpFj1qh7SWCECHUx+HT/CXICkWh8GRXrDTQNBcHWowB4SiCgzZkS04mvBX4Mg/KTRTMVAgA==",
+  "hostApi": "^1.28",
+  "integrity": "sha512-jbgtXnzMePTQctTIERrnnrDPRJJFHzjD6i0EHcNv61fw67K/+0/tKRwrnrd1mSN6WFAW4A86nTRfj0rNRq7qnQ==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/finance@0.1.4",
-    "commit": "f17b0e37afb4eb1fa820144b0006ebcebb3bb985",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37061296552/attempts/1"
+    "ref": "refs/tags/finance@0.1.5",
+    "commit": "ed0a152d83a702786e00b5ec258a41f7cac8a05f",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37264257888/attempts/1"
   },
   "claims": {
     "package": {
@@ -37,9 +37,10 @@
         "url": "https://withbuddi.com"
       },
       "buddiName": "finance",
-      "hostApi": "^1.0",
+      "hostApi": "^1.28",
       "uses": [
-        "files:library"
+        "files:library",
+        "schedule"
       ],
       "dependencies": {
         "count": 16,
@@ -62,7 +63,8 @@
         "url": "https://withbuddi.com"
       },
       "uses": [
-        "files:library"
+        "files:library",
+        "schedule"
       ],
       "network": [],
       "tools": [
@@ -311,6 +313,24 @@
           "tier": "auto",
           "ownerOnly": false,
           "description": "What a card is expected to report at its next statement close: forecastBalance = the balance today + the recurring charges billed to the card that fall due on or before the closing day − the payments scheduled to land before it. Every movement is listed in `events` with its date, so the answer can say WHEN a charge hits ('the GEICO premium posts on the 3rd, four days before the statement closes'). Utilization is given for the balance today and for the forecast one. This is the only source of truth for a forecast balance — never add the charges up yourself. Returns hasForecast: false when no statement closing day is recorded for the card; ask the owner for it and store it with finance.set_liability."
+        },
+        {
+          "name": "finance.mark_paid",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "Mark a recurring charge's occurrence as paid — the owner paid the rent early, or a bill went out before its date. That occurrence and every earlier one are left out of what is coming up, the cash-flow projection and a card's statement forecast, so the money is not spent twice. Pass `balance` when the owner says what the account holds now: it is recorded as today's balance. Without it, say that the projection still starts from the last recorded balance."
+        },
+        {
+          "name": "finance.set_money_settings",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "The Money settings: the currency, the safety floor, and whether the lock screen's Coming up shows amounts. The owner's alone."
+        },
+        {
+          "name": "finance.setup",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "First run's \"Which bank or account?\": an account by name, kind and balance — or a statement from the Files library, handed to the advisor to read into it. Answers { accountId }. The owner's alone."
         }
       ],
       "sentinels": [
@@ -383,12 +403,110 @@
           "description": "How to coach a credit score with the numbers this plugin holds: the levers in the order they actually move, what to ask the owner for once, and the one sentence to answer with. Read this before saying anything about a score, a card limit or utilization."
         }
       ],
-      "pages": [],
+      "pages": [
+        {
+          "id": "money",
+          "title": "Money",
+          "place": "rail"
+        },
+        {
+          "id": "settings",
+          "title": "Money",
+          "place": "settings"
+        }
+      ],
       "views": 14,
       "home": 1,
-      "widgets": []
+      "widgets": [
+        {
+          "id": "finance.money",
+          "title": "Money",
+          "sizes": [
+            "medium",
+            "small"
+          ],
+          "sensitive": true,
+          "settings": [],
+          "preview": {
+            "medium": {
+              "kind": "list",
+              "rows": [
+                {
+                  "title": "Cash across 3 accounts",
+                  "side": "€4,820"
+                },
+                {
+                  "title": "Rent",
+                  "side": "€1,250 · Thu"
+                },
+                {
+                  "title": "Phone",
+                  "side": "€19.99 · 12 Oct"
+                },
+                {
+                  "title": "Gym",
+                  "side": "€35 · 15 Oct"
+                }
+              ],
+              "max": 5
+            },
+            "small": {
+              "kind": "stat",
+              "value": "€4,820",
+              "caption": "cash across 3 accounts",
+              "foot": "Rent due Thu"
+            }
+          }
+        },
+        {
+          "id": "finance.due",
+          "title": "Coming up",
+          "sizes": [
+            "small",
+            "medium"
+          ],
+          "settings": [],
+          "preview": {
+            "small": {
+              "kind": "list",
+              "rows": [
+                {
+                  "title": "Rent",
+                  "side": "Thu"
+                },
+                {
+                  "title": "Phone",
+                  "side": "12 Oct"
+                },
+                {
+                  "title": "Gym",
+                  "side": "15 Oct"
+                }
+              ]
+            },
+            "medium": {
+              "kind": "list",
+              "rows": [
+                {
+                  "title": "Rent",
+                  "side": "Thu"
+                },
+                {
+                  "title": "Phone",
+                  "side": "Mon 12 Oct"
+                },
+                {
+                  "title": "Gym",
+                  "side": "Thu 15 Oct"
+                }
+              ],
+              "more": "2 more in the next 30 days"
+            }
+          }
+        }
+      ]
     },
     "drift": []
   },
-  "checkedAt": "2026-10-03"
+  "checkedAt": "2026-10-05"
 }
