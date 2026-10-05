@@ -1,7 +1,7 @@
 {
   "name": "speech",
   "npm": "@withbuddi/plugin-speech",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "title": "Speech",
   "summary": "Your team hear you and answer with a voice: on the dashboard and on Telegram. Whisper and Kokoro run on your computer, or a cloud service you choose.",
   "category": "voice",
@@ -19,18 +19,18 @@
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/speech",
   "hostApi": "^1.0",
-  "integrity": "sha512-7pOR0ef/1ATk4l1mgKYZB4Y09bWlaSn69vrREKUYMZWs4bybfNClgypnsxXveuDvieDQqQX//qKvLqDxDVQYvQ==",
+  "integrity": "sha512-+7DtBi3d/iwUXVWSrYRWptorSkXZQnuplOi2fqmqq0fkuhTfqsPIf0nUQc184oTi+Lk2INlxisxhCRDXv4C7kA==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/speech@0.1.4",
-    "commit": "69fd43d5edaa82eab660603e4b540b0d0d6b4cc5",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37110232547/attempts/1"
+    "ref": "refs/tags/speech@0.1.5",
+    "commit": "ed0a152d83a702786e00b5ec258a41f7cac8a05f",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37264258052/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-speech",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "license": "GPL-3.0-only",
       "author": {
         "name": "withbuddi",
@@ -44,7 +44,7 @@
         "files:library"
       ],
       "dependencies": {
-        "count": 64,
+        "count": 63,
         "withScripts": [
           "onnxruntime-node (postinstall)",
           "sharp (install)"
@@ -56,6 +56,7 @@
       "schema": "speech",
       "hosts": [
         "api.openai.com",
+        "generativelanguage.googleapis.com",
         "huggingface.co",
         "*.hf.co",
         "registry.npmjs.org"
@@ -64,9 +65,9 @@
     },
     "manifest": {
       "name": "speech",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "schema": "speech",
-      "description": "Lets agents listen to an audio file and answer with a voice, through the OpenAI or OpenAI-compatible account you choose on Settings → Speech, or Whisper and Kokoro on this computer, with daily limits.",
+      "description": "Lets agents listen to an audio file and answer with a voice, through the OpenAI, Gemini or OpenAI-compatible account you choose on Settings → Speech, or Whisper and Kokoro on this computer, with daily limits.",
       "author": {
         "name": "withbuddi",
         "url": "https://withbuddi.com"
@@ -80,6 +81,10 @@
         {
           "host": "api.openai.com",
           "why": "OpenAI accounts: a recording goes to be transcribed, or a text to be spoken; the text or the audio comes back."
+        },
+        {
+          "host": "generativelanguage.googleapis.com",
+          "why": "Gemini accounts: a recording goes to be transcribed, or a text to be spoken, and the account's model list is read; the text or the audio comes back."
         },
         {
           "host": "huggingface.co",
@@ -99,13 +104,13 @@
           "name": "speech.transcribe",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Turn a recording from the Files library (a voice note, an audio file up to 25 MB) into text. With a cloud service the recording leaves this machine for the listening service the owner chose in Settings → Speech (OpenAI or their OpenAI-compatible server), which sends back the text; with Whisper on this computer nothing leaves. Returns { text, language? }."
+          "description": "Turn a recording from the Files library (a voice note, an audio file up to 25 MB) into text. With a cloud service the recording leaves this machine for the listening service the owner chose in Settings → Speech (OpenAI, Gemini or their OpenAI-compatible server), which sends back the text; with Whisper on this computer nothing leaves. Returns { text, language? }."
         },
         {
           "name": "speech.say",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Say a text aloud and keep the audio in the owner's Files library (a voice note, OGG/Opus when the service gives it). With a cloud service the text leaves this machine for the speaking service the owner chose in Settings → Speech (OpenAI or their OpenAI-compatible server), which sends back the audio; with Kokoro on this computer nothing leaves, and it speaks English, French, Spanish, Italian, Portuguese and Hindi (the voice follows the text's language). Write for the ear."
+          "description": "Say a text aloud and keep the audio in the owner's Files library (a voice note, OGG/Opus when the service gives it). With a cloud service the text leaves this machine for the speaking service the owner chose in Settings → Speech (OpenAI, Gemini or their OpenAI-compatible server), which sends back the audio; with Kokoro on this computer nothing leaves, and it speaks English, French, Spanish, Italian, Portuguese and Hindi (the voice follows the text's language). Write for the ear."
         },
         {
           "name": "speech.set_settings",
@@ -117,7 +122,7 @@
           "name": "speech.test",
           "tier": "auto",
           "ownerOnly": true,
-          "description": "Try the chosen listening service on a short clip. The owner's own."
+          "description": "Try a listening or speaking choice on a short sample; nothing is kept. The owner's own."
         },
         {
           "name": "speech.preview",
@@ -167,5 +172,5 @@
     },
     "drift": []
   },
-  "checkedAt": "2026-10-03"
+  "checkedAt": "2026-10-05"
 }

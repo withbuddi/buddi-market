@@ -1,7 +1,7 @@
 {
   "name": "finance",
   "npm": "@withbuddi/plugin-finance",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "title": "Finance",
   "summary": "Your accounts, cards, loans, recurring charges and receipts in one place, a cash-flow projection, and a word before a balance dips or a payment comes due. Nothing leaves this computer.",
   "category": "money",
@@ -30,7 +30,7 @@
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-finance",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
@@ -54,7 +54,7 @@
     },
     "manifest": {
       "name": "finance",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "schema": "finance",
       "description": "Keeps your accounts, cards, loans, recurring charges and receipts in one place, projects your cash flow, and watches for a breached floor, a payment coming due and a statement closing high. Nothing leaves this computer.",
       "author": {
