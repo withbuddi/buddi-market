@@ -278,7 +278,7 @@
         {
           "name": "news",
           "range": ">=0.2.0",
-          "listed": "0.2.3",
+          "listed": "0.2.4",
           "hostApi": "^1.27"
         }
       ],
@@ -286,7 +286,7 @@
         {
           "name": "speech",
           "range": ">=0.1.4",
-          "listed": "0.1.4",
+          "listed": "0.1.5",
           "hostApi": "^1.0"
         }
       ]

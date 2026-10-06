@@ -19,18 +19,18 @@
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/news",
   "hostApi": "^1.27",
-  "integrity": "sha512-y5WxzFfRmo5qFwHYK+HYm9U9B61UTPAk9JvIIXlvH5wHgJ3flShLzuzKhdndvO2N74+vP5zfJxjVW3in0LfcPA==",
+  "integrity": "sha512-Zgw/F34Lh7HfFlxL8nwZNZOY1OsXXLAO1O2V1n3PwCVhN0ebs8LkSah7pD/iAgLCpBnyZ0APGYaM6ueSUvdL3Q==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/news@0.2.3",
-    "commit": "e4ac26288f2b62e2aeea08426be1159e2a58c948",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37140021384/attempts/1"
+    "ref": "refs/tags/news@0.2.4",
+    "commit": "57710b6ed1cb953782cfb5b51422ad25a52bc20d",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37395470096/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-news",
-      "version": "0.2.3",
+      "version": "0.2.4",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
@@ -149,7 +149,7 @@
     },
     "manifest": {
       "name": "news",
-      "version": "0.2.3",
+      "version": "0.2.4",
       "schema": "news",
       "description": "The news on the topics you follow, from English and French feeds you can see and change, grouped into stories on your own machine, with what was already told kept so nothing is told twice.",
       "author": {
@@ -599,7 +599,7 @@
           "name": "news.mute_outlet",
           "tier": "gated",
           "ownerOnly": false,
-          "description": "Mute a news outlet everywhere \u2014 its articles leave every story, the page and the editions \u2014 or turn it back on. Only when the owner asks (\"stop showing me Fox News\"); the owner approves it first."
+          "description": "Mute a news outlet everywhere — its articles leave every story, the page and the editions — or turn it back on. Only when the owner asks (\"stop showing me Fox News\"); the owner approves it first."
         },
         {
           "name": "news.enable_starter",
@@ -739,23 +739,23 @@
               "rows": [
                 {
                   "title": "Central banks hold rates as inflation cools",
-                  "side": "Reuters \u00b7 1 h"
+                  "side": "Reuters · 1 h"
                 },
                 {
                   "title": "A comet bright enough to see is passing this week",
-                  "side": "BBC \u00b7 2 h"
+                  "side": "BBC · 2 h"
                 },
                 {
                   "title": "Lyon opens its third tram line",
-                  "side": "Le Progr\u00e8s \u00b7 3 h"
+                  "side": "Le Progrès · 3 h"
                 },
                 {
                   "title": "The new phone that folds twice",
-                  "side": "The Verge \u00b7 4 h"
+                  "side": "The Verge · 4 h"
                 },
                 {
                   "title": "A quiet start to the Champions League",
-                  "side": "L\u2019\u00c9quipe \u00b7 5 h"
+                  "side": "L’Équipe · 5 h"
                 }
               ],
               "max": 5
@@ -766,5 +766,5 @@
     },
     "drift": []
   },
-  "checkedAt": "2026-10-03"
+  "checkedAt": "2026-10-06"
 }

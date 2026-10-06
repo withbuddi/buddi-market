@@ -368,6 +368,13 @@
         "optional": false
       },
       {
+        "name": "finance.mark_paid",
+        "plugin": "finance",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
+      {
         "name": "memory.forget",
         "plugin": "core",
         "tier": "auto",
@@ -569,8 +576,8 @@
         {
           "name": "finance",
           "range": ">=0.1.3",
-          "listed": "0.1.4",
-          "hostApi": "^1.0"
+          "listed": "0.1.5",
+          "hostApi": "^1.28"
         }
       ],
       "optional": []
