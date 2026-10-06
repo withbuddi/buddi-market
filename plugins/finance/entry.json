@@ -1,7 +1,7 @@
 {
   "name": "finance",
   "npm": "@withbuddi/plugin-finance",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "title": "Finance",
   "summary": "Your accounts, cards, loans, recurring charges and receipts in one place, a cash-flow projection, and a word before a balance dips or a payment comes due. Nothing leaves this computer.",
   "category": "money",
@@ -18,26 +18,26 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/finance",
-  "hostApi": "^1.28",
-  "integrity": "sha512-jbgtXnzMePTQctTIERrnnrDPRJJFHzjD6i0EHcNv61fw67K/+0/tKRwrnrd1mSN6WFAW4A86nTRfj0rNRq7qnQ==",
+  "hostApi": "^1.31",
+  "integrity": "sha512-t0X8yDxDEc2TQYWLsAZYMr7pchtyW6OmT7ABvz9t2klZlWUrORuM5RAIb2OufVSNiqx/7t5RjMeqQ/gf3vshnQ==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/finance@0.1.5",
-    "commit": "ed0a152d83a702786e00b5ec258a41f7cac8a05f",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37264257888/attempts/1"
+    "ref": "refs/tags/finance@0.1.6",
+    "commit": "57710b6ed1cb953782cfb5b51422ad25a52bc20d",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37399212286/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-finance",
-      "version": "0.1.5",
+      "version": "0.1.6",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
         "url": "https://withbuddi.com"
       },
       "buddiName": "finance",
-      "hostApi": "^1.28",
+      "hostApi": "^1.31",
       "uses": [
         "files:library",
         "schedule"
@@ -55,7 +55,7 @@
     },
     "manifest": {
       "name": "finance",
-      "version": "0.1.5",
+      "version": "0.1.6",
       "schema": "finance",
       "description": "Keeps your accounts, cards, loans, recurring charges and receipts in one place, projects your cash flow, and watches for a breached floor, a payment coming due and a statement closing high. Nothing leaves this computer.",
       "author": {
@@ -78,7 +78,7 @@
           "name": "finance.get_preferences",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Read the owner's finance preferences: reporting currency (default EUR), safety floor (default 0) and the default credit-card utilization target in percent (default 30)."
+          "description": "Read the owner's finance preferences: reporting currency (until set, the one the owner's time zone suggests: USD in America/*, GBP in London, EUR across Europe), safety floor (default 0) and the default credit-card utilization target in percent (default 30)."
         },
         {
           "name": "finance.set_balance",
@@ -150,7 +150,7 @@
           "name": "finance.stage_import",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Stage rows read off a statement WITHOUT writing them to the ledger. It validates them, works out which are already recorded, and returns a summary — row count, how many are new, how many are duplicates, the date range, money in, money out, and the five biggest categories. Show that summary to the owner in plain words and ask whether to commit; write it with finance.commit_import only after an explicit yes, or drop it with finance.discard_import. Pass `liability` instead of `account` for a credit-card statement: the rows then live on the card, where a negative amount is a charge and a positive one a payment. The staging expires in two hours. Extract the rows from the document yourself — never invent a row, and if part of the document is unreadable, stage what is legible and say which part you could not read. For more than a couple of hundred rows, do not type them: pass `file` with the artifact id of the CSV, or write the rows to an artifact and pass its id."
+          "description": "Stage rows read off a statement WITHOUT writing them to the ledger. It validates them, works out which are already recorded, and returns a summary — row count, how many are new, how many are duplicates, the date range, money in, money out, and the five biggest categories. Show that summary to the owner in plain words and ask whether to commit; write it with finance.commit_import only after an explicit yes, or drop it with finance.discard_import. Pass `liability` instead of `account` for a credit-card statement: the rows then live on the card, where a negative amount is a charge and a positive one a payment. The staging expires in two hours. Extract the rows from the document yourself — never invent a row, and if part of the document is unreadable, stage what is legible and say which part you could not read. A CSV or PDF statement the owner hands you goes in by `file` with its artifact id — the CSV exactly as exported, never retyped, cleaned or split; type `rows` only for what you read off a PDF, a screenshot or the owner's words, and never more than about thirty of them by hand. If a file cannot be read the refusal says why: tell the owner what the file looks like and what is missing instead of rewriting it."
         },
         {
           "name": "finance.commit_import",
@@ -401,6 +401,10 @@
         {
           "name": "coaching-a-credit-score",
           "description": "How to coach a credit score with the numbers this plugin holds: the levers in the order they actually move, what to ask the owner for once, and the one sentence to answer with. Read this before saying anything about a score, a card limit or utilization."
+        },
+        {
+          "name": "a-statement-goes-in-by-file",
+          "description": "What to do with a statement or export the owner hands you — a CSV, a PDF, a spreadsheet. Read this before reading, converting or retyping any bank or card file."
         }
       ],
       "pages": [
@@ -508,5 +512,5 @@
     },
     "drift": []
   },
-  "checkedAt": "2026-10-05"
+  "checkedAt": "2026-10-06"
 }
