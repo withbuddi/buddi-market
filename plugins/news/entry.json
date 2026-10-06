@@ -1,7 +1,7 @@
 {
   "name": "news",
   "npm": "@withbuddi/plugin-news",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "title": "News",
   "summary": "The news on the topics you follow, from a mix of English and French outlets you can see, grouped into stories on your own machine and told once. No model, no account, no service in between.",
   "category": "days",
@@ -599,7 +599,7 @@
           "name": "news.mute_outlet",
           "tier": "gated",
           "ownerOnly": false,
-          "description": "Mute a news outlet everywhere — its articles leave every story, the page and the editions — or turn it back on. Only when the owner asks (\"stop showing me Fox News\"); the owner approves it first."
+          "description": "Mute a news outlet everywhere \u2014 its articles leave every story, the page and the editions \u2014 or turn it back on. Only when the owner asks (\"stop showing me Fox News\"); the owner approves it first."
         },
         {
           "name": "news.enable_starter",
@@ -739,23 +739,23 @@
               "rows": [
                 {
                   "title": "Central banks hold rates as inflation cools",
-                  "side": "Reuters · 1 h"
+                  "side": "Reuters \u00b7 1 h"
                 },
                 {
                   "title": "A comet bright enough to see is passing this week",
-                  "side": "BBC · 2 h"
+                  "side": "BBC \u00b7 2 h"
                 },
                 {
                   "title": "Lyon opens its third tram line",
-                  "side": "Le Progrès · 3 h"
+                  "side": "Le Progr\u00e8s \u00b7 3 h"
                 },
                 {
                   "title": "The new phone that folds twice",
-                  "side": "The Verge · 4 h"
+                  "side": "The Verge \u00b7 4 h"
                 },
                 {
                   "title": "A quiet start to the Champions League",
-                  "side": "L’Équipe · 5 h"
+                  "side": "L\u2019\u00c9quipe \u00b7 5 h"
                 }
               ],
               "max": 5
