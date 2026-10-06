@@ -1,7 +1,7 @@
 {
   "name": "news",
   "npm": "@withbuddi/plugin-news",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "title": "News",
   "summary": "The news on the topics you follow, from a mix of English and French outlets you can see, grouped into stories on your own machine and told once. No model, no account, no service in between.",
   "category": "days",
@@ -18,32 +18,33 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/news",
-  "hostApi": "^1.27",
-  "integrity": "sha512-Zgw/F34Lh7HfFlxL8nwZNZOY1OsXXLAO1O2V1n3PwCVhN0ebs8LkSah7pD/iAgLCpBnyZ0APGYaM6ueSUvdL3Q==",
+  "hostApi": "^1.32",
+  "integrity": "sha512-61tq1R6AmJexPe3d57c7geTHMm7JpE28q1ZFZi5XELW1ABJl2KVCmOnKFmzTgPLaBOUYHXZmOek52iVAyRpwzg==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/news@0.2.4",
-    "commit": "57710b6ed1cb953782cfb5b51422ad25a52bc20d",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37395470096/attempts/1"
+    "ref": "refs/tags/news@0.2.5",
+    "commit": "a06719517eaef7a63ee526d754b3582f1dcdfadc",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37520864183/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-news",
-      "version": "0.2.4",
+      "version": "0.2.5",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
         "url": "https://withbuddi.com"
       },
       "buddiName": "news",
-      "hostApi": "^1.27",
+      "hostApi": "^1.32",
       "uses": [
         "http",
-        "assets"
+        "assets",
+        "onnx"
       ],
       "dependencies": {
-        "count": 2,
+        "count": 3,
         "withScripts": []
       },
       "scripts": []
@@ -149,7 +150,7 @@
     },
     "manifest": {
       "name": "news",
-      "version": "0.2.4",
+      "version": "0.2.5",
       "schema": "news",
       "description": "The news on the topics you follow, from English and French feeds you can see and change, grouped into stories on your own machine, with what was already told kept so nothing is told twice.",
       "author": {
@@ -158,7 +159,8 @@
       },
       "uses": [
         "http",
-        "assets"
+        "assets",
+        "onnx"
       ],
       "network": [
         {
@@ -672,6 +674,12 @@
           "tier": "auto",
           "ownerOnly": true,
           "description": "Add a source to a topic from what the owner typed: a feed, a site that names one, or words for a Google News search; checked before it is saved."
+        },
+        {
+          "name": "news.download_meaning",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Ask buddi to download the meaning model that groups stories by what they say, and the engine it runs on, to this computer. The owner approves one card first. The owner's own."
         }
       ],
       "sentinels": [],
