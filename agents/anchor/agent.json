@@ -132,7 +132,10 @@
   "roles": [],
   "replaces": [],
   "changes": "Anchor may hand background research to Researcher instead of telling you to ask it yourself.",
-  "integrity": "sha256-wFSS7FfBgpcFrfOh9fxERG9nTtHeaFh4XD6qY3Zwo8k=",
+  "delegates": [
+    "researcher"
+  ],
+  "integrity": "sha256-BBClvsn+/vNgnhTKKSsCV76SFHINkDv5mw3piB/Ilq4=",
   "claims": {
     "tools": [
       {
@@ -260,6 +263,13 @@
         "tier": "auto",
         "ownerOnly": false,
         "optional": true
+      },
+      {
+        "name": "agent.delegate",
+        "plugin": "core",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
       }
     ],
     "missions": [
@@ -324,11 +334,8 @@
       "height": 512
     },
     "sizes": {
-      "persona": 4290,
+      "persona": 4712,
       "skills": 12108
     }
-  },
-  "delegates": [
-    "researcher"
-  ]
+  }
 }
