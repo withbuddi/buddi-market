@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "anchor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "handle": "anchor",
   "title": "Anchor",
   "pitch": "Tells you the news three times a day: a few stories, a sentence each, from sources you pick.",
@@ -23,6 +23,7 @@
   },
   "needs": [],
   "tools": [
+    "news.editions",
     "news.topics",
     "news.headlines",
     "news.story",
@@ -129,8 +130,8 @@
   "idleRollover": "1d",
   "roles": [],
   "replaces": [],
-  "changes": "Editions stay under 2,500 characters: Anchor counts the whole text, links included, before saving, cuts words first and then drops the weakest story.",
-  "integrity": "sha256-lM/DTGQBSuNvBhmIlM0BqAaH1KZ/9Zblxic5N6GVXxw=",
+  "changes": "Retrieve saved editions with existing audio, open matching stories with publisher images, and keep sourced answers readable across dashboard and Telegram.",
+  "integrity": "sha256-p5jW+FC41kDCKMt5bx/fbn6PI+HP/NwV3nuFswevgrs=",
   "claims": {
     "tools": [
       {
@@ -315,8 +316,8 @@
       "height": 512
     },
     "sizes": {
-      "persona": 3699,
-      "skills": 11020
+      "persona": 3799,
+      "skills": 11787
     }
   }
 }
