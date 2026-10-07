@@ -1,7 +1,7 @@
 {
   "kind": "agent",
   "name": "anchor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "handle": "anchor",
   "title": "Anchor",
   "pitch": "Tells you the news three times a day: a few stories, a sentence each, from sources you pick.",
@@ -40,7 +40,8 @@
     "memory.get_preferences",
     "memory.remember_preference",
     "owner.notify",
-    "speech.say?"
+    "speech.say?",
+    "agent.delegate"
   ],
   "missions": [
     {
@@ -130,7 +131,7 @@
   "idleRollover": "1d",
   "roles": [],
   "replaces": [],
-  "changes": "Retrieve saved editions with existing audio, open matching stories with publisher images, and keep sourced answers readable across dashboard and Telegram.",
+  "changes": "Anchor may hand background research to Researcher instead of telling you to ask it yourself.",
   "integrity": "sha256-wFSS7FfBgpcFrfOh9fxERG9nTtHeaFh4XD6qY3Zwo8k=",
   "claims": {
     "tools": [
@@ -326,5 +327,8 @@
       "persona": 4290,
       "skills": 12108
     }
-  }
+  },
+  "delegates": [
+    "researcher"
+  ]
 }
