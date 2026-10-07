@@ -1,7 +1,7 @@
 {
   "name": "news",
   "npm": "@withbuddi/plugin-news",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "title": "News",
   "summary": "The news on the topics you follow, from a mix of English and French outlets you can see, grouped into stories on your own machine and told once. No model, no account, no service in between.",
   "category": "days",
@@ -18,26 +18,26 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/news",
-  "hostApi": "^1.32",
-  "integrity": "sha512-61tq1R6AmJexPe3d57c7geTHMm7JpE28q1ZFZi5XELW1ABJl2KVCmOnKFmzTgPLaBOUYHXZmOek52iVAyRpwzg==",
+  "hostApi": "^1.33",
+  "integrity": "sha512-G0v5DgHlq4RiKSwJitTZh5XIhWdu4+n0T62CkF2WFdQHvAeBm24n9IOOhhx9pxOJznlkrZhhn3/DfHM7d5I4ZQ==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/news@0.2.5",
-    "commit": "a06719517eaef7a63ee526d754b3582f1dcdfadc",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37520864183/attempts/1"
+    "ref": "refs/tags/news@0.2.6",
+    "commit": "602c5ac9f36943eb527094b90f9b822855009ca8",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37622255894/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-news",
-      "version": "0.2.5",
+      "version": "0.2.6",
       "license": "Apache-2.0",
       "author": {
         "name": "withbuddi",
         "url": "https://withbuddi.com"
       },
       "buddiName": "news",
-      "hostApi": "^1.32",
+      "hostApi": "^1.33",
       "uses": [
         "http",
         "assets",
@@ -52,30 +52,14 @@
     "claims": {
       "schema": "news",
       "hosts": [
-        "*.01net.com",
-        "01net.com",
-        "*.actuia.com",
-        "actuia.com",
-        "*.africanews.com",
-        "africanews.com",
-        "*.agenceecofin.com",
-        "agenceecofin.com",
         "*.aljazeera.com",
         "aljazeera.com",
         "*.apnews.com",
         "apnews.com",
-        "*.arstechnica.com",
-        "arstechnica.com",
         "*.axios.com",
         "axios.com",
         "*.bbc.com",
         "bbc.com",
-        "*.blog.google",
-        "blog.google",
-        "*.bloomberg.com",
-        "bloomberg.com",
-        "*.cnbc.com",
-        "cnbc.com",
         "*.dw.com",
         "dw.com",
         "*.economist.com",
@@ -85,25 +69,12 @@
         "foxnews.com",
         "*.france24.com",
         "france24.com",
-        "*.frandroid.com",
-        "frandroid.com",
         "*.ft.com",
         "ft.com",
-        "hn.algolia.com",
-        "*.icilome.com",
-        "icilome.com",
-        "*.importai.substack.com",
-        "importai.substack.com",
-        "*.jeuneafrique.com",
-        "jeuneafrique.com",
-        "*.journaldunet.com",
-        "journaldunet.com",
         "*.lefigaro.fr",
         "lefigaro.fr",
         "*.lemonde.fr",
         "lemonde.fr",
-        "*.lesechos.fr",
-        "lesechos.fr",
         "*.liberation.fr",
         "liberation.fr",
         "*.nationalreview.com",
@@ -111,46 +82,28 @@
         "news.google.com",
         "*.npr.org",
         "npr.org",
-        "*.numerama.com",
-        "numerama.com",
         "*.nytimes.com",
         "nytimes.com",
-        "*.openai.com",
-        "openai.com",
         "*.politico.com",
         "politico.com",
-        "*.republicoftogo.com",
-        "republicoftogo.com",
         "*.reuters.com",
         "reuters.com",
         "*.rfi.fr",
         "rfi.fr",
         "*.semafor.com",
         "semafor.com",
-        "*.simonwillison.net",
-        "simonwillison.net",
-        "*.techcrunch.com",
-        "techcrunch.com",
-        "*.technologyreview.com",
-        "technologyreview.com",
         "*.theguardian.com",
         "theguardian.com",
         "*.thehill.com",
         "thehill.com",
-        "*.theverge.com",
-        "theverge.com",
-        "*.togofirst.com",
-        "togofirst.com",
         "*.washingtonexaminer.com",
-        "washingtonexaminer.com",
-        "*.wired.com",
-        "wired.com"
+        "washingtonexaminer.com"
       ],
       "missing": false
     },
     "manifest": {
       "name": "news",
-      "version": "0.2.5",
+      "version": "0.2.6",
       "schema": "news",
       "description": "The news on the topics you follow, from English and French feeds you can see and change, grouped into stories on your own machine, with what was already told kept so nothing is told twice.",
       "author": {
@@ -163,38 +116,6 @@
         "onnx"
       ],
       "network": [
-        {
-          "host": "*.01net.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "01net.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.actuia.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "actuia.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.africanews.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "africanews.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.agenceecofin.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "agenceecofin.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
         {
           "host": "*.aljazeera.com",
           "why": "An outlet's site: asked for its icon, once a month at most."
@@ -212,14 +133,6 @@
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         },
         {
-          "host": "*.arstechnica.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "arstechnica.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
           "host": "*.axios.com",
           "why": "An outlet's site: asked for its icon, once a month at most."
         },
@@ -233,30 +146,6 @@
         },
         {
           "host": "bbc.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.blog.google",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "blog.google",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.bloomberg.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "bloomberg.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.cnbc.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "cnbc.com",
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         },
         {
@@ -296,55 +185,11 @@
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         },
         {
-          "host": "*.frandroid.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "frandroid.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
           "host": "*.ft.com",
           "why": "An outlet's site: asked for its icon, once a month at most."
         },
         {
           "host": "ft.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "hn.algolia.com",
-          "why": "Hacker News's front page, through Algolia: nothing goes, the list comes back."
-        },
-        {
-          "host": "*.icilome.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "icilome.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.importai.substack.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "importai.substack.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.jeuneafrique.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "jeuneafrique.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.journaldunet.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "journaldunet.com",
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         },
         {
@@ -361,14 +206,6 @@
         },
         {
           "host": "lemonde.fr",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.lesechos.fr",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "lesechos.fr",
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         },
         {
@@ -400,14 +237,6 @@
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         },
         {
-          "host": "*.numerama.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "numerama.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
           "host": "*.nytimes.com",
           "why": "An outlet's site: asked for its icon, once a month at most."
         },
@@ -416,27 +245,11 @@
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         },
         {
-          "host": "*.openai.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "openai.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
           "host": "*.politico.com",
           "why": "An outlet's site: asked for its icon, once a month at most."
         },
         {
           "host": "politico.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.republicoftogo.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "republicoftogo.com",
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         },
         {
@@ -464,30 +277,6 @@
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         },
         {
-          "host": "*.simonwillison.net",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "simonwillison.net",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.techcrunch.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "techcrunch.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.technologyreview.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "technologyreview.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
           "host": "*.theguardian.com",
           "why": "An outlet's site: asked for its icon, once a month at most."
         },
@@ -504,35 +293,11 @@
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         },
         {
-          "host": "*.theverge.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "theverge.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.togofirst.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "togofirst.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
           "host": "*.washingtonexaminer.com",
           "why": "An outlet's site: asked for its icon, once a month at most."
         },
         {
           "host": "washingtonexaminer.com",
-          "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
-        },
-        {
-          "host": "*.wired.com",
-          "why": "An outlet's site: asked for its icon, once a month at most."
-        },
-        {
-          "host": "wired.com",
           "why": "A news feed or an outlet's site: asked for its latest items, or its icon."
         }
       ],
@@ -559,7 +324,7 @@
           "name": "news.search",
           "tier": "auto",
           "ownerOnly": false,
-          "description": "Search the articles kept on this machine from the owner's sources for every word of the query, newest first, each with its story id, outlet, link and language. Answer questions about the news from these, never from memory."
+          "description": "Search the articles kept on this machine from the owner's sources for every word of the query, newest first, each with its story id, outlet, link, language and available cached image. Once a result matches the story requested, call news.story with its storyId before explaining it, to retrieve all sources and its illustration. Never answer from memory."
         },
         {
           "name": "news.mark_told",
@@ -572,6 +337,12 @@
           "tier": "auto",
           "ownerOnly": false,
           "description": "The owner's word on the news: not interested in a story, mute an outlet or a topic, snooze a story or a topic, or clear one of these. Use it when the owner says so (\"stop showing me this\", \"not today\"), never on your own. Name exactly one of storyId, outlet or topic."
+        },
+        {
+          "name": "news.editions",
+          "tier": "auto",
+          "ownerOnly": false,
+          "description": "Retrieve saved editions, newest first, with their exact text and links. With no arguments returns the latest saved edition and total saved count. Filter by kind for the latest morning, midday or evening edition, or id for a specific edition. Increase limit to list recent editions. Use this when asked to show the last edition or how many editions are saved; never reconstruct one from headlines or edition material."
         },
         {
           "name": "news.edition_material",
@@ -680,6 +451,18 @@
           "tier": "auto",
           "ownerOnly": true,
           "description": "Ask buddi to download the meaning model that groups stories by what they say, and the engine it runs on, to this computer. The owner approves one card first. The owner's own."
+        },
+        {
+          "name": "news.finish_meaning_setup",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Finish the first News setup step after the model is ready, or explicitly choose word matching for now."
+        },
+        {
+          "name": "news.choose_custom_sources",
+          "tier": "auto",
+          "ownerOnly": true,
+          "description": "Choose to add your own first topic and sources during News setup."
         }
       ],
       "sentinels": [],
@@ -704,7 +487,7 @@
           "place": "settings"
         }
       ],
-      "views": 0,
+      "views": 4,
       "home": 0,
       "widgets": [
         {
@@ -774,5 +557,5 @@
     },
     "drift": []
   },
-  "checkedAt": "2026-10-06"
+  "checkedAt": "2026-10-07"
 }

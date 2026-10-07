@@ -131,9 +131,16 @@
   "roles": [],
   "replaces": [],
   "changes": "Retrieve saved editions with existing audio, open matching stories with publisher images, and keep sourced answers readable across dashboard and Telegram.",
-  "integrity": "sha256-p5jW+FC41kDCKMt5bx/fbn6PI+HP/NwV3nuFswevgrs=",
+  "integrity": "sha256-wFSS7FfBgpcFrfOh9fxERG9nTtHeaFh4XD6qY3Zwo8k=",
   "claims": {
     "tools": [
+      {
+        "name": "news.editions",
+        "plugin": "news",
+        "tier": "auto",
+        "ownerOnly": false,
+        "optional": false
+      },
       {
         "name": "news.topics",
         "plugin": "news",
@@ -279,16 +286,16 @@
         {
           "name": "news",
           "range": ">=0.2.0",
-          "listed": "0.2.5",
-          "hostApi": "^1.32"
+          "listed": "0.2.6",
+          "hostApi": "^1.33"
         }
       ],
       "optional": [
         {
           "name": "speech",
           "range": ">=0.1.4",
-          "listed": "0.1.5",
-          "hostApi": "^1.0"
+          "listed": "0.1.6",
+          "hostApi": "^1.33"
         }
       ]
     },
@@ -316,8 +323,8 @@
       "height": 512
     },
     "sizes": {
-      "persona": 3799,
-      "skills": 11787
+      "persona": 4290,
+      "skills": 12108
     }
   }
 }

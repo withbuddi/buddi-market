@@ -1,7 +1,7 @@
 {
   "name": "speech",
   "npm": "@withbuddi/plugin-speech",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "title": "Speech",
   "summary": "Your team hear you and answer with a voice: on the dashboard and on Telegram. Whisper and Kokoro run on your computer, or a cloud service you choose.",
   "category": "voice",
@@ -18,26 +18,26 @@
   "license": "GPL-3.0-only",
   "repository": "https://github.com/withbuddi/buddi-plugins",
   "homepage": "https://withbuddi.com/plugins/speech",
-  "hostApi": "^1.0",
-  "integrity": "sha512-+7DtBi3d/iwUXVWSrYRWptorSkXZQnuplOi2fqmqq0fkuhTfqsPIf0nUQc184oTi+Lk2INlxisxhCRDXv4C7kA==",
+  "hostApi": "^1.33",
+  "integrity": "sha512-V21gOpRRmwZXHpomFv4Jw9T6K6Xb3d7fi1pe8BK+nxHw+A1jmTAjhSjF2Ll18JW9zxrbMzFCjmryB8u78/hZ7A==",
   "provenance": {
     "repository": "https://github.com/withbuddi/buddi-plugins",
     "workflow": ".github/workflows/publish.yml",
-    "ref": "refs/tags/speech@0.1.5",
-    "commit": "ed0a152d83a702786e00b5ec258a41f7cac8a05f",
-    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37264258052/attempts/1"
+    "ref": "refs/tags/speech@0.1.6",
+    "commit": "602c5ac9f36943eb527094b90f9b822855009ca8",
+    "run": "https://github.com/withbuddi/buddi-plugins/actions/runs/37622255884/attempts/1"
   },
   "claims": {
     "package": {
       "name": "@withbuddi/plugin-speech",
-      "version": "0.1.5",
+      "version": "0.1.6",
       "license": "GPL-3.0-only",
       "author": {
         "name": "withbuddi",
         "url": "https://withbuddi.com"
       },
       "buddiName": "speech",
-      "hostApi": "^1.0",
+      "hostApi": "^1.33",
       "uses": [
         "http",
         "accounts",
@@ -65,7 +65,7 @@
     },
     "manifest": {
       "name": "speech",
-      "version": "0.1.5",
+      "version": "0.1.6",
       "schema": "speech",
       "description": "Lets agents listen to an audio file and answer with a voice, through the OpenAI, Gemini or OpenAI-compatible account you choose on Settings → Speech, or Whisper and Kokoro on this computer, with daily limits.",
       "author": {
@@ -166,11 +166,11 @@
           "place": "settings"
         }
       ],
-      "views": 0,
+      "views": 1,
       "home": 0,
       "widgets": []
     },
     "drift": []
   },
-  "checkedAt": "2026-10-05"
+  "checkedAt": "2026-10-07"
 }
